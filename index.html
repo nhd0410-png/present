@@ -936,6 +936,7 @@
     }
 
     // --- HÀM SHOWRESULTS ĐÃ ĐƯỢC TÍCH HỢP FORMSPREE GỬI EMAIL ---
+    // --- HÀM SHOWRESULTS ĐÃ ĐƯỢC TÍCH HỢP FORMSPREE GỬI EMAIL ---
     function showResults() {
         clearInterval(timerInterval);
         document.body.classList.remove("panic-mode");
@@ -951,34 +952,74 @@
             rewardLevel.innerText = "XẾP HẠNG: HỌC VIÊN CHĂM CHỈ! 📝";
         }
 
-        // Hiện hộp thoại yêu cầu học sinh điền Tên
-        let studentName = prompt("Chúc mừng con! Hãy nhập Họ và Tên của con để gửi kết quả cho thầy/cô nhé:");
-        if (!studentName) studentName = "Học sinh ẩn danh";
+        // Tự động tạo một Form điền tên đẹp mắt ngay trên giao diện kết quả
+        // Điểm số được truyền tự động vào và khóa lại (readonly), học sinh không thể chỉnh sửa!
+        const formContainerId = "formspree-submit-zone";
+        let existingForm = document.getElementById(formContainerId);
+        if (existingForm) existingForm.remove();
 
-        // Hàm tự động đẩy thông tin lên hòm thư Email thông qua Formspree
-        fetch("https://formspree.io/f/mvznjpeg", { // <--- XÓA CHỮ xxxxxxxx ĐỂ ĐỔI THÀNH MÃ FORMSPREE CỦA BẠN CHÍNH XÁC
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "Tên học sinh": studentName,
-                "Điểm số đạt được": globalScore,
-                "Thời gian nộp bài": new Date().toLocaleString("vi-VN")
+        const formZone = document.createElement("div");
+        formZone.id = formContainerId;
+        formZone.style.cssText = "margin-top: 25px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border: 2px dashed #00fff0;";
+        
+        formZone.innerHTML = `
+            <h3 style="color: #ffeb3b; margin-top: 0;">NỘP KẾT QUẢ CHO THẦY CÔ</h3>
+            <form id="formspree-form" style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <div style="width: 100%; max-width: 400px; text-align: left;">
+                    <label style="display: block; margin-bottom: 5px; color: #00fff0;">Họ và tên của con:</label>
+                    <input type="text" name="Tên học sinh" required placeholder="Nhập tên đầy đủ..." style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #fff; box-sizing: border-box; font-size: 1.1rem;">
+                </div>
+                <div style="width: 100%; max-width: 400px; text-align: left;">
+                    <label style="display: block; margin-bottom: 5px; color: #00fff0;">Điểm số (Tự động khóa):</label>
+                    <input type="text" name="Điểm số đạt được" value="${globalScore} điểm" readonly style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #555; background: #222; color: #ffeb3b; font-weight: bold; box-sizing: border-box; font-size: 1.1rem; cursor: not-allowed;">
+                </div>
+                <button type="submit" id="form-submit-btn" class="control-btn blue" style="padding: 10px 40px;">Bấm Để Gửi Điểm 🚀</button>
+            </form>
+        `;
+
+        // Chèn form này vào ngay dưới phần hiển thị xếp hạng hạng của kết quả
+        resultScreen.insertBefore(formZone, resultScreen.querySelector('.btn-group'));
+
+        // Xử lý sự kiện gửi Form bằng Formspree thông qua AJAX/Fetch
+        document.getElementById("formspree-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById("form-submit-btn");
+            submitBtn.innerText = "Đang gửi... ⏳";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(this);
+            formData.append("Thời gian nộp bài", new Date().toLocaleString("vi-VN"));
+
+            // Chuyển FormData sang JSON để gửi đi giống cấu trúc cũ của bạn
+            const object = {};
+            formData.forEach((value, key) => object[key] = value);
+
+            fetch("https://formspree.io/f/mvznjpeg", { // <--- Giữ nguyên mã ID Formspree của bạn ở đây
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(object)
             })
-        })
-        .then(response => {
-            if (response.ok) {
-                alert("Kết quả của con đã được gửi tới thầy/cô thành công! 🎉");
-            } else {
-                alert("Có lỗi kết nối hệ thống gửi điểm, con hãy tự chụp màn hình lại nhé!");
-            }
-        })
-        .catch(error => {
-            console.error("Lỗi mạng:", error);
+            .then(response => {
+                if (response.ok) {
+                    alert("Kết quả của con đã được gửi tới thầy/cô thành công! 🎉");
+                    formZone.innerHTML = `<h3 style="color: var(--correct-color); margin: 0;"> Đã gửi điểm thành công thành công hòm thư của giáo viên!</h3>`;
+                } else {
+                    alert("Có lỗi hệ thống gửi điểm, con hãy tự chụp màn hình lại nhé!");
+                    submitBtn.innerText = "Gửi lại";
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi mạng:", error);
+                alert("Lỗi kết nối mạng, vui lòng thử lại!");
+                submitBtn.innerText = "Gửi lại";
+                submitBtn.disabled = false;
+            });
         });
     }
-
     function showHistoryScreen() {
         resultScreen.classList.remove("active-screen");
         historyScreen.classList.add("active-screen");
