@@ -366,7 +366,7 @@
             • <b>Câu 26 - 37 (12 câu):</b> Trắc nghiệm tìm nghĩa tiếng Việt của từ vựng mới.<br>
             • <b>Câu 38 - 50 (13 câu):</b> Thử thách điền ký tự tiếng Anh viết tay chính xác.<br>
             • ⭐ <b>Điểm đặc biệt:</b> Trả lời đúng nhận ngay 100 điểm + số giây còn lại trên đồng hồ!<br>
-            • ⭐ <b>Quyền trợ giúp Chậm Giờ:</b>[cite: 1] Đồng hồ chảy chậm gấp 2 lần, giúp các con có thêm thời gian suy nghĩ bài toán khó![cite: 1]<br>
+            • ⭐ <b>Quyền trợ giúp Chậm Giờ:</b> Đồng hồ chảy chậm gấp 2 lần, giúp các con có thêm thời gian suy nghĩ bài toán khó!<br>
             • ⭐ <b>Vòng quà tặng (Cứ sau 3 câu):</b> Lá bài lật xem trước quà trong 4.5 giây, sau đó xáo bài tự động. Hệ thống sẽ khóa hoàn toàn cho đến khi xáo xong mới cho con chọn quà nhé!
         </div>
         <button class="start-game-btn" onclick="startGame()">Bắt Đầu Chơi Ngay</button>
@@ -388,7 +388,7 @@
         <div class="lifelines-container" id="lifelines-zone">
             <button id="ll-5050" class="lifeline-btn" onclick="use5050()">50:50 <span id="count-5050" class="lifeline-count">1</span></button>
             <button id="ll-double" class="lifeline-btn" onclick="useDoubleScore()">x2 Điểm <span id="count-double" class="lifeline-count">1</span></button>
-            <button id="ll-notimer" class="lifeline-btn" onclick="useNoTimer()">Chậm Giờ <span id="count-notimer" class="lifeline-count">1</span></button> <!--[cite: 1] -->
+            <button id="ll-notimer" class="lifeline-btn" onclick="useNoTimer()">Chậm Giờ <span id="count-notimer" class="lifeline-count">1</span></button>
         </div>
         
         <div class="question-box">
@@ -437,7 +437,7 @@
 
 <script>
     const quizData = [
-        // --- 25 CÂU HỎI NGỮ PHÁP MỚI (CÂU 1 - 25): ĐỘ KHÓ GIỮ NGUYÊN ---
+        // --- 25 CÂU HỎI NGỮ PHÁP MỚI (CÂU 1 - 25) ---
         { type: "mcq", q: "If we practice hard today, our football team _________ the final school tournament.", a: "will win", b: "win", c: "wins", d: "winning", correct: "A", exp: "Mệnh đề If ở hiện tại đơn (practice), mệnh đề chính chỉ tương lai có thể xảy ra dùng will + V." },
         { type: "mcq", q: "Our new coach usually _________ to the stadium early every morning.", a: "come", b: "comes", c: "is coming", d: "has come", correct: "B", exp: "Trạng từ 'usually' và 'every morning' diễn tả thói quen lặp đi lặp lại ở Hiện tại đơn. Chủ ngữ 'Our new coach' số ít nên động từ thêm -s/-es." },
         { type: "mcq", q: "Listen! The school principal _________ the whistle to start the match.", a: "blows", b: "is blowing", c: "blew", d: "has blown", correct: "B", exp: "Dấu hiệu nhận biết hành động đang diễn ra 'Listen!' đi với thì Hiện tại tiếp diễn." },
@@ -465,12 +465,12 @@
         { type: "mcq", q: "What will you do if your favorite sports club _________ win the game?", a: "doesn't", b: "don't", c: "won't", d: "didn't", correct: "A", exp: "Phủ định mệnh đề If hiện tại đơn với chủ ngữ ngôi thứ 3 số ít 'your favorite sports club' phải dùng trợ động từ 'doesn't'." },
 
         // --- 12 CÂU HỎI TRẮC NGHIỆM TỪ VỰNG MỚI (CÂU 26 - 37) ---
-        { type: "mcq", q: "Từ vựng 'commentator' nghĩa tiếng Việt là gì?", a: "huấn luyện viên", b: "trọng tài", c: "bình luận viên", d: "khán giả", correct: "C", exp: "commentator có nghĩa là bình luận viên (thể thao, truyền hình)."[cite: 1] },
-        { type: "mcq", q: "Từ vựng 'blind' nghĩa tiếng Việt là gì?", a: "điếc", b: "mù, khiếm thị", c: "câm", d: "khỏe mạnh", correct: "B", exp: "blind có nghĩa là mù hoặc không thể nhìn thấy."[cite: 1] },
-        { type: "mcq", q: "Từ vựng 'describe' nghĩa tiếng Việt là gì?", a: "miêu tả, diễn tả", b: "vẽ tranh", c: "lắng nghe", d: "thi đấu", correct: "A", exp: "describe có nghĩa là miêu tả hoặc mô tả đặc điểm của ai đó/vật gì đó."[cite: 1] },
-        { type: "mcq", q: "Từ vựng 'special' nghĩa tiếng Việt là gì?", a: "thông thường", b: "nhàm chán", c: "đặc biệt", d: "bí mật", correct: "C", exp: "special có nghĩa là đặc biệt, khác biệt hẳn so với bình thường."[cite: 1] },
-        { type: "mcq", q: "Từ vựng 'enough' nghĩa tiếng Việt là gì?", a: "quá nhiều", b: "đủ", c: "thiếu thốn", d: "tuyệt vời", correct: "B", exp: "enough có nghĩa là đủ số lượng hoặc mức độ cần thiết."[cite: 1] },
-        { type: "mcq", q: "Từ vựng 'captain' nghĩa tiếng Việt là gì?", a: "đội trưởng", b: "trợ lý", c: "bác sĩ đội", d: "cổ động viên", correct: "A", exp: "captain có nghĩa là đội trưởng hoặc thủ lĩnh của một nhóm/đội thể thao."[cite: 1] },
+        { type: "mcq", q: "Từ vựng 'commentator' nghĩa tiếng Việt là gì?", a: "huấn luyện viên", b: "trọng tài", c: "bình luận viên", d: "khán giả", correct: "C", exp: "commentator có nghĩa là bình luận viên (thể thao, truyền hình)." },
+        { type: "mcq", q: "Từ vựng 'blind' nghĩa tiếng Việt là gì?", a: "điếc", b: "mù, khiếm thị", c: "câm", d: "khỏe mạnh", correct: "B", exp: "blind có nghĩa là mù hoặc không thể nhìn thấy." },
+        { type: "mcq", q: "Từ vựng 'describe' nghĩa tiếng Việt là gì?", a: "miêu tả, diễn tả", b: "vẽ tranh", c: "lắng nghe", d: "thi đấu", correct: "A", exp: "describe có nghĩa là miêu tả hoặc mô tả đặc điểm của ai đó/vật gì đó." },
+        { type: "mcq", q: "Từ vựng 'special' nghĩa tiếng Việt là gì?", a: "thông thường", b: "nhàm chán", c: "đặc biệt", d: "bí mật", correct: "C", exp: "special có nghĩa là đặc biệt, khác biệt hẳn so với bình thường." },
+        { type: "mcq", q: "Từ vựng 'enough' nghĩa tiếng Việt là gì?", a: "quá nhiều", b: "đủ", c: "thiếu thốn", d: "tuyệt vời", correct: "B", exp: "enough có nghĩa là đủ số lượng hoặc mức độ cần thiết." },
+        { type: "mcq", q: "Từ vựng 'captain' nghĩa tiếng Việt là gì?", a: "đội trưởng", b: "trợ lý", c: "bác sĩ đội", d: "cổ động viên", correct: "A", exp: "captain có nghĩa là đội trưởng hoặc thủ lĩnh của một nhóm/đội thể thao." },
         { type: "mcq", q: "Từ vựng 'whistle' nghĩa tiếng Việt là gì?", a: "đôi giày", b: "cái còi", c: "lá cờ", d: "băng gạc", correct: "B", exp: "whistle có nghĩa là cái còi (dụng cụ của trọng tài)." },
         { type: "mcq", q: "Từ vựng 'stadium' nghĩa tiếng Việt là gì?", a: "bệnh viện", b: "sân vận động", c: "rạp chiếu phim", d: "công viên", correct: "B", exp: "stadium có nghĩa là sân vận động lớn có khán đài." },
         { type: "mcq", q: "Từ vựng 'opponent' nghĩa tiếng Việt là gì?", a: "đồng đội", b: "đối thủ, đội bạn", c: "người hướng dẫn", d: "người hâm mộ", correct: "B", exp: "opponent có nghĩa là đối thủ cạnh tranh trực tiếp trong trận đấu." },
@@ -479,12 +479,12 @@
         { type: "mcq", q: "Từ vựng 'cheer' nghĩa tiếng Việt là gì?", a: "khóc lóc", b: "than vãn", c: "hò reo, cổ vũ", d: "phạt thẻ", correct: "C", exp: "cheer có nghĩa là cổ vũ, reo hò khích lệ tinh thần." },
 
         // --- 13 CÂU HỎI ĐIỀN TỪ VIẾT TAY MỚI (CÂU 38 - 50) ---
-        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'bình luận viên' (c_ _ _ _ _ _ _ _ _ _r)", correct: "commentator", exp: "Người bình luận trận đấu là commentator."[cite: 1] },
-        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'mù / khiếm thị' (b_ _nd)", correct: "blind", exp: "Không thể nhìn thấy gọi là blind."[cite: 1] },
-        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'miêu tả / diễn tả' (d_ _ _ _ __e)", correct: "describe", exp: "Hành động mô tả bằng lời nói/văn bản là describe."[cite: 1] },
-        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'đặc biệt' (s_ _ _ _ _l)", correct: "special", exp: "Mang tính chất riêng biệt, nổi bật là special."[cite: 1] },
-        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'đủ' (e_ _ _gh)", correct: "enough", exp: "Đã đạt số lượng cần thiết là enough."[cite: 1] },
-        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'đội trưởng' (c_ _ _ __n)", correct: "captain", exp: "Người dẫn đầu một tập thể thể thao là captain."[cite: 1] },
+        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'bình luận viên' (c_ _ _ _ _ _ _ _ _ _r)", correct: "commentator", exp: "Người bình luận trận đấu là commentator." },
+        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'mù / khiếm thị' (b_ _nd)", correct: "blind", exp: "Không thể nhìn thấy gọi là blind." },
+        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'miêu tả / diễn tả' (d_ _ _ _ __e)", correct: "describe", exp: "Hành động mô tả bằng lời nói/văn bản là describe." },
+        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'đặc biệt' (s_ _ _ _ _l)", correct: "special", exp: "Mang tính chất riêng biệt, nổi bật là special." },
+        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'đủ' (e_ _ _gh)", correct: "enough", exp: "Đã đạt số lượng cần thiết là enough." },
+        { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'đội trưởng' (c_ _ _ __n)", correct: "captain", exp: "Người dẫn đầu một tập thể thể thao là captain." },
         { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'cái còi' (w_ _ _ _le)", correct: "whistle", exp: "Dụng cụ thổi tạo âm thanh của trọng tài là whistle." },
         { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'sân vận động' (s_ _ _ __m)", correct: "stadium", exp: "Nơi diễn ra các trận thi đấu thể thao lớn là stadium." },
         { type: "written", q: "Hãy gõ từ tiếng Anh có nghĩa là: 'đối thủ' (o_ _ _ _ _nt)", correct: "opponent", exp: "Người hoặc đội thi đấu chống lại mình là opponent." },
@@ -560,8 +560,7 @@
         timerBar.style.width = "100%";
         timerBar.style.background = "linear-gradient(to right, #00ff87, #60efff)";
 
-        // Đọc yêu cầu: Nếu bấm quyền trợ giúp "Chậm Giờ", tốc độ đồng hồ giảm 2 lần (2000ms mỗi nhịp)[cite: 1]
-        let intervalSpeed = activeNoTimer ? 2000 : 1000; //[cite: 1]
+        let intervalSpeed = activeNoTimer ? 2000 : 1000;
 
         timerInterval = setInterval(() => {
             timeLeft--;
@@ -650,13 +649,12 @@
         statusMessage.innerText = "🔥 Đã nhân đôi điểm (x2) nếu con trả lời đúng câu này!";
     }
 
-    // Logic thay đổi từ dừng giờ hoàn toàn sang làm chậm tốc độ trôi của giây gấp 2 lần[cite: 1]
     function useNoTimer() {
         if (lifelines.noTimer <= 0 || isAnswering || activeNoTimer) return;
         lifelines.noTimer--;
         activeNoTimer = true;
         updateLifelineUI();
-        statusMessage.innerText = "⏳ Phép thuật kích hoạt! Đồng hồ đang trôi chậm lại gấp 2 lần!"; //[cite: 1]
+        statusMessage.innerText = "⏳ Phép thuật kích hoạt! Đồng hồ đang trôi chậm lại gấp 2 lần!";
         startTimer(); 
     }
 
@@ -830,7 +828,7 @@
         const rewardsOptions = [
             { text: "⭐ Cộng 200 Điểm", action: () => { globalScore += 200; } },
             { text: "⭐ Cộng 100 Điểm", action: () => { globalScore += 100; } },
-            { text: "🎁 Thêm 1 lượt Chậm Giờ", action: () => { lifelines.noTimer++; } }, //[cite: 1]
+            { text: "🎁 Thêm 1 lượt Chậm Giờ", action: () => { lifelines.noTimer++; } },
             { text: "🎁 Thêm 1 lượt 50:50", action: () => { lifelines.fiftyFifty++; } },
             { text: "🎁 Thêm 1 lượt x2 Điểm", action: () => { lifelines.doubleScore++; } }
         ];
@@ -945,7 +943,7 @@
         finalScoreDisplay.innerText = globalScore;
 
         if (globalScore >= 4500) {
-            rewardLevel.innerText = "XẾP HẠNG: THỦ KHOA TIẾNG ANH XUẤT SẮC! 🏆";
+            rewardLevel.innerText = "XẾP HẠNG: THỦ KHOA TIẾNG ANH XUẤS SẮC! 🏆";
         } else if (globalScore >= 2800) {
             rewardLevel.innerText = "XẾP HẠNG: CHIẾN SĨ TIẾNG ANH THÔNG THÁI! Đáng khen! 🏅";
         } else {
