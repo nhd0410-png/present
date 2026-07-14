@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đấu Trường Nhí - Space Quiz Invaders v3.1</title>
+    <title>Đấu Trường Nhí - Space Grammar Invaders</title>
     <style>
         :root {
             --bg-color: #020010;
@@ -21,7 +21,7 @@
             background: var(--bg-color);
             background-image: 
                 radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px),
                 radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
             background-size: 550px 550px, 350px 350px, 250px 250px;
             background-position: 0 0, 40px 60px, 130px 270px;
@@ -55,6 +55,8 @@
             position: relative;
             backdrop-filter: blur(8px);
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
 
         .header-title {
@@ -81,6 +83,7 @@
         .timer-zone-wrapper {
             margin: 15px 0;
             text-align: center;
+            display: none;
         }
 
         .timer-container {
@@ -118,82 +121,64 @@
             background: rgba(13, 17, 43, 0.9);
             border: 2px solid #fff;
             border-radius: 12px;
-            padding: 20px;
-            font-size: 1.3rem;
-            line-height: 1.5;
+            padding: 25px;
+            font-size: 1.5rem;
+            line-height: 1.8;
             margin-bottom: 15px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-            position: relative;
+        .interactive-sentence {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
         }
 
-        .option-btn {
-            background: rgba(19, 26, 68, 0.85);
-            border: 2px solid var(--border-neon);
+        .word-token {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(0, 255, 240, 0.3);
             border-radius: 6px;
-            padding: 22px 20px;
-            color: #fff;
-            font-size: 1.1rem;
-            text-align: left;
             cursor: pointer;
-            transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
-            position: relative;
-            overflow: hidden;
+            user-select: none;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            color: #fff;
         }
 
-        .option-btn:hover:not(:disabled) {
-            background: rgba(0, 180, 219, 0.25);
-            box-shadow: 0 0 15px rgba(0, 255, 240, 0.4);
+        .word-token:hover:not(.disabled) {
+            background: rgba(0, 255, 240, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 240, 0.4);
+            transform: translateY(-2px);
         }
 
-        .option-prefix { color: var(--accent-color); font-weight: bold; margin-right: 8px; }
-
-        .option-btn.suspense {
-            background: #ffaa00 !important;
-            color: black !important;
-            border-color: #fff !important;
-        }
-
-        .option-btn.correct {
-            background: rgba(17, 153, 142, 0.9) !important;
-            border-color: var(--correct-color) !important;
-            box-shadow: 0 0 25px var(--correct-color) !important;
-            animation: hitVibrate 0.1s infinite;
-        }
-
-        .option-btn.wrong {
-            background: rgba(255, 65, 108, 0.9) !important;
+        .word-token.selected-wrong {
+            background: rgba(255, 65, 108, 0.4) !important;
             border-color: var(--wrong-color) !important;
-            box-shadow: 0 0 25px var(--wrong-color) !important;
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
+
+        .word-token.selected-target {
+            background: rgba(255, 235, 59, 0.3) !important;
+            border-color: var(--accent-color) !important;
+            box-shadow: 0 0 15px var(--accent-color);
             animation: hitVibrate 0.1s infinite;
+        }
+
+        .word-token.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
         }
 
         @keyframes hitVibrate {
-            0% { transform: translate(2px, 1px) rotate(0deg); }
+            0% { transform: translate(1px, 1px) rotate(0deg); }
             50% { transform: translate(-1px, -1px) rotate(1deg); }
-            100% { transform: translate(1px, 2px) rotate(-1deg); }
-        }
-
-        .explosion-particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: explodeOut 0.6s ease-out forwards;
-        }
-
-        @keyframes explodeOut {
-            0% { transform: translate(0,0) scale(1); opacity: 1; }
-            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+            100% { transform: translate(1px, -1px) rotate(-1deg); }
         }
 
         .battle-deck {
@@ -285,7 +270,7 @@
             background: linear-gradient(135deg, #0d1b3e, #162a65);
             border: 1px solid #00fff0;
             color: white;
-            padding: 8px 5px;
+            padding: 10px 5px;
             border-radius: 4px;
             font-weight: bold;
             cursor: pointer;
@@ -320,20 +305,26 @@
             font-weight: 900;
         }
 
-        .written-container {
-            grid-column: span 2;
-            background: rgba(13, 17, 43, 0.8);
-            border: 2px dashed var(--border-neon);
+        .correction-container {
+            background: rgba(13, 17, 43, 0.9);
+            border: 2px dashed var(--correct-color);
             padding: 20px;
             border-radius: 8px;
             text-align: center;
+            margin-top: 15px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .written-input {
             width: 80%;
             max-width: 400px;
             padding: 12px 20px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             border: 2px solid var(--border-neon);
             border-radius: 4px;
             background: #020215;
@@ -348,9 +339,9 @@
         }
 
         #status-message {
-            height: 25px;
+            height: 30px;
             margin-top: 10px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--accent-color);
             text-align: center;
@@ -404,98 +395,20 @@
         .control-btn { font-size: 1rem; padding: 12px 25px; }
         .control-btn.blue { background: linear-gradient(135deg, #00b4db, #0083b0); color: #fff; box-shadow: 0 0 15px rgba(0,180,219,0.4); }
 
-        .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
 
         .history-container { text-align: left; max-height: 350px; overflow-y: auto; margin-top: 20px; }
         .history-item { background: rgba(255, 255, 255, 0.03); padding: 15px; margin-bottom: 10px; border-radius: 6px; border-left: 4px solid #fff; }
         .history-item.history-correct { border-left-color: var(--correct-color); }
         .history-item.history-wrong { border-left-color: var(--wrong-color); }
 
-        .cards-board-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 25px;
-            min-height: 340px;
-            position: relative;
-        }
-
-        .cards-row {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            width: 100%;
-        }
-
-        .card-slot {
-            width: 120px;
-            height: 160px;
-            perspective: 1000px;
-            cursor: pointer;
-            position: relative;
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .card-inner {
-            width: 100%; height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s;
-            transform: rotateY(180deg);
-        }
-
-        .card-slot.face-down .card-inner { transform: rotateY(0deg); }
-        .card-slot.face-up .card-inner { transform: rotateY(180deg); }
-
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%; height: 100%;
-            backface-visibility: hidden;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            box-sizing: border-box;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-        }
-
-        .card-front {
-            background: linear-gradient(135deg, #1f4068, #162447);
-            border: 2px solid var(--border-neon);
-        }
-
-        .card-front-pattern {
-            width: 100%; height: 100%;
-            border: 1px dashed rgba(0, 255, 240, 0.4);
-            border-radius: 4px;
-        }
-
-        .card-back {
-            background: linear-gradient(135deg, #111, #1a1a2e);
-            color: #fff;
-            transform: rotateY(180deg);
-            font-weight: bold;
-            font-size: 0.85rem;
-            text-align: center;
-            border: 2px solid var(--accent-color);
-        }
-
-        .card-slot.zoomed-winner {
-            transform: scale(1.15);
-            box-shadow: 0 0 25px gold;
-            z-index: 10;
-        }
-        
-        .card-slot.disabled {
-            cursor: not-allowed;
+        .heart-icon {
+            color: #ff4b5c;
+            font-size: 1.4rem;
         }
 
         @media (max-width: 600px) {
-            .options-grid { grid-template-columns: 1fr; }
             .battle-deck { grid-template-columns: 1fr; }
-            .card-slot { width: 90px; height: 130px; }
         }
     </style>
 </head>
@@ -507,37 +420,40 @@
     
     <div id="intro-screen" class="screen active-screen">
         <div class="header-title">Đấu Trường Nhí</div>
-        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Space Quiz Invaders Edition v3.1</p>
+        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Space Grammar Invaders Edition v4.0</p>
         
         <div class="intro-rules">
-            <strong>🚀 BẢN CẬP NHẬT SỬA LỖI ĐÁP ÁN:</strong><br>
-            • ⭐ Hệ thống so khớp tự luận thông minh mới, tự động bỏ khoảng trắng thừa và không phân biệt chữ hoa/thường.<br>
-            • ⭐ Rà soát toàn bộ đáp án MCQ và Giải thích nghĩa chuẩn xác.<br>
-            • ⭐ Giữ nguyên tất cả các vòng bổ trợ: 50:50, Nhân đôi điểm, Chậm giờ và Hộp quà bí ẩn!
+            <strong>🚀 LUẬT CHƠI MỚI VŨ TRỤ NGỮ PHÁP (25 CÂU HỎI):</strong><br>
+            • 🌟 <b>Giai đoạn 1:</b> Nhấn trực tiếp vào <b>Từ Bị Sai Ngữ Pháp</b> trong câu. Con có <b>3 Mạng ❤️</b>!<br>
+            • 🌟 <b>Giai đoạn 2:</b> Khi tìm đúng từ sai, con có <b>50 giây ⏳</b> để gõ từ sửa lại đúng!<br>
+            • 🛸 Sử dụng Gợi ý Ngữ Pháp bất cứ khi nào gặp câu khó!
         </div>
+        
         <div style="text-align: center;">
-            <button class="start-game-btn" onclick="startGame()">Bắt Đầu Chơi Ngay</button>
+            <button class="start-game-btn" onclick="startGame()">Bắt Đầu Chiến Đấu 🚀</button>
         </div>
     </div>
 
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Câu hỏi: <span id="current-q-num">1</span> / <span id="total-q-num">--</span></div>
+            <div>Câu hỏi: <span id="current-q-num">1</span> / <span id="total-q-num">25</span></div>
+            <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
-            <div>Giờ còn: <span id="countdown-text">50s</span></div>
+            <div id="phase-timer-display" style="visibility: hidden;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
         </div>
 
         <div class="question-box">
-            <div id="question-text">...</div>
+            <div style="font-size: 1rem; color: #00fff0; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">🎯 Hãy bấm vào từ viết sai ngữ pháp:</div>
+            <div id="interactive-sentence-box" class="interactive-sentence"></div>
         </div>
 
-        <div class="timer-zone-wrapper">
+        <div id="timer-wrapper-element" class="timer-zone-wrapper">
             <div class="timer-container">
                 <div id="timer-bar" class="timer-bar"></div>
             </div>
         </div>
 
-        <div id="answers-zone"></div>
+        <div id="correction-zone"></div>
 
         <div id="status-message"></div>
         <div style="text-align: center;">
@@ -557,37 +473,12 @@
             </div>
 
             <div class="powerup-cockpit" id="lifelines-zone">
-                <div class="cockpit-label">Power Ups</div>
-                <button id="ll-5050" class="lifeline-btn" onclick="use5050()">
-                    <span id="text-5050">50:50</span> <span id="count-5050" class="lifeline-count">1</span>
-                </button>
-                <button id="ll-double" class="lifeline-btn" onclick="useDoubleScore()">
-                    <span>x2 Điểm</span> <span id="count-double" class="lifeline-count">1</span>
-                </button>
-                <button id="ll-notimer" class="lifeline-btn" onclick="useNoTimer()">
-                    <span>Chậm Giờ</span> <span id="count-notimer" class="lifeline-count">1</span>
+                <div class="cockpit-label">Hỗ Trợ Vũ Trụ</div>
+                <button id="ll-hint" class="lifeline-btn" onclick="useGrammarHint()">
+                    <span>Gợi Ý Ngữ Pháp</span> <span id="count-hint" class="lifeline-count">3</span>
                 </button>
             </div>
         </div>
-    </div>
-
-    <div id="bonus-screen" class="screen">
-        <div class="header-title" style="color: #ffeb3b;">🎁 HỘP QUÀ BÍ ẨN 🎁</div>
-        <p id="bonus-instructions" style="font-size: 1.2rem; color: #00fff0; font-weight: bold; text-align: center;">Chuẩn bị...</p>
-
-        <div class="cards-board-container" id="cards-board-element">
-            <div class="cards-row" id="row-top">
-                <div id="card-0" class="card-slot face-down" onclick="flipCard(0, this)"><div class="card-inner"><div class="card-front"><div class="card-front-pattern"></div></div><div class="card-back" id="cb-0">?</div></div></div>
-                <div id="card-1" class="card-slot face-down" onclick="flipCard(1, this)"><div class="card-inner"><div class="card-front"><div class="card-front-pattern"></div></div><div class="card-back" id="cb-1">?</div></div></div>
-                <div id="card-2" class="card-slot face-down" onclick="flipCard(2, this)"><div class="card-inner"><div class="card-front"><div class="card-front-pattern"></div></div><div class="card-back" id="cb-2">?</div></div></div>
-            </div>
-            <div class="cards-row" id="row-bottom">
-                <div id="card-3" class="card-slot face-down" onclick="flipCard(3, this)"><div class="card-inner"><div class="card-front"><div class="card-front-pattern"></div></div><div class="card-back" id="cb-3">?</div></div></div>
-                <div id="card-4" class="card-slot face-down" onclick="flipCard(4, this)"><div class="card-inner"><div class="card-front"><div class="card-front-pattern"></div></div><div class="card-back" id="cb-4">?</div></div></div>
-            </div>
-        </div>
-
-        <div id="bonus-status" style="height: 30px; font-weight: bold; color: #00ff87; font-size: 1.2rem; margin-top: 15px; text-align: center;"></div>
     </div>
 
     <div id="result-screen" class="screen" style="text-align: center;">
@@ -597,7 +488,7 @@
         
         <div class="btn-group">
             <button class="control-btn" onclick="restartGame()">Chơi Lại</button>
-            <button class="control-btn blue" onclick="showHistoryScreen()">Xem Lịch Sử Câu Làm</button>
+            <button class="control-btn blue" onclick="showHistoryScreen()">Xem Chi Tiết Lịch Sử</button>
         </div>
     </div>
 
@@ -606,163 +497,66 @@
         <div class="history-container" id="history-list"></div>
         <button class="control-btn" style="margin-top:20px;" onclick="restartGame()">Quay Lại Từ Đầu</button>
     </div>
-
 </div>
 
 <script>
     const quizData = [
-        // --- 25 CÂU HỎI NGỮ PHÁP ---
-        { type: "mcq", q: "If it rains heavily tomorrow morning, they _________ their outdoor activities.", a: "cancel", b: "will cancel", c: "cancelled", d: "canceling", correct: "B", exp: "Câu điều kiện loại 1 chỉ khả năng ở tương lai: If + HTĐ, S + will + V." },
-        { type: "mcq", q: "The intelligent bird always _________ away when it sees a dangerous hawk.", a: "flies", b: "fly", c: "is flying", d: "has flown", correct: "A", exp: "Trạng từ 'always' chỉ thói quen ở Hiện tại đơn với chủ ngữ số ít (The intelligent bird)." },
-        { type: "mcq", q: "Look! A tiny chick _________ from that egg right now.", a: "hatches", b: "is hatching", c: "are hatching", d: "has hatched", correct: "B", exp: "Dấu hiệu 'Look!' và 'right now' báo hiệu hành động đang diễn ra (Hiện tại tiếp diễn)." },
-        { type: "mcq", q: "Scientists have already _________ new technology to monitor wild birds.", a: "develop", b: "developing", c: "developed", d: "develops", correct: "C", exp: "Thì Hiện tại hoàn thành diễn tả hành động vừa hoàn thành: S + have/has + already + V3." },
-        { type: "mcq", q: "If penguins huddle together in a large group, they _________ warm.", a: "stay", b: "will stay", c: "stayed", d: "staying", correct: "B", exp: "Mệnh đề chính của câu điều kiện loại 1 đưa ra dự đoán tương lai: S + will + V." },
-        { type: "mcq", q: "The dangerous hawk usually _________ around the green grass to hunt.", a: "soars", b: "soar", c: "is soaring", d: "has soared", correct: "A", exp: "Thói quen thường xuyên đi kèm với 'usually' chia ở Hiện tại đơn, chủ ngữ số ít thêm -s." },
-        { type: "mcq", q: "Listen! The baby chicks _________ loudly for their mother.", a: "chirps", b: "is chirping", c: "are chirping", d: "chirped", correct: "C", exp: "Từ cảnh báo 'Listen!' báo hiệu hành động đang trực tiếp diễn ra tại thời điểm nói (Hiện tại tiếp diễn)." },
-        { type: "mcq", q: "I have never seen animals _________ like this before to survive the winter.", a: "huddle", b: "huddles", c: "huddled", d: "huddling", correct: "A", exp: "Cấu trúc sau động từ giác quan 'see' chỉ hành động trọn vẹn: see + O + V nguyên mẫu." },
-        { type: "mcq", q: "If the weather is too _________, the animals will struggle to breed.", a: "challenge", b: "challenging", c: "challenged", d: "challenges", correct: "B", exp: "Mệnh đề If ở Hiện tại đơn cần một tính từ bổ nghĩa cho thời tiết (challenging - khó khăn)." },
-        { type: "mcq", q: "These penguins often _________ together on the ice when a blizzard hits.", a: "huddles", b: "huddle", c: "is huddling", d: "are huddling", correct: "B", exp: "Chủ ngữ số nhiều 'penguins' phối hợp trạng từ thói quen 'often' giữ nguyên động từ ở Hiện tại đơn." },
-        { type: "mcq", q: "Be quiet! The mother penguin _________ an egg at this moment.", a: "hatches", b: "is hatching", c: "hatch", d: "has hatched", correct: "B", exp: "Dấu hiệu hành động đang diễn ra 'at this moment' kết hợp từ mệnh lệnh dùng Hiện tại tiếp diễn." },
-        { type: "mcq", q: "Have you ever _________ a wild hawk flying high in the blue sky?", a: "see", b: "seeing", c: "seen", d: "sees", correct: "C", exp: "Cấu trúc câu hỏi trải nghiệm ở Hiện tại hoàn thành: Have you ever + V3." },
-        { type: "mcq", q: "If the factory keeps polluting the land, the grass _________ grow.", a: "doesn't", b: "won't", c: "didn't", d: "isn't", correct: "B", exp: "Câu điều kiện loại 1 dạng phủ định tương lai ở mệnh đề chính: S + will not (won't) + V." },
-        { type: "mcq", q: "Our smart cats always _________ a lot of interesting playful activities.", a: "shows", b: "show", c: "are showing", d: "have showing", correct: "B", exp: "Chủ ngữ số nhiều 'cats' kết hợp trạng từ 'always' chia động từ nguyên mẫu ở Hiện tại đơn." },
-        { type: "mcq", q: "Look! That farmer _________ modern technology to feed the chicks.", a: "uses", b: "is using", c: "are using", d: "has used", correct: "B", exp: "Dấu hiệu hành động đang diễn ra trước mắt 'Look!' chia ở Hiện tại tiếp diễn." },
-        { type: "mcq", q: "They have lived in this green grassland area _________ 2024.", a: "since", b: "for", c: "already", d: "ever", correct: "A", exp: "Dùng 'since' trước một mốc thời gian cụ thể cố định ở thì Hiện tại hoàn thành." },
-        { type: "mcq", q: "The young chicks will freeze if their parents _________ a warm huddle.", a: "don't make", b: "doesn't make", c: "won't make", d: "didn't make", correct: "A", exp: "Mệnh đề If ở hiện tại đơn dạng phủ định với chủ ngữ số nhiều 'parents' dùng 'don't + V'." },
-        { type: "mcq", q: "If the environment changes, animals _________ new ways to survive.", a: "find", b: "will find", c: "found", d: "finding", correct: "B", exp: "Mệnh đề chính câu điều kiện loại 1 đưa ra dự đoán thực tế tương lai: S + will + V." },
-        { type: "mcq", q: "If a hawk flies over the yard, the chicks _________ under the grass.", a: "hide", b: "will hide", c: "hid", d: "hiding", correct: "B", exp: "Cấu trúc điều kiện loại 1: If + Hiện tại đơn, S + will + V nguyên mẫu." },
-        { type: "mcq", q: "These two birds have stayed together as mate-partners _________ three years.", a: "since", b: "for", c: "just", d: "never", correct: "B", exp: "Dùng 'for' trước một khoảng thời gian kéo dài ở thì Hiện tại hoàn thành." },
-        { type: "mcq", q: "If the animal _________ with absolute health, it will produce healthy babies.", a: "breeds", b: "breed", c: "will breed", d: "breeding", correct: "A", exp: "Mệnh đề If chia Hiện tại đơn với chủ ngữ ngôi thứ 3 số ít 'the animal' động từ thêm -s." },
-        { type: "mcq", q: "If you study these intelligent creatures, you _________ amazed.", a: "are", b: "will be", c: "were", d: "being", correct: "B", exp: "Mệnh đề chính câu điều kiện loại 1 thể khẳng định ở tương lai: S + will + be." },
-        { type: "mcq", q: "The chick will survive if it _________ enough food from its parents.", a: "gets", b: "get", c: "will get", d: "got", correct: "A", exp: "Mệnh đề If ở Hiện tại đơn đi với chủ ngữ số ít 'it' thì động từ thêm -s." },
-        { type: "mcq", q: "If you don't use modern technology, the work _________ more challenging.", a: "is", b: "will be", c: "won't be", d: "not be", correct: "B", exp: "Mệnh đề chính điều kiện loại 1 dạng khẳng định tương lai: S + will + V." },
-        { type: "mcq", q: "What will the animals do if the weather _________ too cold?", a: "becomes", b: "become", c: "will become", d: "becoming", correct: "A", exp: "Mệnh đề If chia Hiện tại đơn với chủ ngữ số ít 'the weather' động từ thêm -s." },
-
-        // --- 15 CÂU HỎI TÍNH TỪ SỞ HỮU ---
-        { type: "mcq", q: "I love exploring nature. _________ favorite activities are hiking and watching birds.", a: "my", b: "your", c: "his", d: "their", correct: "A", exp: "Chủ ngữ 'I' dùng tính từ sở hữu tương ứng là 'my' (của tôi)." },
-        { type: "mcq", q: "The hawk flew high into the sky after catching _________ prey.", a: "my", b: "its", c: "her", d: "our", correct: "B", exp: "Chủ ngữ số ít chỉ động vật 'The hawk' dùng tính từ sở hữu tương ứng là 'its' (của nó)." },
-        { type: "mcq", q: "Emma is studying biology. _________ research is about how birds hatch their eggs.", a: "His", b: "Her", c: "Our", d: "Their", correct: "B", exp: "Chủ ngữ số ít chỉ nữ giới 'Emma' dùng tính từ sở hữu tương ứng là 'her' (của cô ấy)." },
-        { type: "mcq", q: "The little chick shook _________ feathers to stay warm in the grass.", a: "his", b: "its", c: "their", d: "our", correct: "B", exp: "Chủ ngữ số ít chỉ động vật 'The chick' dùng tính từ sở hữu tương ứng là 'its'." },
-        { type: "mcq", q: "We live on a farm. _________ daily activities always involve feeding the animals.", a: "my", b: "your", c: "our", d: "their", correct: "C", exp: "Chủ ngữ 'We' (chúng tôi) dùng tính từ sở hữu tương ứng là 'our'." },
-        { type: "mcq", q: "The penguins are forming a huddle to protect _________ young babies.", a: "our", b: "their", c: "your", d: "his", correct: "B", exp: "Chủ ngữ số nhiều 'The penguins' dùng tính từ sở hữu tương ứng là 'their' (của họ/chúng)." },
-        { type: "mcq", q: "Hey John! Is that _________ new camera for photographing intelligent animals?", a: "my", b: "your", c: "his", d: "her", correct: "B", exp: "Giao tiếp trực tiếp với người nghe 'John' nên dùng tính từ sở hữu 'your'." },
-        { type: "mcq", q: "The birds are singing together because they have found _________ mate-partners.", a: "his", b: "our", c: "their", d: "its", correct: "C", exp: "Chủ ngữ danh từ số nhiều 'The birds' dùng tính từ sở hữu 'their'." },
-        { type: "mcq", q: "The cow is eating _________ grass quietly near the big tree.", a: "its", b: "her", c: "his", d: "my", correct: "A", exp: "Đối với con vật số ít 'The cow', ta dùng tính từ sở hữu 'its'." },
-        { type: "mcq", q: "Sarah found a small chick that lost _________ way back to the nest.", a: "his", b: "her",  c: "its", d: "their", correct: "C", exp: "Vật sở hữu thuộc về 'a small chick' (con chim non số ít) nên dùng 'its'." },
-        { type: "mcq", q: "I need to upgrade _________ technology devices to study nature better.", a: "my", b: "his", c: "your", d: "our", correct: "A", exp: "Chủ ngữ 'I' sở hữu đồ dùng nên sử dụng tính từ sở hữu 'my'." },
-        { type: "mcq", q: "We are trying to make _________ science project about breeding cycles more interesting.", a: "their", b: "our", c: "your", d: "his", correct: "B", exp: "Chủ ngữ 'We' đi kèm tính từ sở hữu 'our'." },
-        { type: "mcq", q: "You should clean _________ boots before walking on the green grass.", a: "my", b: "his", c: "your", d: "their", correct: "C", exp: "Chủ ngữ 'You' (bạn) nên dùng tính từ sở hữu 'your'." },
-        { type: "mcq", q: "Tom thinks _________ test was challenging, but he still got an A.", a: "his", b: "her", c: "its", d: "my", correct: "A", exp: "Chủ ngữ nam giới 'Tom' dùng tính từ sở hữu 'his'." },
-        { type: "mcq", q: "The wolves protect _________ territory from other dangerous predators.", a: "its", b: "their", c: "his", d: "her", correct: "B", exp: "Chủ ngữ danh từ số nhiều 'The wolves' dùng tính từ sở hữu 'their'." },
-
-        // --- 13 CÂU MCQ TỪ VỰNG ---
-        { type: "mcq", q: "Từ vựng 'technology' có nghĩa tiếng Việt là gì?", a: "cỏ cây", b: "kỹ năng", c: "công nghệ", d: "môi trường", correct: "C", exp: "technology nghĩa là công nghệ." },
-        { type: "mcq", q: "Từ vựng 'intelligent' có nghĩa là gì?", a: "hung dữ", b: "thông minh", c: "chậm chạp", d: "to lớn", correct: "B", exp: "intelligent nghĩa là thông minh." },
-        { type: "mcq", q: "Từ vựng 'hawk' chỉ con vật nào?", a: "con gà nhí", b: "con vịt trời", c: "chim chim cánh cụt", d: "chim ưng / chim cắt", correct: "D", exp: "hawk nghĩa là chim ưng / chim săn mồi lớn." },
-        { type: "mcq", q: "Từ vựng 'chick' có nghĩa là gì?", a: "chim mẹ", b: "con non / gà con / chim non", c: "trứng chim", d: "chim đại bàng", correct: "B", exp: "chick nghĩa là con non mới nở." },
-        { type: "mcq", q: "Cụm từ 'hatch an egg' có nghĩa là gì?", a: "ấp nở một quả trứng", b: "đẻ một quả trứng", c: "ăn quả trứng", d: "ném quả trứng", correct: "A", exp: "hatch an egg nghĩa là ấp trứng nở ra con." },
-        { type: "mcq", q: "Từ vựng 'huddle' nói về hành động gì?", a: "bay lượn trên trời", b: "tụ tập sát nhau (để giữ ấm)", c: "chạy trốn kẻ thù", d: "đào đất tìm thức ăn", correct: "B", exp: "huddle có nghĩa là đứng túm tụm lại che chở cho nhau." },
-        { type: "mcq", q: "Từ vựng 'grass' có nghĩa là gì?", a: "đất cát", b: "đá cuội", c: "thảm cỏ", d: "bông hoa", correct: "C", exp: "grass có nghĩa là cỏ." },
-        { type: "mcq", q: "Từ vựng 'breed' có nghĩa là gì?", a: "săn mồi", b: "bay lượn", c: "ngủ đông", d: "sinh sản / nhân giống", correct: "D", exp: "breed nghĩa là sinh sản hoặc gây giống." },
-        { type: "mcq", q: "Từ vựng 'produce' có nghĩa là gì?", a: "sản sinh / tạo ra", b: "tiêu thụ", c: "phá hủy", d: "chạy trốn", correct: "A", exp: "produce có nghĩa là sản xuất, tạo ra, sinh sản." },
-        { type: "mcq", q: "Từ vựng 'mate-partner' dịch sang tiếng Việt là gì?", a: "kẻ thù đối đầu", b: "bạn đời / đối tác kết đôi", c: "chim đầu đàn", d: "con non nuôi dưỡng", correct: "B", exp: "mate-partner nghĩa là bạn đời của động vật." },
-        { type: "mcq", q: "Từ vựng 'survive' nghĩa là gì?", a: "biến mất", b: "sống sót / sinh tồn", c: "nguy hiểm", d: "chết đi", correct: "B", exp: "survive nghĩa là sống sót qua nghịch cảnh." },
-        { type: "mcq", q: "Từ vựng 'challenging' chỉ tính chất gì?", a: "dễ dàng", b: "đầy thử thách / khó khăn", c: "nhanh chóng", d: "nhàm chán", correct: "B", exp: "challenging nghĩa là khó khăn, đầy thách thức." },
-        { type: "mcq", q: "Từ vựng 'activity' có nghĩa là gì?", a: "hoạt động", b: "kết quả", c: "suy nghĩ", d: "bài học", correct: "A", exp: "activity nghĩa là hoạt động." },
-
-        // --- 13 CÂU WRITTEN TỪ VỰNG ---
-        { type: "written", q: "Gõ từ tiếng Anh của: 'công nghệ'", correct: "technology", exp: "Công nghệ là technology." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'thông minh'", correct: "intelligent", exp: "Thông minh là intelligent." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'hoạt động'", correct: "activity", exp: "Hoạt động là activity." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'đầy thử thách / khó khăn'", correct: "challenging", exp: "Thử thách là challenging." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'sống sót / sinh tồn'", correct: "survive", exp: "Sinh tồn là survive." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'con non / chim non'", correct: "chick", exp: "Con non vừa nở là chick." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'sinh sản / gây giống'", correct: "breed", exp: "Quá trình nhân giống vật nuôi là breed." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'sinh sản / tạo ra'", correct: "produce", exp: "Sinh sản hoặc chế tạo ra là produce." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'bạn đời'", correct: "mate-partner", exp: "Đối tác kết đôi trọn đời của động vật là mate-partner." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'nở trứng (động từ)'", correct: "hatch", exp: "Hành động nứt vỏ chui ra là hatch." },
-        { type: "written", q: "Gõ cụm từ tiếng Anh viết liền không cách của: 'ấp nở một quả trứng' (hatchanegg)", correct: "hatchanegg", exp: "Cụm từ viết liền yêu cầu: hatchanegg." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'gom lại / tập trung lại sát nhau'", correct: "huddle", exp: "Đứng chụm lại thành cụm lớn để giữ ấm là huddle." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'cỏ'", correct: "grass", exp: "Thảm thực vật xanh mọc sát nền đất là grass." },
-        { type: "written", q: "Gõ từ tiếng Anh của: 'con đại bàng / chim ưng'", correct: "hawk", exp: "Loài chim săn mồi dũng mãnh là hawk." },
-
-        // --- 30 CÂU QUÁ KHỨ PHÂN TỪ V3 ---
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'hatch' là gì?", a: "hatching", b: "hatched", c: "hatch", d: "hatchen", correct: "B", exp: "Động từ 'hatch' có quy tắc, chỉ cần thêm -ed thành 'hatched'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'breed' là gì?", a: "breed", b: "bred", c: "breeding", d: "brood", correct: "B", exp: "Động từ bất quy tắc 'breed' đổi thành 'bred' ở dạng V2 và V3." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'produce' là gì?", a: "produced", b: "producing", c: "produce", d: "product", correct: "A", exp: "Động từ 'produce' kết thúc bằng 'e', ta chỉ cần thêm -d thành 'produced'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'huddle' là gì?", a: "huddled", b: "huddling", c: "huddle", d: "huddles", correct: "A", exp: "Động từ 'huddle' thêm đuôi -ed tạo thành 'huddled'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'survive' là gì?", a: "survive", b: "surviving", c: "survived", d: "survives", correct: "C", exp: "Động từ 'survive' có quy tắc, chỉ thêm -d thành 'survived'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'fly' là gì?", a: "flew", b: "flown", c: "flying", d: "flyed", correct: "B", exp: "Động từ bất quy tắc 'fly' chuyển thành dạng V3 là 'flown'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'see' là gì?", a: "saw", b: "seen", c: "seeing", d: "seens", correct: "B", exp: "Động từ 'see' biến đổi bất quy tắc thành 'seen'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'show' là gì?", a: "showed", b: "shown", c: "showing", d: "showen", correct: "B", exp: "Động từ 'show' có quá khứ phân từ thông dụng nhất là 'shown'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'live' là gì?", a: "lived", b: "living", c: "live", d: "life", correct: "A", exp: "Động từ có quy tắc 'live' thêm -d biến thành 'lived'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'lose' là gì?", a: "losed", b: "losing", c: "lost", d: "losem", correct: "C", exp: "Động từ 'lose' biến đổi sang cả dạng V2 và V3 đều là 'lost'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'save' là gì?", a: "save", b: "saved", c: "saving", d: "saves", correct: "B", exp: "Đây là động từ có quy tắc, ta chỉ cần thêm -ed thành 'saved'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'clean' là gì?", a: "cleaned", b: "cleanen", c: "cleaning", d: "clent", correct: "A", exp: "Động từ 'clean' là động từ có quy tắc, dạng V3 của nó là 'cleaned'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'read' (đọc) viết như thế nào?", a: "reading", b: "red", c: "readed", d: "read", correct: "D", exp: "Động từ 'read' giữ nguyên cách viết ở cả 3 cột (read - read - read)." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'finish' là gì?", a: "finishing", b: "finished", c: "finish", d: "finishen", correct: "B", exp: "Động từ 'finish' tuân theo quy tắc thêm -ed tạo thành 'finished'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'leave' là gì?", a: "leaved", b: "leaving", c: "left", d: "leaven", correct: "C", exp: "Động từ bất quy tắc 'leave' biến đổi thành dạng 'left' ở phân từ V3." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'spend' là gì?", a: "spended", b: "spent", c: "spending", d: "spen", correct: "B", exp: "Động từ bất quy tắc 'spend' đổi đuôi -d sang -t thành 'spent'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'make' là gì?", a: "maked", b: "making", c: "made", d: "maken", correct: "C", exp: "Động từ bất quy tắc 'make' đổi sang dạng quá khứ cột 3 là 'made'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'take' là gì?", a: "took", b: "taken", c: "taking", d: "taked", correct: "B", exp: "Động từ 'take' biến đổi theo quy tắc bất quy tắc: take - took - taken." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'do' là gì?", a: "did", b: "done", c: "doing", d: "does", correct: "B", exp: "Định dạng biến đổi của 'do' lần lượt là: do - did - done." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'write' là gì?", a: "wrote", b: "written", c: "writing", d: "writed", correct: "B", exp: "Động từ 'write' bất quy tắc biến đổi theo dạng: write - wrote - written." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'forget' là gì?", a: "forgot", b: "forgotten", c: "forgetting", d: "forgoted", correct: "B", exp: "Quá khứ phân từ cột 3 của 'forget' chính là 'forgotten'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'go' là gì?", a: "went", b: "going", c: "gone", d: "goes", correct: "C", exp: "Động từ bất quy tắc 'go' cột 3 phân từ là 'gone'." },
-        { type: "mcq", q: "Dạng quá khứ phân từ (V3) của động từ 'buy' là gì?", a: "bought", b: "boughten", c: "buying", d: "buys", correct: "A", exp: "Động từ bất quy tắc 'buy' biến đổi thành dạng 'bought' ở cả cột V2 và V3." },
-
-        // 15 Câu Điền Từ Viết Tay (written)
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'finish':", correct: "finished", exp: "Quá khứ phân từ (V3) của 'finish' là 'finished'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'hatch':", correct: "hatched", exp: "Quá khứ phân từ (V3) của 'hatch' là 'hatched'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'breed':", correct: "bred", exp: "Quá khứ phân từ (V3) của 'breed' là 'bred'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'produce':", correct: "produced", exp: "Quá khứ phân từ (V3) của 'produce' là 'produced'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'huddle':", correct: "huddled", exp: "Quá khứ phân từ (V3) của 'huddle' là 'huddled'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'survive':", correct: "survived", exp: "Quá khứ phân từ (V3) của 'survive' là 'survived'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'clean':", correct: "cleaned", exp: "Quá khứ phân từ (V3) của 'clean' là 'cleaned'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'read':", correct: "read", exp: "Quá khứ phân từ (V3) của 'read' giữ nguyên cách viết là 'read'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'leave':", correct: "left", exp: "Quá khứ phân từ (V3) của 'leave' là 'left'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'spend':", correct: "spent", exp: "Quá khứ phân từ (V3) của 'spend' là 'spent'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'do':", correct: "done", exp: "Quá khứ phân từ (V3) của 'do' là 'done'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'write':", correct: "written", exp: "Quá khứ phân từ (V3) của 'write' là 'written'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'forget':", correct: "forgotten", exp: "Quá khứ phân từ (V3) của 'forget' là 'forgotten'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'live':", correct: "lived", exp: "Quá khứ phân từ (V3) của 'live' là 'lived'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'make':", correct: "made", exp: "Quá khứ phân từ (V3) của 'make' là 'made'." },
-        { type: "written", q: "Điền duy nhất dạng quá khứ phân từ (V3) của động từ 'take':", correct: "taken", exp: "Quá khứ phân từ (V3) của 'take' là 'taken'." }
+        { sentence: "The giant blue whale are endangered", wrongWord: "are", correction: "is", hint: "Singular subject requires 'is'." },
+        { sentence: "Look ! The polar bear is hunt a seal right now", wrongWord: "hunt", correction: "hunting", hint: "Present continuous tense needs V-ing after 'is'." },
+        { sentence: "Listen ! The tiny chick are chirping loudly in the grass", wrongWord: "are", correction: "is", hint: "Check the number of the subject 'the tiny chick'." },
+        { sentence: "Penguins usually lives in Antarctica to survive the cold", wrongWord: "lives", correction: "live", hint: "Plural subject in Present Simple takes base verb." },
+        { sentence: "The dangerous hawk is flies high in the sky every day", wrongWord: "flies", correction: "flying", hint: "'is' cannot be followed directly by flies." },
+        { sentence: "At this moment , scientists is studying the marine ecosystem", wrongWord: "is", correction: "are", hint: "'scientists' is plural." },
+        { sentence: "The intelligent animals always survives in challenging environments", wrongWord: "survives", correction: "survive", hint: "'animals' is a plural noun." },
+        { sentence: "Right now , the mate-partner are building a nest together", wrongWord: "are", correction: "is", hint: "'the mate-partner' is singular." },
+        { sentence: "The penguins huddles together to keep warm every winter", wrongWord: "huddles", correction: "huddle", hint: "Look closely at the plural noun 'penguins'." },
+        { sentence: "Look ! The giant whale is produce a beautiful sound", wrongWord: "produce", correction: "producing", hint: "Continuous action after 'is', use V-ing." },
+        { sentence: "Baby chicks hatches from small eggs every spring", wrongWord: "hatches", correction: "hatch", hint: "Plural subject 'Baby chicks' does not take 'es'." },
+        { sentence: "Currently , the big whales is migrating to warmer waters", wrongWord: "is", correction: "are", hint: "'the big whales' is plural." },
+        { sentence: "An endangered species need urgent protection from humans", wrongWord: "need", correction: "needs", hint: "'An endangered species' is a singular subject." },
+        { sentence: "The powerful predator am hunting for food at night", wrongWord: "am", correction: "is", hint: "'am' is only used for subject 'I'." },
+        { sentence: "Every day , small krill swimming in large groups to hide", wrongWord: "swimming", correction: "swim", hint: "'Every day' indicates a routine." },
+        { sentence: "Look ! A fierce predator is run after the weak animal", wrongWord: "run", correction: "running", hint: "Present continuous tense requires V-ing." },
+        { sentence: "Polar bears usually captures seals on the thick ice", wrongWord: "captures", correction: "capture", hint: "Plural noun 'bears' does not take 's' in verbs." },
+        { sentence: "At present , the little chick are hatching out of its shell", wrongWord: "are", correction: "is", hint: "'the little chick' is just one bird." },
+        { sentence: "Blue whales always consumes a lot of krill daily", wrongWord: "consumes", correction: "consume", hint: "Plural subject requires plural verb without 's'." },
+        { sentence: "Listen ! The mother whale is communicate with her baby", wrongWord: "communicate", correction: "communicating", hint: "Continuous action after 'is' must end with -ing." },
+        { sentence: "Many endangered animals is disappearing from the planet now", wrongWord: "is", correction: "are", hint: "'Many endangered animals' is plural." },
+        { sentence: "A penguin usually huddle with others to stay warm", wrongWord: "huddle", correction: "huddles", hint: "Singular subject 'A penguin' requires 's/es'." },
+        { sentence: "The scientists is counting the number of polar bears today", wrongWord: "is", correction: "are", hint: "Look at the plural ending -s." },
+        { sentence: "Small krill lives in oceans around the freezing Antarctica", wrongWord: "lives", correction: "live", hint: "'krill' refers to plural groups here." },
+        { sentence: "Right now , that predator are watching the birds carefully", wrongWord: "are", correction: "is", hint: "'that predator' means only one predator." }
     ];
 
     let currentQuestionIndex = 0;
     let globalScore = 0;
-    let isAnswering = false;
-    let userAnswers = [];
+    let userLives = 3;
+    let currentGameState = "spotting";
+    let targetWordIndex = -1;
+    let sentenceWords = [];
+    let userAnswersLog = [];
+
     let timerInterval = null;
-    let timeLimitBase = 50;
     let timeLeft = 50;
-
-    let activeDoubleScore = false;
-    let activeNoTimer = false;
-
-    let lifelines = { fiftyFifty: 1, doubleScore: 1, noTimer: 1 };
-    let bonusRoundCount = 0;
-    let hasPickedBonus = false;
-
-    let bonusPool = [];
-    let currentShuffledOrder = [0, 1, 2, 3, 4];
+    let grammarHintsCount = 3;
 
     const canvas = document.getElementById("laser-canvas");
     const ctx = canvas.getContext("2d");
-    const questionText = document.getElementById("question-text");
-    const answersZone = document.getElementById("answers-zone");
+    const sentenceBox = document.getElementById("interactive-sentence-box");
+    const correctionZone = document.getElementById("correction-zone");
     const currentQNum = document.getElementById("current-q-num");
     const totalQNum = document.getElementById("total-q-num");
     const scoreDisplay = document.getElementById("score-display");
+    const livesDisplay = document.getElementById("lives-display");
     const statusMessage = document.getElementById("status-message");
     const nextBtn = document.getElementById("next-btn");
     const countdownText = document.getElementById("countdown-text");
     const timerBar = document.getElementById("timer-bar");
+    const phaseTimerDisplay = document.getElementById("phase-timer-display");
+    const timerWrapperElement = document.getElementById("timer-wrapper-element");
 
     const introScreen = document.getElementById("intro-screen");
     const gameScreen = document.getElementById("game-screen");
-    const bonusScreen = document.getElementById("bonus-screen");
     const resultScreen = document.getElementById("result-screen");
     const historyScreen = document.getElementById("history-screen");
 
@@ -783,41 +577,106 @@
     function startGame() {
         introScreen.classList.remove("active-screen");
         gameScreen.classList.add("active-screen");
-        updateLifelineUI();
+        resultScreen.classList.remove("active-screen");
+        historyScreen.classList.remove("active-screen");
+        userLives = 3;
+        grammarHintsCount = 3;
+        currentQuestionIndex = 0;
+        globalScore = 0;
+        userAnswersLog = [];
+        scoreDisplay.innerText = globalScore;
+        document.getElementById("count-hint").innerText = grammarHintsCount;
+        updateLivesUI();
         loadQuestion();
     }
 
-    function updateLifelineUI() {
-        let currentQ = quizData[currentQuestionIndex];
-        const label5050 = document.getElementById("text-5050");
-        
-        if (currentQ && currentQ.type === "written") {
-            label5050.innerText = "Gợi Ý Chữ";
-            document.getElementById("ll-5050").disabled = lifelines.fiftyFifty <= 0 || isAnswering;
-        } else {
-            label5050.innerText = "50:50";
-            document.getElementById("ll-5050").disabled = lifelines.fiftyFifty <= 0 || isAnswering;
-        }
-
-        document.getElementById("count-5050").innerText = lifelines.fiftyFifty;
-        document.getElementById("count-double").innerText = lifelines.doubleScore;
-        document.getElementById("count-notimer").innerText = lifelines.noTimer;
-
-        document.getElementById("ll-double").disabled = lifelines.doubleScore <= 0 || isAnswering || activeDoubleScore;
-        document.getElementById("ll-notimer").disabled = lifelines.noTimer <= 0 || isAnswering || activeNoTimer;
+    function updateLivesUI() {
+        let hearts = "";
+        for (let i = 0; i < userLives; i++) hearts += "❤️";
+        if (hearts === "") hearts = "❌ ĐÃ HẾT MẠNG";
+        livesDisplay.innerHTML = `Mạng: <span class="heart-icon">${hearts}</span>`;
     }
 
-    function startTimer() {
-        clearInterval(timerInterval);
-        if (activeNoTimer) {
-            countdownText.innerText = "🔒 VÔ HẠN";
-            countdownText.className = "";
-            timerBar.style.width = "100%";
-            timerBar.style.background = "#9c27b0";
-            return;
-        }
+    function loadQuestion() {
+        currentGameState = "spotting";
+        nextBtn.style.display = "none";
+        statusMessage.innerHTML = "";
+        correctionZone.innerHTML = "";
+        phaseTimerDisplay.style.visibility = "hidden";
+        timerWrapperElement.style.display = "none";
+        
+        playerShip.className = "spaceship-container"; 
+        playerShip.style.transform = "rotate(0deg)";
 
-        timeLeft = timeLimitBase;
+        currentQNum.innerText = currentQuestionIndex + 1;
+        let currentQ = quizData[currentQuestionIndex];
+
+        sentenceWords = currentQ.sentence.split(" ");
+        targetWordIndex = sentenceWords.findIndex(w => w.toLowerCase() === currentQ.wrongWord.toLowerCase());
+
+        sentenceBox.innerHTML = "";
+        sentenceWords.forEach((word, idx) => {
+            let token = document.createElement("span");
+            token.className = "word-token";
+            token.innerText = word;
+            token.id = `token-${idx}`;
+            token.onclick = () => handleWordClick(idx, token);
+            sentenceBox.appendChild(token);
+        });
+
+        document.getElementById("ll-hint").disabled = (grammarHintsCount <= 0);
+    }
+
+    function handleWordClick(idx, tokenElement) {
+        if (currentGameState !== "spotting" || tokenElement.classList.contains("disabled") || tokenElement.classList.contains("selected-wrong")) return;
+
+        if (idx === targetWordIndex) {
+            currentGameState = "correcting";
+            tokenElement.classList.add("selected-target");
+            
+            const tokens = sentenceBox.querySelectorAll(".word-token");
+            tokens.forEach(t => { if (t !== tokenElement) t.classList.add("disabled"); });
+
+            statusMessage.innerHTML = "<span style='color: var(--correct-color)'>🎯 CHÍNH XÁC! Hãy sửa lỗi sai cho từ này!</span>";
+            fireArcadeLaser(tokenElement, true, () => { openCorrectionInput(); });
+        } else {
+            userLives--;
+            updateLivesUI();
+            tokenElement.classList.add("selected-wrong");
+
+            fireArcadeLaser(tokenElement, false, () => {
+                if (userLives <= 0) handleGameOverLoss();
+                else statusMessage.innerHTML = "<span style='color: var(--wrong-color)'>💥 Nhầm tọa độ rồi! Hãy kiểm tra kỹ lại cấu trúc ngữ pháp.</span>";
+            });
+        }
+    }
+
+    function openCorrectionInput() {
+        phaseTimerDisplay.style.visibility = "visible";
+        timerWrapperElement.style.display = "block";
+
+        correctionZone.innerHTML = `
+            <div class="correction-container">
+                <div style="font-size: 1.1rem; color: #60efff; margin-bottom: 10px; font-weight: bold;">
+                    Thay thế từ "${quizData[currentQuestionIndex].wrongWord}" thành từ gì?
+                </div>
+                <input type="text" id="correction-field" class="written-input" placeholder="Nhập từ đúng vào đây..." autocomplete="off" onkeyup="checkEnterKey(event)">
+                <br><br>
+                <button class="control-btn blue" onclick="submitCorrectionAnswer()">Xác Nhận Năng Lượng 🚀</button>
+            </div>
+        `;
+
+        setTimeout(() => {
+            let field = document.getElementById("correction-field");
+            if (field) field.focus();
+        }, 150);
+
+        startPhase2Timer();
+    }
+
+    function startPhase2Timer() {
+        clearInterval(timerInterval);
+        timeLeft = 50;
         countdownText.innerText = timeLeft + "s";
         countdownText.className = "";
         document.body.classList.remove("panic-mode");
@@ -827,8 +686,7 @@
         timerInterval = setInterval(() => {
             timeLeft--;
             countdownText.innerText = timeLeft + "s";
-
-            let pct = (timeLeft / timeLimitBase) * 100;
+            let pct = (timeLeft / 50) * 100;
             timerBar.style.width = pct + "%";
 
             if (timeLeft <= 15 && timeLeft > 5) {
@@ -842,118 +700,77 @@
 
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
-                handleTimeOut();
+                handlePhase2TimeOut();
             }
         }, 1000);
     }
 
-    function loadQuestion() {
-        isAnswering = false;
-        nextBtn.style.display = "none";
-        statusMessage.innerHTML = "";
-        playerShip.className = "spaceship-container"; 
-        playerShip.style.transform = "rotate(0deg)";
+    function checkEnterKey(event) { if (event.key === "Enter") submitCorrectionAnswer(); }
 
-        currentQNum.innerText = currentQuestionIndex + 1;
-        let currentQ = quizData[currentQuestionIndex];
-        questionText.innerText = currentQ.q;
+    function submitCorrectionAnswer() {
+        if (currentGameState !== "correcting") return;
+        let inputField = document.getElementById("correction-field");
+        if (!inputField) return;
 
-        answersZone.innerHTML = "";
+        let userText = inputField.value.trim().toLowerCase();
+        if (userText === "") return;
 
-        if (currentQ.type === "mcq") {
-            let grid = document.createElement("div");
-            grid.className = "options-grid";
+        clearInterval(timerInterval);
+        document.body.classList.remove("panic-mode");
+        currentGameState = "finished";
 
-            ['A', 'B', 'C', 'D'].forEach(optKey => {
-                let btn = document.createElement("button");
-                btn.className = "option-btn";
-                btn.id = `opt-${optKey}`;
-                btn.innerHTML = `<span class="option-prefix">${optKey}.</span> ${currentQ[optKey.toLowerCase()]}`;
-                btn.onclick = () => selectOption(optKey, btn);
-                grid.appendChild(btn);
-            });
-            answersZone.appendChild(grid);
-        } else {
-            answersZone.innerHTML = `
-                <div class="written-container">
-                    <div id="hint-mask-box" style="font-size: 1.4rem; color: #60efff; letter-spacing: 3px; margin-bottom: 15px; font-weight: bold;">Cấu trúc từ: ${"_ ".repeat(currentQ.correct.length)}</div>
-                    <input type="text" id="written-answer-field" class="written-input" placeholder="Gõ câu trả lời..." autocomplete="off" onkeyup="checkEnterKey(event)">
-                    <br><br>
-                    <button class="control-btn blue" onclick="submitWrittenAnswer()">Bắn Đáp Án 🚀</button>
-                </div>
-            `;
-            setTimeout(() => {
-                let inputField = document.getElementById("written-answer-field");
-                if(inputField) inputField.focus();
-            }, 200);
-        }
+        const correctAns = quizData[currentQuestionIndex].correction.toLowerCase();
+        let isCorrect = (userText === correctAns);
 
-        updateLifelineUI();
-        startTimer();
-    }
+        fireArcadeLaser(inputField, isCorrect, () => {
+            inputField.disabled = true;
+            userAnswersLog.push({ qIndex: currentQuestionIndex, userText: inputField.value.trim(), isCorrect: isCorrect, isTimeOut: false });
 
-    function checkEnterKey(event) {
-        if (event.key === "Enter") {
-            if (quizData[currentQuestionIndex].type === "written") {
-                submitWrittenAnswer();
+            if (isCorrect) {
+                inputField.style.borderColor = "var(--correct-color)";
+                let gainedPoints = 150 + timeLeft; 
+                globalScore += gainedPoints;
+                scoreDisplay.innerText = globalScore;
+                statusMessage.innerHTML = `<span style='color: var(--correct-color)'>THÀNH CÔNG: Sửa lỗi chính xác! +${gainedPoints} Điểm. 🎉</span>`;
+            } else {
+                inputField.style.borderColor = "var(--wrong-color)";
+                statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>THẤT BẠI: Chưa đúng! Đáp án phải là: "${quizData[currentQuestionIndex].correction}".</span>`;
             }
-        }
+            nextBtn.style.display = "inline-block";
+        });
     }
 
-    function use5050() {
-        if (lifelines.fiftyFifty <= 0 || isAnswering) return;
-        let currentQ = quizData[currentQuestionIndex];
+    function handlePhase2TimeOut() {
+        currentGameState = "finished";
+        let inputField = document.getElementById("correction-field");
+        if (inputField) inputField.disabled = true;
 
-        if (currentQ.type === "mcq") {
-            lifelines.fiftyFifty--;
-            updateLifelineUI();
-            const correctAns = currentQ.correct;
-            let incorrectOptions = ['A', 'B', 'C', 'D'].filter(opt => opt !== correctAns);
-            incorrectOptions.sort(() => Math.random() - 0.5);
-            incorrectOptions.slice(0, 2).forEach(opt => {
-                const btn = document.getElementById(`opt-${opt}`);
-                if (btn) btn.style.visibility = "hidden";
-            });
-        } else {
-            lifelines.fiftyFifty--;
-            updateLifelineUI();
-            let wordTarget = currentQ.correct;
-            let len = wordTarget.length;
-            let midIdx = Math.floor(len / 2);
-            
-            let maskedWord = "";
-            for (let i = 0; i < len; i++) {
-                if (i === midIdx || wordTarget[i] === '-') {
-                    maskedWord += wordTarget[i] + " ";
-                } else {
-                    maskedWord += "_ ";
-                }
-            }
-            const hBox = document.getElementById("hint-mask-box");
-            if (hBox) hBox.innerText = "Gợi ý chữ giữa: " + maskedWord.trim();
-        }
+        userAnswersLog.push({ qIndex: currentQuestionIndex, userText: "[Hết giờ đếm ngược ⏰]", isCorrect: false, isTimeOut: true });
+        playerShip.classList.add("exploded");
+        const shipRect = playerShip.getBoundingClientRect();
+        createExplosionBurst(shipRect.left + shipRect.width/2, shipRect.top + shipRect.height/2, "#ff4b5c");
+
+        statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>HẾT GIỜ 50S! Đáp án đúng là: "${quizData[currentQuestionIndex].correction}".</span>`;
+        nextBtn.style.display = "inline-block";
     }
 
-    function useDoubleScore() {
-        if (lifelines.doubleScore <= 0 || isAnswering || activeDoubleScore) return;
-        lifelines.doubleScore--;
-        activeDoubleScore = true;
-        statusMessage.innerHTML = "<span style='color: #ffeb3b;'>⚡ ĐÃ KÍCH HOẠT PHẦN THƯỞNG: Nhân đôi số điểm câu này!</span>";
-        updateLifelineUI();
+    function handleGameOverLoss() {
+        currentGameState = "finished";
+        clearInterval(timerInterval);
+        userAnswersLog.push({ qIndex: currentQuestionIndex, userText: "[Cạn kiệt 3 mạng]", isCorrect: false, isTimeOut: false });
+        statusMessage.innerHTML = "<span style='color:var(--wrong-color)'>Phi thuyền nổ tung! Đang chuyển đến bảng tổng kết...</span>";
+        setTimeout(() => { showFinalResults(); }, 2000);
     }
 
-    function useNoTimer() {
-        if (lifelines.noTimer <= 0 || isAnswering) return;
-        lifelines.noTimer--;
-        activeNoTimer = true;
-        statusMessage.innerHTML = "<span style='color: #9c27b0;'>🛡️ HỆ THỐNG ĐÓNG BĂNG THỜI GIAN THÀNH CÔNG!</span>";
-        updateLifelineUI();
-        startTimer();
+    function useGrammarHint() {
+        if (grammarHintsCount <= 0 || currentGameState === "finished") return;
+        grammarHintsCount--;
+        document.getElementById("count-hint").innerText = grammarHintsCount;
+        document.getElementById("ll-hint").disabled = (grammarHintsCount <= 0);
+        statusMessage.innerHTML = `<span style='color: #ffeb3b;'>💡 GỢI Ý: ${quizData[currentQuestionIndex].hint}</span>`;
     }
 
     function fireArcadeLaser(targetElement, isCorrectResult, callback) {
-        const arenaBox = document.getElementById("arena-box");
-        const arenaRect = arenaBox.getBoundingClientRect();
         const shipRect = playerShip.getBoundingClientRect();
         const targetRect = targetElement.getBoundingClientRect();
 
@@ -969,11 +786,10 @@
         playerShip.classList.add("shooting");
 
         let laserProgress = 0;
-
         function drawLaserBeam() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (laserProgress < 1) {
-                laserProgress += 0.15;
+                laserProgress += 0.2;
                 let currentX = startX + (endX - startX) * laserProgress;
                 let currentY = startY + (endY - startY) * laserProgress;
 
@@ -989,7 +805,6 @@
                 playerShip.classList.remove("shooting");
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 createExplosionBurst(endX, endY, isCorrectResult ? "#00ff87" : "#ff4b5c");
-
                 if (!isCorrectResult) {
                     playerShip.classList.add("exploded");
                     createExplosionBurst(startX, startY, "#ff4b5c");
@@ -1001,286 +816,45 @@
     }
 
     function createExplosionBurst(x, y, color) {
-        for (let i = 0; i < 24; i++) {
+        for (let i = 0; i < 20; i++) {
             let p = document.createElement("div");
-            p.className = "explosion-particle";
+            p.style.position = "absolute";
+            p.style.width = "6px"; p.style.height = "6px";
+            p.style.borderRadius = "50%"; p.style.pointerEvents = "none";
             p.style.backgroundColor = color;
             p.style.left = (x - window.scrollX) + "px";
             p.style.top = (y - window.scrollY) + "px";
 
             let angle = Math.random() * Math.PI * 2;
-            let speed = Math.random() * 80 + 40;
+            let speed = Math.random() * 70 + 30;
             p.style.setProperty('--x', Math.cos(angle) * speed + "px");
             p.style.setProperty('--y', Math.sin(angle) * speed + "px");
+            p.style.animation = "explodeOut 0.5s ease-out forwards";
 
             document.body.appendChild(p);
-            setTimeout(() => p.remove(), 600);
+            setTimeout(() => p.remove(), 500);
         }
-    }
-
-    function selectOption(choice, buttonElement) {
-        if (isAnswering) return;
-        isAnswering = true;
-        clearInterval(timerInterval);
-        document.body.classList.remove("panic-mode");
-
-        buttonElement.classList.add("suspense");
-        const correctAnswer = quizData[currentQuestionIndex].correct;
-        let isCorrect = (choice === correctAnswer);
-
-        fireArcadeLaser(buttonElement, isCorrect, () => {
-            buttonElement.classList.remove("suspense");
-            const buttons = answersZone.querySelectorAll(".option-btn");
-            buttons.forEach(btn => btn.disabled = true);
-
-            userAnswers.push({
-                qIndex: currentQuestionIndex,
-                userChoice: choice + ": " + quizData[currentQuestionIndex][choice.toLowerCase()],
-                isCorrect: isCorrect,
-                isTimeOut: false
-            });
-
-            if (isCorrect) {
-                buttonElement.classList.add("correct");
-                let gainedPoints = 100 + Math.max(0, timeLeft);
-                if (activeDoubleScore) gainedPoints *= 2;
-                globalScore += gainedPoints;
-                scoreDisplay.innerText = globalScore;
-                statusMessage.innerHTML = `<span style='color: var(--correct-color)'>BẮN TRÚNG MỤC TIÊU: +${gainedPoints} điểm! 🚀</span>`;
-            } else {
-                buttonElement.classList.add("wrong");
-                const correctBtn = document.getElementById(`opt-${correctAnswer}`);
-                if (correctBtn) correctBtn.classList.add("correct");
-                statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>SAI LỆCH TỌA ĐỘ! Hệ thống phòng thủ kích hoạt.</span>`;
-            }
-
-            activeDoubleScore = false;
-            activeNoTimer = false;
-            timeLimitBase = 50;
-            nextBtn.style.display = "inline-block";
-        });
-    }
-
-    function submitWrittenAnswer() {
-        if (isAnswering) return;
-        let inputField = document.getElementById("written-answer-field");
-        if (!inputField) return;
-
-        let userText = inputField.value.trim().toLowerCase();
-        if (userText === "") return;
-
-        isAnswering = true;
-        clearInterval(timerInterval);
-        document.body.classList.remove("panic-mode");
-
-        const correctAnswer = quizData[currentQuestionIndex].correct.trim().toLowerCase();
-        let isCorrect = (userText === correctAnswer);
-
-        fireArcadeLaser(inputField, isCorrect, () => {
-            userAnswers.push({
-                qIndex: currentQuestionIndex,
-                userChoice: inputField.value.trim(),
-                isCorrect: isCorrect,
-                isTimeOut: false
-            });
-
-            if (isCorrect) {
-                inputField.style.borderColor = "var(--correct-color)";
-                let gainedPoints = 100 + Math.max(0, timeLeft);
-                if (activeDoubleScore) gainedPoints *= 2;
-                globalScore += gainedPoints;
-                scoreDisplay.innerText = globalScore;
-                statusMessage.innerHTML = `<span style='color: var(--correct-color)'>KÍCH HOẠT CHÍNH XÁC: +${gainedPoints} điểm. 🎉</span>`;
-            } else {
-                inputField.style.borderColor = "var(--wrong-color)";
-                statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>SAI TỌA ĐỘ! Từ đúng là: "${quizData[currentQuestionIndex].correct}".</span>`;
-            }
-
-            activeDoubleScore = false;
-            activeNoTimer = false;
-            timeLimitBase = 50;
-            nextBtn.style.display = "inline-block";
-        });
-    }
-
-    function handleTimeOut() {
-        isAnswering = true;
-        document.body.classList.remove("panic-mode");
-        let currentQuestion = quizData[currentQuestionIndex];
-
-        userAnswers.push({
-            qIndex: currentQuestionIndex,
-            userChoice: "Hết giờ ⏰",
-            isCorrect: false,
-            isTimeOut: true
-        });
-
-        playerShip.classList.add("exploded");
-        const shipRect = playerShip.getBoundingClientRect();
-        createExplosionBurst(shipRect.left + shipRect.width/2, shipRect.top + shipRect.height/2, "#ff4b5c");
-
-        statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>HẾT GIỜ! Hệ thống tự hủy. Đáp án đúng: "${currentQuestion.correct}".</span>`;
-
-        if (currentQuestion.type === "mcq") {
-            const buttons = answersZone.querySelectorAll(".option-btn");
-            buttons.forEach(btn => {
-                btn.disabled = true;
-                if (btn.id === `opt-${currentQuestion.correct}`) btn.classList.add("correct");
-            });
-        } else {
-            let inputField = document.getElementById("written-answer-field");
-            if (inputField) inputField.disabled = true;
-        }
-
-        activeDoubleScore = false;
-        activeNoTimer = false;
-        timeLimitBase = 50;
-        nextBtn.style.display = "inline-block";
     }
 
     function nextQuestion() {
-        let naturalQuestionNumber = currentQuestionIndex + 1;
-        if (naturalQuestionNumber % 5 === 0 && naturalQuestionNumber < quizData.length) {
-            setupBonusRound();
-        } else {
-            proceedToNextQuestionLogic();
-        }
-    }
-
-    function proceedToNextQuestionLogic() {
         currentQuestionIndex++;
-        if (currentQuestionIndex < quizData.length) {
-            loadQuestion();
-        } else {
-            showFinalResults();
-        }
-    }
-
-    function setupBonusRound() {
-        bonusRoundCount++;
-        gameScreen.classList.remove("active-screen");
-        bonusScreen.classList.add("active-screen");
-
-        hasPickedBonus = false;
-        document.getElementById("bonus-instructions").innerText = "🎁 TRẬN ĐỊA HỘP QUÀ XUẤT HIỆN! Đang lật xem kho báu...";
-        document.getElementById("bonus-status").innerText = "";
-
-        const rewardsList = [
-            { text: "+1 Lượt 50:50 / Gợi ý", action: () => { lifelines.fiftyFifty++; } },
-            { text: "+1 Lượt Nhân đôi x2", action: () => { lifelines.doubleScore++; } },
-            { text: "+1 Lượt Chậm giờ", action: () => { lifelines.noTimer++; } },
-            { text: "+200 Điểm Thưởng", action: () => { globalScore += 200; scoreDisplay.innerText = globalScore; } },
-            { text: "+500 Điểm Siêu Thưởng", action: () => { globalScore += 500; scoreDisplay.innerText = globalScore; } }
-        ];
-
-        rewardsList.sort(() => Math.random() - 0.5);
-        bonusPool = rewardsList.slice(0, 5);
-
-        const slots = Array.from(document.querySelectorAll(".card-slot"));
-        slots.forEach((slot, idx) => {
-            slot.className = "card-slot face-up disabled";
-            slot.style.transform = "translate(0px, 0px)";
-            document.getElementById(`cb-${idx}`).innerText = bonusPool[idx].text;
-        });
-
-        setTimeout(() => {
-            document.getElementById("bonus-instructions").innerText = "🔒 KHÓA TRẬN ĐỊA! ĐANG XÁO VỊ TRÍ HỘP QUÀ...";
-            slots.forEach(slot => {
-                slot.classList.remove("face-up");
-                slot.classList.add("face-down");
-            });
-
-            setTimeout(() => {
-                executeAdvancedPositionShuffle();
-            }, 600);
-        }, 3000);
-    }
-
-    function executeAdvancedPositionShuffle() {
-        const slots = Array.from(document.querySelectorAll(".card-slot"));
-        const coords = slots.map(slot => {
-            const rect = slot.getBoundingClientRect();
-            return { x: rect.left, y: rect.top };
-        });
-
-        currentShuffledOrder = [0, 1, 2, 3, 4];
-        let steps = 0;
-        let baseSpeed = 400;
-        let totalShuffles = 8;
-
-        let shuffleTimer = setInterval(() => {
-            let i = Math.floor(Math.random() * 5);
-            let j = Math.floor(Math.random() * 5);
-            while (i === j) { j = Math.floor(Math.random() * 5); }
-
-            let temp = currentShuffledOrder[i];
-            currentShuffledOrder[i] = currentShuffledOrder[j];
-            currentShuffledOrder[j] = temp;
-
-            slots.forEach((slot, index) => {
-                let targetSlotIndex = currentShuffledOrder.indexOf(index);
-                let dx = coords[targetSlotIndex].x - coords[index].x;
-                let dy = coords[targetSlotIndex].y - coords[index].y;
-                slot.style.transform = `translate(${dx}px, ${dy}px)`;
-            });
-
-            steps++;
-            if (steps >= totalShuffles) {
-                clearInterval(shuffleTimer);
-                setTimeout(() => {
-                    slots.forEach(slot => slot.classList.remove("disabled"));
-                    document.getElementById("bonus-instructions").innerText = "🎯 XÁO BÀI XONG! Hãy chọn một hộp quà may mắn!";
-                }, 300);
-            }
-        }, baseSpeed);
-    }
-
-    function flipCard(index, element) {
-        if (hasPickedBonus || element.classList.contains("disabled")) return;
-        hasPickedBonus = true;
-
-        const slots = document.querySelectorAll(".card-slot");
-        slots.forEach(slot => slot.classList.add("disabled"));
-
-        const reward = bonusPool[index];
-        reward.action();
-
-        document.getElementById(`cb-${index}`).innerText = reward.text;
-        element.classList.remove("face-down");
-        element.classList.add("face-up");
-        element.classList.add("zoomed-winner");
-
-        document.getElementById("bonus-instructions").innerText = "🎉 PHẦN THƯỞNG TUYỆT VỜI CỦA CON!";
-        document.getElementById("bonus-status").innerText = `Con nhận được: [ ${reward.text} ]`;
-
-        slots.forEach((slot, idx) => {
-            if (idx !== index) {
-                setTimeout(() => {
-                    document.getElementById(`cb-${idx}`).innerText = bonusPool[idx].text;
-                    slot.classList.remove("face-down");
-                    slot.classList.add("face-up");
-                }, 600 + idx * 150);
-            }
-        });
-
-        setTimeout(() => {
-            bonusScreen.classList.remove("active-screen");
-            gameScreen.classList.add("active-screen");
-            proceedToNextQuestionLogic();
-        }, 4500);
+        if (currentQuestionIndex < quizData.length && userLives > 0) loadQuestion();
+        else showFinalResults();
     }
 
     function showFinalResults() {
+        introScreen.classList.remove("active-screen");
         gameScreen.classList.remove("active-screen");
+        historyScreen.classList.remove("active-screen");
         resultScreen.classList.add("active-screen");
 
         finalScoreDisplay.innerText = globalScore;
 
         let levelStr = "";
-        if (globalScore >= 9500) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc Tuyệt Đối!)";
-        else if (globalScore >= 7500) levelStr = "🚀 PHI HÀNH GIA TRƯỞNG (Rất Giỏi!)";
-        else if (globalScore >= 5000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
-        else levelStr = "🔰 TÂN BINH TẬP SỰ (Cố gắng thêm con nhé!)";
+        if (globalScore >= 3500) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ NGỮ PHÁP (Xuất Sắc!)";
+        else if (globalScore >= 2500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
+        else if (globalScore >= 1500) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
+        else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
 
         rewardLevel.innerText = levelStr;
     }
@@ -1288,42 +862,29 @@
     function showHistoryScreen() {
         resultScreen.classList.remove("active-screen");
         historyScreen.classList.add("active-screen");
-
         historyList.innerHTML = "";
-        userAnswers.forEach(ans => {
+        userAnswersLog.forEach(ans => {
             let itemData = quizData[ans.qIndex];
+            if(!itemData) return;
             let itemDiv = document.createElement("div");
             itemDiv.className = `history-item ${ans.isCorrect ? "history-correct" : "history-wrong"}`;
-
-            let correctText = itemData.type === "mcq" ? itemData.correct + ": " + itemData[itemData.correct.toLowerCase()] : itemData.correct;
-
             itemDiv.innerHTML = `
-                <div style="font-weight:bold; color:#fff;">Câu ${ans.qIndex + 1}: ${itemData.q}</div>
+                <div style="font-weight:bold; color:#fff;">Câu ${ans.qIndex + 1}: ${itemData.sentence}</div>
                 <div style="margin: 5px 0;">
-                    • Con đã chọn: <strong style="color:${ans.isCorrect ? 'var(--correct-color)' : 'var(--wrong-color)'}">${ans.userChoice}</strong> 
-                    ${ans.isCorrect ? '✔' : `| Đáp án đúng: <strong style="color:var(--correct-color)">${correctText}</strong> ✘`}
+                    • Từ sai: <strong style="color:var(--wrong-color)">${itemData.wrongWord}</strong> 
+                    | Con đã sửa: <strong style="color:${ans.isCorrect ? 'var(--correct-color)' : 'var(--wrong-color)'}">${ans.userText}</strong> 
+                    ${ans.isCorrect ? '✔' : `| Từ đúng: <strong style="color:var(--correct-color)">${itemData.correction}</strong> ✘`}
                 </div>
-                <div style="color:#ffeb3b; font-size:0.95rem; font-style:italic;">💡 Giải thích: ${itemData.exp}</div>
             `;
             historyList.appendChild(itemDiv);
         });
     }
 
     function restartGame() {
-        currentQuestionIndex = 0;
-        globalScore = 0;
-        userAnswers = [];
-        timeLimitBase = 50;
-        bonusRoundCount = 0;
-        activeDoubleScore = false;
-        activeNoTimer = false;
-        lifelines = { fiftyFifty: 1, doubleScore: 1, noTimer: 1 };
-
         historyScreen.classList.remove("active-screen");
         resultScreen.classList.remove("active-screen");
+        gameScreen.classList.remove("active-screen");
         introScreen.classList.add("active-screen");
-
-        scoreDisplay.innerText = "0";
     }
 </script>
 </body>
