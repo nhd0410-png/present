@@ -500,32 +500,33 @@
 </div>
 
 <script>
+    // Danh sách 25 câu hỏi mới hoàn toàn với các cấu trúc ngữ pháp phong phú!
     const quizData = [
-        { sentence: "The giant blue whale are endangered", wrongWord: "are", correction: "is", hint: "Singular subject requires 'is'." },
-        { sentence: "Look ! The polar bear is hunt a seal right now", wrongWord: "hunt", correction: "hunting", hint: "Present continuous tense needs V-ing after 'is'." },
-        { sentence: "Listen ! The tiny chick are chirping loudly in the grass", wrongWord: "are", correction: "is", hint: "Check the number of the subject 'the tiny chick'." },
-        { sentence: "Penguins usually lives in Antarctica to survive the cold", wrongWord: "lives", correction: "live", hint: "Plural subject in Present Simple takes base verb." },
-        { sentence: "The dangerous hawk is flies high in the sky every day", wrongWord: "flies", correction: "flying", hint: "'is' cannot be followed directly by flies." },
-        { sentence: "At this moment , scientists is studying the marine ecosystem", wrongWord: "is", correction: "are", hint: "'scientists' is plural." },
-        { sentence: "The intelligent animals always survives in challenging environments", wrongWord: "survives", correction: "survive", hint: "'animals' is a plural noun." },
-        { sentence: "Right now , the mate-partner are building a nest together", wrongWord: "are", correction: "is", hint: "'the mate-partner' is singular." },
-        { sentence: "The penguins huddles together to keep warm every winter", wrongWord: "huddles", correction: "huddle", hint: "Look closely at the plural noun 'penguins'." },
-        { sentence: "Look ! The giant whale is produce a beautiful sound", wrongWord: "produce", correction: "producing", hint: "Continuous action after 'is', use V-ing." },
-        { sentence: "Baby chicks hatches from small eggs every spring", wrongWord: "hatches", correction: "hatch", hint: "Plural subject 'Baby chicks' does not take 'es'." },
-        { sentence: "Currently , the big whales is migrating to warmer waters", wrongWord: "is", correction: "are", hint: "'the big whales' is plural." },
-        { sentence: "An endangered species need urgent protection from humans", wrongWord: "need", correction: "needs", hint: "'An endangered species' is a singular subject." },
-        { sentence: "The powerful predator am hunting for food at night", wrongWord: "am", correction: "is", hint: "'am' is only used for subject 'I'." },
-        { sentence: "Every day , small krill swimming in large groups to hide", wrongWord: "swimming", correction: "swim", hint: "'Every day' indicates a routine." },
-        { sentence: "Look ! A fierce predator is run after the weak animal", wrongWord: "run", correction: "running", hint: "Present continuous tense requires V-ing." },
-        { sentence: "Polar bears usually captures seals on the thick ice", wrongWord: "captures", correction: "capture", hint: "Plural noun 'bears' does not take 's' in verbs." },
-        { sentence: "At present , the little chick are hatching out of its shell", wrongWord: "are", correction: "is", hint: "'the little chick' is just one bird." },
-        { sentence: "Blue whales always consumes a lot of krill daily", wrongWord: "consumes", correction: "consume", hint: "Plural subject requires plural verb without 's'." },
-        { sentence: "Listen ! The mother whale is communicate with her baby", wrongWord: "communicate", correction: "communicating", hint: "Continuous action after 'is' must end with -ing." },
-        { sentence: "Many endangered animals is disappearing from the planet now", wrongWord: "is", correction: "are", hint: "'Many endangered animals' is plural." },
-        { sentence: "A penguin usually huddle with others to stay warm", wrongWord: "huddle", correction: "huddles", hint: "Singular subject 'A penguin' requires 's/es'." },
-        { sentence: "The scientists is counting the number of polar bears today", wrongWord: "is", correction: "are", hint: "Look at the plural ending -s." },
-        { sentence: "Small krill lives in oceans around the freezing Antarctica", wrongWord: "lives", correction: "live", hint: "'krill' refers to plural groups here." },
-        { sentence: "Right now , that predator are watching the birds carefully", wrongWord: "are", correction: "is", hint: "'that predator' means only one predator." }
+        { sentence: "My younger brother play video games every evening", wrongWord: "play", correction: "plays", hint: "Chủ ngữ ngôi thứ ba số ít 'My younger brother' cần động từ thêm 's/es'." },
+        { sentence: "Water boil at 100 degrees Celsius under normal pressure", wrongWord: "boil", correction: "boils", hint: "Sự thật hiển nhiên, chủ ngữ 'Water' không đếm được (số ít) nên động từ phải chia." },
+        { sentence: "She is bad at English , but she speak French very well", wrongWord: "speak", correction: "speaks", hint: "Chủ ngữ 'she' cần một động từ có đuôi 's' ở thì hiện tại đơn." },
+        { sentence: "The children is playing hide and seek in the backyard", wrongWord: "is", correction: "are", hint: "Xem kỹ danh từ số nhiều đặc biệt 'The children' nhé." },
+        { sentence: "Yesterday , I see a beautiful rainbow on my way home", wrongWord: "see", correction: "saw", hint: "Trạng từ thời gian 'Yesterday' chỉ hành động đã xảy ra trong quá khứ." },
+        { sentence: "They has lived in this beautiful city for ten years", wrongWord: "has", correction: "have", hint: "Chủ ngữ 'They' đi kèm trợ động từ nào ở thì hiện tại hoàn thành?" },
+        { sentence: "An elephant is more heavier than a wild tiger", wrongWord: "more", correction: "much", hint: "Không dùng 'more' trước tính từ ngắn đã thêm đuôi '-er' (heavier). Có thể thay bằng 'much' để nhấn mạnh." },
+        { sentence: "This is the most good book I have ever read", wrongWord: "most good", correction: "best", hint: "Dạng so sánh nhất bất quy tắc của tính từ 'good'." },
+        { sentence: "He does not likes eating raw fish or spicy food", wrongWord: "likes", correction: "like", hint: "Sau trợ động từ phủ định 'does not', động từ chính phải ở dạng nguyên mẫu." },
+        { sentence: "If it rains tomorrow , we would cancel the picnic", wrongWord: "would", correction: "will", hint: "Câu điều kiện loại 1: Mệnh đề chính dùng 'will' + V-nguyên mẫu." },
+        { sentence: "We must protecting our planet from air pollution", wrongWord: "protecting", correction: "protect", hint: "Sau động từ khuyết thiếu 'must' là động từ ở dạng nguyên mẫu không 'to'." },
+        { sentence: "The moon shine brightly in the dark night sky", wrongWord: "shine", correction: "shines", hint: "Chủ ngữ số ít 'The moon' cần động từ chia ở thì hiện tại đơn." },
+        { sentence: "There are much milk left in the glass bottle", wrongWord: "are", correction: "is", hint: "Sữa 'milk' là danh từ không đếm được, dùng cấu trúc 'There is'." },
+        { sentence: "She can sings beautiful songs in front of everyone", wrongWord: "sings", correction: "sing", hint: "Sau động từ khuyết thiếu 'can', động từ chính không chia thêm 's'." },
+        { sentence: "My father ride his bicycle to work this morning", wrongWord: "ride", correction: "rode", hint: "Thời điểm 'this morning' đã qua trong quá khứ, dùng động từ bất quy tắc cột 2." },
+        { sentence: "Last night , I do my homework late because of a game", wrongWord: "do", correction: "did", hint: "Trạng từ quá khứ 'Last night' yêu cầu động từ chia quá khứ đơn." },
+        { sentence: "I will call you as soon as I will arrive home", wrongWord: "will arrive", correction: "arrive", hint: "Trong mệnh đề chỉ thời gian với 'as soon as', không dùng thì tương lai đơn 'will'." },
+        { sentence: "Many cars is produced in this giant modern factory", wrongWord: "is", correction: "are", hint: "Chủ ngữ số nhiều 'Many cars' trong câu bị động cần tobe số nhiều." },
+        { sentence: "He walk to school instead of taking the bus today", wrongWord: "walk", correction: "walks", hint: "Chủ ngữ 'He' yêu cầu động từ thêm 's' ở hiện tại đơn." },
+        { sentence: "The dog wagged its tail happy when it saw me", wrongWord: "happy", correction: "happily", hint: "Bổ nghĩa cho động từ thường 'wagged' phải là một trạng từ (Adverb)." },
+        { sentence: "Each of the students have to complete the science project", wrongWord: "have", correction: "has", hint: "Cấu trúc 'Each of + danh từ số nhiều' luôn đi với động từ số ít." },
+        { sentence: "I enjoy to listen to classical music in my free time", wrongWord: "to listen", correction: "listening", hint: "Động từ 'enjoy' yêu cầu động từ theo sau nó ở dạng V-ing." },
+        { sentence: "The weather today is more bad than it was yesterday", wrongWord: "more bad", correction: "worse", hint: "Dạng so sánh hơn bất quy tắc của tính từ 'bad'." },
+        { sentence: "An apple a day keeps the doctor away , do it ?", wrongWord: "do it", correction: "doesn't it", hint: "Câu hỏi đuôi cho mệnh đề khẳng định số ít có động từ thường 'keeps'." },
+        { sentence: "She has been study English since she was five", wrongWord: "study", correction: "studying", hint: "Thì hiện tại hoàn thành tiếp diễn có công thức: has/have + been + V-ing." }
     ];
 
     let currentQuestionIndex = 0;
@@ -611,8 +612,22 @@
         currentQNum.innerText = currentQuestionIndex + 1;
         let currentQ = quizData[currentQuestionIndex];
 
+        // Tách câu theo từ (bao gồm cả xử lý các cụm ghép)
         sentenceWords = currentQ.sentence.split(" ");
-        targetWordIndex = sentenceWords.findIndex(w => w.toLowerCase() === currentQ.wrongWord.toLowerCase());
+        targetWordIndex = sentenceWords.findIndex((w, idx) => {
+            // Hỗ trợ so sánh từ viết sai đơn lẻ hoặc khớp cụm từ
+            let wordLower = w.toLowerCase();
+            let wrongLower = currentQ.wrongWord.toLowerCase();
+            if (wordLower === wrongLower) return true;
+            // Trường hợp từ sai là một cụm gồm 2 từ (ví dụ: "most good", "will arrive", "do it")
+            if (wrongLower.includes(" ")) {
+                let parts = wrongLower.split(" ");
+                if (wordLower === parts[0] && sentenceWords[idx+1] && sentenceWords[idx+1].toLowerCase() === parts[1]) {
+                    return true;
+                }
+            }
+            return false;
+        });
 
         sentenceBox.innerHTML = "";
         sentenceWords.forEach((word, idx) => {
@@ -630,12 +645,36 @@
     function handleWordClick(idx, tokenElement) {
         if (currentGameState !== "spotting" || tokenElement.classList.contains("disabled") || tokenElement.classList.contains("selected-wrong")) return;
 
-        if (idx === targetWordIndex) {
+        let currentQ = quizData[currentQuestionIndex];
+        let isTarget = false;
+
+        // Kiểm tra xem từ được click có khớp với từ hoặc cụm từ sai không
+        if (currentQ.wrongWord.toLowerCase().includes(" ")) {
+            let parts = currentQ.wrongWord.toLowerCase().split(" ");
+            if (idx === targetWordIndex || (idx === targetWordIndex + 1)) {
+                isTarget = true;
+            }
+        } else {
+            if (idx === targetWordIndex) {
+                isTarget = true;
+            }
+        }
+
+        if (isTarget) {
             currentGameState = "correcting";
-            tokenElement.classList.add("selected-target");
+            
+            // Highlight từ/cụm từ đúng mục tiêu
+            if (currentQ.wrongWord.toLowerCase().includes(" ")) {
+                document.getElementById(`token-${targetWordIndex}`).classList.add("selected-target");
+                document.getElementById(`token-${targetWordIndex+1}`).classList.add("selected-target");
+            } else {
+                tokenElement.classList.add("selected-target");
+            }
             
             const tokens = sentenceBox.querySelectorAll(".word-token");
-            tokens.forEach(t => { if (t !== tokenElement) t.classList.add("disabled"); });
+            tokens.forEach(t => { 
+                if (!t.classList.contains("selected-target")) t.classList.add("disabled"); 
+            });
 
             statusMessage.innerHTML = "<span style='color: var(--correct-color)'>🎯 CHÍNH XÁC! Hãy sửa lỗi sai cho từ này!</span>";
             fireArcadeLaser(tokenElement, true, () => { openCorrectionInput(); });
