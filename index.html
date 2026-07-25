@@ -420,14 +420,14 @@
     <!-- INTRO SCREEN -->
     <div id="intro-screen" class="screen active-screen">
         <div class="header-title">Đấu Trường Nhí</div>
-        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Space Grammar & Vocab Invaders v7.0</p>
+        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Space Grammar & Vocab Invaders v7.0 (Renewed Questions)</p>
         
         <div class="intro-rules">
-            <strong>🚀 LUẬT CHƠI MỚI VŨ TRỤ NGỮ PHÁP & TỪ VỰNG (50 CÂU HỎI):</strong><br>
-            • 🌟 <b>Giai đoạn 1 (Câu 1-25):</b> Nhìn từ <b>in đậm</b> đầu câu để gõ chia động từ tiếng Anh thích hợp.<br>
-            • 🌟 <b>Giai đoạn 2 (Câu 26-38):</b> Trắc nghiệm chọn ý nghĩa từ vựng tiếng Việt chính xác.<br>
-            • 🌟 <b>Giai đoạn 3 (Câu 39-50):</b> Đọc định nghĩa tiếng Việt để gõ từ vựng tiếng Anh theo chữ cái gợi ý <b>(ví dụ: a _ _ _ _ _)</b>.<br>
-            • 🛸 Con có <b>3 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi câu thử thách! Sẵn sàng bắn phá rào cản vũ trụ!
+            <strong>🚀 LUẬT CHƠI MỚI VŨ TRỤ NGỮ PHÁP & TỪ VỰNG (60 CÂU HỎI HOÀN TOÀN MỚI):</strong><br>
+            • 🌟 <b>Giai đoạn 1 (Câu 1-35):</b> Nhìn từ <b>in đậm</b> đầu câu để gõ chia động từ tiếng Anh thích hợp.<br>
+            • 🌟 <b>Giai đoạn 2 (Câu 36-48):</b> Trắc nghiệm chọn ý nghĩa từ vựng tiếng Việt chính xác.<br>
+            • 🌟 <b>Giai đoạn 3 (Câu 49-60):</b> Đọc định nghĩa tiếng Việt để gõ từ vựng tiếng Anh theo chữ cái gợi ý <b>(ví dụ: g _ _ _ _ _)</b>.<br>
+            • 🛸 Con có <b>4 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi câu thử thách! Sẵn sàng bắn phá rào cản vũ trụ!
         </div>
         
         <div style="text-align: center;">
@@ -438,8 +438,8 @@
     <!-- GAMEPLAY SCREEN -->
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">50</span></div>
-            <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️</span></div>
+            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">60</span></div>
+            <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
             <div id="phase-timer-display" style="visibility: hidden;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
         </div>
@@ -529,66 +529,76 @@
 
 <script>
     const quizData = [
-        // RENEWED PHASE 1: GRAMMAR CORE + VOCAB INTEGRATION (1-25)
-        { type: 'text', q: '<b>Look!</b> The astronaut _________ (repair) the spaceship.', a: ['is repairing'], hint: 'Dấu hiệu "Look!" -> Hiện tại tiếp diễn, chủ ngữ số ít.' },
-        { type: 'text', q: 'I <b>usually</b> _________ (communicate) with my team via radio.', a: ['communicate'], hint: 'Dấu hiệu "usually" -> Hiện tại đơn chỉ thói quen.' },
-        { type: 'text', q: 'The scientist _________ (already / notice) a strange signal.', a: ['has already noticed'], hint: 'Dấu hiệu "already" -> Hiện tại hoàn thành.' },
-        { type: 'text', q: '<b>Right now</b>, she _________ (try) to understand the alien language.', a: ['is trying'], hint: 'Dấu hiệu "Right now" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'We _________ (not / hear) from the space station <b>since yesterday</b>.', a: ["have not heard", "haven't heard"], hint: 'Dấu hiệu "since yesterday" -> Phủ định của Hiện tại hoàn thành.' },
-        { type: 'text', q: 'The explorer <b>frequently</b> _________ (feel) lonely on distant planets.', a: ['feels'], hint: 'Dấu hiệu "frequently" -> Hiện tại đơn số ít.' },
-        { type: 'text', q: '<b>Listen!</b> The radio frequency _________ (change) rapidly.', a: ['is changing'], hint: 'Dấu hiệu "Listen!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'They <b>always</b> _________ (notice) small details in the data.', a: ['notice'], hint: 'Dấu hiệu "always" -> Hiện tại đơn số nhiều.' },
-        { type: 'text', q: 'Our crew _________ (just / discover) a new method of camouflage.', a: ['has just discovered'], hint: 'Dấu hiệu "just" -> Hiện tại hoàn thành.' },
-        { type: 'text', q: '<b>At the moment</b>, the researchers _________ (study) animal camouflage.', a: ['are studying'], hint: 'Dấu hiệu "At the moment" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'The captain _________ (not / understand) the warning message <b>yet</b>.', a: ["has not understood", "hasn't understood"], hint: 'Dấu hiệu "yet" -> Phủ định Hiện tại hoàn thành.' },
-        { type: 'text', q: 'Bats <b>generally</b> _________ (communicate) using high frequencies.', a: ['communicate'], hint: 'Sự thật hiển nhiên -> Hiện tại đơn số nhiều.' },
-        { type: 'text', q: 'The child _________ (feel) lonely when he is left alone.', a: ['feels'], hint: 'Sự thật/trạng thái -> Hiện tại đơn số ít.' },
-        { type: 'text', q: '<b>Look!</b> The chameleon _________ (camouflage) itself on the branch.', a: ['is camouflaging'], hint: 'Dấu hiệu "Look!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'She _________ (study) that strange frequency <b>for three years</b>.', a: ['has studied'], hint: 'Dấu hiệu "for three years" -> Hiện tại hoàn thành.' },
-        { type: 'text', q: 'We <b>always</b> _________ (hear) weird noises at night.', a: ['hear'], hint: 'Dấu hiệu "always" -> Hiện tại đơn.' },
-        { type: 'text', q: '<b>Listen!</b> Someone _________ (communicate) in morse code.', a: ['is communicating'], hint: 'Dấu hiệu "Listen!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'I _________ (not / notice) any changes <b>so far</b>.', a: ["have not noticed", "haven't noticed"], hint: 'Dấu hiệu "so far" -> Phủ định Hiện tại hoàn thành.' },
-        { type: 'text', q: 'The system <b>normally</b> _________ (operate) on a low frequency.', a: ['operates'], hint: 'Dấu hiệu "normally" -> Hiện tại đơn số ít.' },
-        { type: 'text', q: '<b>Right now</b>, the engineers _________ (not / test) the new frequencies.', a: ["are not testing", "aren't testing"], hint: 'Dấu hiệu "Right now" -> Phủ định Hiện tại tiếp diễn.' },
-        { type: 'text', q: '<b>At present</b>, we _________ (not / use) the radio to communicate.', a: ["are not using", "aren't using"], hint: 'Dấu hiệu "At present" -> Phủ định Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'My dog _________ (not / like) being left alone in the house.', a: ["does not like", "doesn't like"], hint: 'Sự thật/sở thích -> Phủ định Hiện tại đơn số ít.' },
-        { type: 'text', q: 'People <b>often</b> _________ (notice) her beautiful voice.', a: ['notice'], hint: 'Dấu hiệu "often" -> Hiện tại đơn số nhiều.' },
-        { type: 'text', q: '<b>Look!</b> They _________ (try) to hear the distant signal.', a: ['are trying'], hint: 'Dấu hiệu "Look!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'The scientists _________ (record) the sound frequencies <b>recently</b>.', a: ['have recorded'], hint: 'Dấu hiệu "recently" -> Hiện tại hoàn thành số nhiều.' },
+        // RENEWED PHASE 1: GRAMMAR CORE + VOCAB INTEGRATION (1-35)
+        { type: 'text', q: '<b>Be quiet!</b> The mission control _________ (explain) the flight plan.', a: ['is explaining'], hint: 'Dấu hiệu "Be quiet!" -> Hiện tại tiếp diễn, chủ ngữ số ít.' },
+        { type: 'text', q: 'My partner <b>seldom</b> _________ (forget) to check the oxygen levels.', a: ['forgets'], hint: 'Dấu hiệu "seldom" -> Hiện tại đơn số ít.' },
+        { type: 'text', q: 'We _________ (just / launch) the new exploration probe into space.', a: ['have just launched'], hint: 'Dấu hiệu "just" -> Hiện tại hoàn thành số nhiều.' },
+        { type: 'text', q: '<b>Look at the radar!</b> A massive asteroid _________ (approach) our station.', a: ['is approaching'], hint: 'Dấu hiệu "Look at the radar!" -> Hiện tại tiếp diễn.' },
+        { type: 'text', q: 'The astronauts _________ (not / test) the new suits <b>since last week</b>.', a: ["have not tested", "haven't tested"], hint: 'Dấu hiệu "since last week" -> Phủ định Hiện tại hoàn thành.' },
+        { type: 'text', q: 'Our commander <b>regularly</b> _________ (inspect) the airlocks.', a: ['inspects'], hint: 'Dấu hiệu "regularly" -> Hiện tại đơn số ít.' },
+        { type: 'text', q: '<b>Listen!</b> The warning alarm _________ (ring) loudly across the base.', a: ['is ringing'], hint: 'Dấu hiệu "Listen!" -> Hiện tại tiếp diễn.' },
+        { type: 'text', q: 'They <b>frequently</b> _________ (analyze) the chemical composition of the soil.', a: ['analyze'], hint: 'Dấu hiệu "frequently" -> Hiện tại đơn số nhiều.' },
+        { type: 'text', q: 'The laboratory team _________ (already / publish) their research paper.', a: ['has already published'], hint: 'Dấu hiệu "already" -> Hiện tại hoàn thành số ít.' },
+        { type: 'text', q: '<b>At present</b>, the technicians _________ (fix) the solar panels outside.', a: ['are fixing'], hint: 'Dấu hiệu "At present" -> Hiện tại tiếp diễn số nhiều.' },
+        { type: 'text', q: 'She _________ (not / finish) analyzing the alien sample <b>yet</b>.', a: ["has not finished", "hasn't finished"], hint: 'Dấu hiệu "yet" -> Phủ định Hiện tại hoàn thành.' },
+        { type: 'text', q: 'Cosmic rays <b>naturally</b> _________ (travel) through the universe at high speeds.', a: ['travel'], hint: 'Sự thật khoa học -> Hiện tại đơn số nhiều.' },
+        { type: 'text', q: 'The young trainee _________ (feel) anxious before his first spacewalk.', a: ['feels'], hint: 'Trạng thái/cảm xúc -> Hiện tại đơn số ít.' },
+        { type: 'text', q: '<b>Look!</b> The probe _________ (transmit) clear data back to Earth.', a: ['is transmitting'], hint: 'Dấu hiệu "Look!" -> Hiện tại tiếp diễn.' },
+        { type: 'text', q: 'He _________ (work) at this space observatory <b>for over five years</b>.', a: ['has worked', 'has been working'], hint: 'Dấu hiệu "for over five years" -> Hiện tại hoàn thành.' },
+        { type: 'text', q: 'We <b>rarely</b> _________ (encounter) such strange phenomena in this sector.', a: ['encounter'], hint: 'Dấu hiệu "rarely" -> Hiện tại đơn số nhiều.' },
+        { type: 'text', q: '<b>Hurry up!</b> The countdown _________ (reach) its final seconds.', a: ['is reaching'], hint: 'Dấu hiệu "Hurry up!" -> Hiện tại tiếp diễn.' },
+        { type: 'text', q: 'I _________ (not / see) any meteor showers <b>so far</b> this month.', a: ["have not seen", "haven't seen"], hint: 'Dấu hiệu "so far" -> Phủ định Hiện tại hoàn thành.' },
+        { type: 'text', q: 'The automated system <b>typically</b> _________ (monitor) cabin pressure.', a: ['monitors'], hint: 'Dấu hiệu "typically" -> Hiện tại đơn số ít.' },
+        { type: 'text', q: '<b>Right now</b>, the pilot _________ (not / wear) his heavy helmet.', a: ["is not wearing", "isn't wearing"], hint: 'Dấu hiệu "Right now" -> Phủ định Hiện tại tiếp diễn.' },
+        { type: 'text', q: '<b>At this moment</b>, they _________ (not / conduct) any dangerous experiments.', a: ["are not conducting", "aren't conducting"], hint: 'Dấu hiệu "At this moment" -> Phủ định Hiện tại tiếp diễn.' },
+        { type: 'text', q: 'My younger brother _________ (not / enjoy) watching science fiction movies.', a: ["does not enjoy", "doesn't enjoy"], hint: 'Sở thích -> Phủ định Hiện tại đơn số ít.' },
+        { type: 'text', q: 'Experts <b>often</b> _________ (discuss) the possibility of extraterrestrial life.', a: ['discuss'], hint: 'Dấu hiệu "often" -> Hiện tại đơn số nhiều.' },
+        { type: 'text', q: '<b>Look!</b> The shooting stars _________ (cross) the night sky.', a: ['are crossing'], hint: 'Dấu hiệu "Look!" -> Hiện tại tiếp diễn số nhiều.' },
+        { type: 'text', q: 'The astronomers _________ (discover) three new exoplanets <b>recently</b>.', a: ['have discovered'], hint: 'Dấu hiệu "recently" -> Hiện tại hoàn thành số nhiều.' },
+        { type: 'text', q: 'The alien creature <b>hardly ever</b> _________ (reveal) its true form.', a: ['reveals'], hint: 'Dấu hiệu "hardly ever" -> Hiện tại đơn số ít.' },
+        { type: 'text', q: '<b>Listen!</b> The wind _________ (howl) across the Martian landscape.', a: ['is howling'], hint: 'Dấu hiệu "Listen!" -> Hiện tại tiếp diễn.' },
+        { type: 'text', q: 'We _________ (just / decode) an encrypted message from deep space.', a: ['have just decoded'], hint: 'Dấu hiệu "just" -> Hiện tại hoàn thành.' },
+        { type: 'text', q: '<b>At present</b>, the rover _________ (collect) rock samples from the crater.', a: ['is collecting'], hint: 'Dấu hiệu "At present" -> Hiện tại tiếp diễn.' },
+        { type: 'text', q: 'The flight director <b>always</b> _________ (verify) every safety protocol.', a: ['verifies'], hint: 'Dấu hiệu "always" -> Hiện tại đơn số ít.' },
+        { type: 'text', q: 'They _________ (not / detect) any biological traces <b>yet</b>.', a: ["have not detected", "haven't detected"], hint: 'Dấu hiệu "yet" -> Phủ định Hiện tại hoàn thành.' },
+        { type: 'text', q: '<b>Be careful!</b> The robotic arm _________ (move) too fast.', a: ['is moving'], hint: 'Dấu hiệu "Be careful!" -> Hiện tại tiếp diễn.' },
+        { type: 'text', q: 'Our crew _________ (already / complete) the zero-gravity training.', a: ['has already completed'], hint: 'Dấu hiệu "already" -> Hiện tại hoàn thành.' },
+        { type: 'text', q: 'The space station <b>normally</b> _________ (complete) an orbit every 90 minutes.', a: ['completes'], hint: 'Dấu hiệu "normally" -> Hiện tại đơn số ít.' },
+        { type: 'text', q: '<b>Right now</b>, I _________ (not / think) about the risks of the mission.', a: ["am not thinking", "'m not thinking"], hint: 'Dấu hiệu "Right now" -> Phủ định Hiện tại tiếp diễn.' },
 
-        // PHASE 2: VOCABULARY MEANING MCQ (26-38)
-        { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"camouflage (n)"</b> mang ý nghĩa là gì?', options: ['Sự ngụy trang để hòa lẫn vào môi trường', 'Tần số âm thanh', 'Sự giao tiếp', 'Cảm giác cô đơn'], a: 0, hint: 'Hành động thay đổi màu sắc hoặc hình dáng để không bị kẻ thù phát hiện.' },
-        { type: 'mcq', q: 'Từ <b>"frequency (n)"</b> được hiểu chính xác là gì?', options: ['Môi trường sống', 'Tần số, sự lặp lại', 'Tin nhắn, thông điệp', 'Sự để ý, chú ý'], a: 1, hint: 'Đại lượng đo số lần lặp lại của một hiện tượng trong một đơn vị thời gian (VD: sóng âm, sóng radio).' },
-        { type: 'mcq', q: 'Trạng từ <b>"frequently (adv)"</b> có nghĩa là gì?', options: ['Một cách bí mật', 'Một mình, đơn độc', 'Hiếm khi, ít khi', 'Thường xuyên, hay xảy ra'], a: 3, hint: 'Trạng từ chỉ tần suất, đồng nghĩa với "often".' },
-        { type: 'mcq', q: 'Tính từ <b>"lonely (adj)"</b> dùng để diễn tả cảm xúc nào?', options: ['Hạnh phúc, vui vẻ', 'Cô độc, buồn bã vì cảm thấy một mình', 'Tự tin, mạnh mẽ', 'Sợ hãi, lo lắng'], a: 1, hint: 'Cảm giác buồn bã, trống trải khi không có ai bên cạnh.' },
-        { type: 'mcq', q: 'Từ <b>"alone (adj/adv)"</b> mang ý nghĩa gì?', options: ['Đông đúc, nhộn nhịp', 'Cùng với những người khác', 'Một mình, không có ai khác ở cùng', 'Giao tiếp tốt'], a: 2, hint: 'Chỉ trạng thái vật lý khi bạn đang ở một mình, không có người xung quanh.' },
-        { type: 'mcq', q: 'Hành động <b>"communicate (v)"</b> mang ý nghĩa là gì?', options: ['Giao tiếp, truyền đạt thông tin', 'Ẩn nấp, trốn tránh', 'Lắng nghe trong im lặng', 'Quan sát từ xa'], a: 0, hint: 'Việc nói chuyện, viết thư hoặc dùng cử chỉ để trao đổi thông tin với người khác.' },
-        { type: 'mcq', q: 'Từ <b>"notice (v)"</b> có nghĩa là gì?', options: ['Bỏ qua, không quan tâm', 'Hiểu sâu sắc một vấn đề', 'Nghe thấy âm thanh lớn', 'Để ý, nhận ra, chú ý đến'], a: 3, hint: 'Hành động bạn nhìn thấy hoặc nhận ra điều gì đó đang hiện diện.' },
-        { type: 'mcq', q: 'Động từ <b>"hear (v)"</b> mang ý nghĩa gì?', options: ['Giao tiếp bằng lời nói', 'Nghe thấy, cảm nhận âm thanh bằng tai', 'Lắng nghe một cách tập trung', 'Hiểu được ý nghĩa'], a: 1, hint: 'Khả năng tiếp nhận âm thanh một cách tự nhiên qua đôi tai.' },
-        { type: 'mcq', q: 'Khi bạn <b>"understand (v)"</b> một bài học, từ này có nghĩa là gì?', options: ['Ghi nhớ vẹt', 'Không biết gì cả', 'Hiểu, nắm bắt được ý nghĩa', 'Đọc to thành tiếng'], a: 2, hint: 'Việc trí não bạn phân tích và biết rõ ý nghĩa của một thông tin/vấn đề.' },
-        { type: 'mcq', q: 'Từ <b>"signal (n)"</b> có liên quan đến việc truyền tin có nghĩa là gì?', options: ['Tín hiệu, dấu hiệu', 'Bức thư tay', 'Ngôn ngữ cơ thể', 'Tần số âm thanh'], a: 0, hint: 'Một âm thanh, ánh sáng hoặc hành động dùng để truyền thông tin đi xa.' },
-        { type: 'mcq', q: 'Từ <b>"message (n)"</b> mang ý nghĩa là gì?', options: ['Người đưa thư', 'Thông điệp, tin nhắn', 'Điện thoại di động', 'Cảm giác cô đơn'], a: 1, hint: 'Đoạn thông tin bằng lời nói hoặc văn bản bạn muốn gửi cho ai đó.' },
-        { type: 'mcq', q: 'Động từ <b>"listen (v)"</b> khác với "hear" ở điểm nào?', options: ['Listen là lắng nghe có chủ ý, tập trung', 'Listen là nghe thấy ngẫu nhiên', 'Listen là không nghe thấy gì', 'Listen là nói chuyện'], a: 0, hint: 'Khi bạn dồn sự chú ý của đôi tai để cố gắng nghe một âm thanh (VD: listen to music).' },
-        { type: 'mcq', q: 'Từ <b>"environment (n)"</b> có ý nghĩa là gì?', options: ['Một loài động vật quý hiếm', 'Môi trường, không gian sống xung quanh', 'Sự ngụy trang của động vật', 'Cách thức giao tiếp'], a: 1, hint: 'Toàn bộ các yếu tố tự nhiên (đất, nước, không khí) bao quanh sinh vật.' },
+        // PHASE 2: VOCABULARY MEANING MCQ (36-48)
+        { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"galaxy (n)"</b> mang ý nghĩa là gì?', options: ['Thiên hà, dải ngân hà', 'Hố đen vũ trụ', 'Tên lửa đẩy', 'Trạm không gian'], a: 0, hint: 'Hệ thống khổng lồ gồm hàng tỉ ngôi sao, khí và bụi vũ trụ.' },
+        { type: 'mcq', q: 'Từ <b>"gravity (n)"</b> được hiểu chính xác là gì?', options: ['Áp suất không khí', 'Lực hấp dẫn, trọng lực', 'Tốc độ ánh sáng', 'Từ trường hành tinh'], a: 1, hint: 'Lực hút kéo các vật thể về phía trung tâm của Trái Đất hoặc các thể thiên hà khác.' },
+        { type: 'mcq', q: 'Trạng từ <b>"gradually (adv)"</b> có nghĩa là gì?', options: ['Ngay lập tức, đột ngột', 'Một cách nguy hiểm', 'Một cách từ từ, dần dần', 'Hoàn toàn tuyệt đối'], a: 2, hint: 'Chỉ sự thay đổi diễn ra chậm rãi theo thời gian.' },
+        { type: 'mcq', q: 'Tính từ <b>"mysterious (adj)"</b> dùng để diễn tả điều gì?', options: ['Rõ ràng, minh bạch', 'Bí ẩn, khó lý giải', 'Quen thuộc, bình thường', 'Nguy hiểm tột độ'], a: 1, hint: 'Tính từ chỉ những sự việc không thể giải thích hoặc chưa biết rõ nguyên nhân.' },
+        { type: 'mcq', q: 'Từ <b>"research (n/v)"</b> mang ý nghĩa gì?', options: ['Nghiên cứu, sự khảo sát khoa học', 'Cuộc đua không gian', 'Sự phá hủy cấu trúc', 'Sự truyền tin ngầm'], a: 0, hint: 'Quá trình tìm hiểu, thu thập thông tin và dữ liệu chuyên sâu về một lĩnh vực.' },
+        { type: 'mcq', q: 'Hành động <b>"explore (v)"</b> mang ý nghĩa là gì?', options: ['Khám phá, thám hiểm vùng đất mới', 'Trốn chạy kẻ thù', 'Xây dựng căn cứ', 'Phóng tên lửa'], a: 0, hint: 'Đi đến những vùng đất chưa từng được biết đến để tìm hiểu.' },
+        { type: 'mcq', q: 'Từ <b>"universe (n)"</b> có nghĩa là gì?', options: ['Hành tinh mẹ', 'Vũ trụ bao la', 'Hệ mặt trời', 'Khoảng không gian hẹp'], a: 1, hint: 'Toàn bộ không gian, thời gian, vật chất và năng lượng tồn tại.' },
+        { type: 'mcq', q: 'Động từ <b>"predict (v)"</b> mang ý nghĩa gì?', options: ['Nhớ lại quá khứ', 'Dự đoán, tiên đoán tương lai', 'Quan sát hiện tại', 'Phủ nhận sự thật'], a: 1, hint: 'Đưa ra phỏng đoán về điều gì đó sẽ xảy ra trước khi nó đến.' },
+        { type: 'mcq', q: 'Khi nhà khoa học thực hiện <b>"experiment (n)"</b>, từ này có nghĩa là gì?', options: ['Cuộc thí nghiệm khoa học', 'Bản báo cáo tài chính', 'Món trang sức vũ trụ', 'Bản đồ không gian'], a: 0, hint: 'Phép thử nghiệm được thực hiện trong phòng thí nghiệm để kiểm chứng giả thuyết.' },
+        { type: 'mcq', q: 'Từ <b>"atmosphere (n)"</b> chỉ lớp bao quanh hành tinh có nghĩa là gì?', options: ['Khí quyển, bầu khí quyển', 'Lớp vỏ địa chất', 'Đại dương sâu thẳm', 'Vành đai tiểu hành tinh'], a: 0, hint: 'Lớp khí bao quanh một hành tinh hoặc thiên thể.' },
+        { type: 'mcq', q: 'Từ <b>"satellite (n)"</b> nhân tạo hoặc tự nhiên mang ý nghĩa gì?', options: ['Vệ tinh nhân tạo hoặc tự nhiên', 'Tàu con thoi vũ trụ', 'Kính viễn vọng không gian', 'Thiết bị định vị mặt đất'], a: 0, hint: 'Vật thể bay quỹ đạo quay quanh một hành tinh lớn.' },
+        { type: 'mcq', q: 'Động từ <b>"launch (v)"</b> thường dùng khi nói về việc gì?', options: ['Thu hồi tàu vũ trụ', 'Phóng tên lửa hoặc tàu không gian lên quỹ đạo', 'Hạ cánh an toàn', 'Xây dựng bệ phóng'], a: 1, hint: 'Hành động đẩy mạnh một phương tiện bay vào không trung.' },
+        { type: 'mcq', q: 'Từ <b>"telescope (n)"</b> là dụng cụ dùng để làm gì?', options: ['Kính thiên văn quan sát vật thể ở xa', 'Máy đo nhiệt độ bề mặt', 'Thiết bị phát sóng radio', 'Bộ đồ phi hành gia'], a: 0, hint: 'Dụng cụ quang học phóng đại hình ảnh các ngôi sao và thiên hà.' },
 
-        // PHASE 3: VOCAB CONTEXT TEXT INPUT WITH BLANKS (39-50)
-        { type: 'text', q: 'Sự ngụy trang để hòa lẫn vào môi trường. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ _ _</b></span>', a: ['camouflage'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "c" (c-a-m-o-u-f-l-a-g-e).' },
-        { type: 'text', q: 'Tần số, sự lặp lại của sóng âm hoặc tín hiệu. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>f _ _ _ _ _ _ _ _</b></span>', a: ['frequency'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "f" (f-r-e-q-u-e-n-c-y).' },
-        { type: 'text', q: 'Thường xuyên, hay xảy ra (trạng từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>f _ _ _ _ _ _ _ _ _</b></span>', a: ['frequently'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "f" (f-r-e-q-u-e-n-t-l-y).' },
-        { type: 'text', q: 'Cảm giác cô độc, buồn bã vì trống trải. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ _ _ _</b></span>', a: ['lonely'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "l" (l-o-n-e-l-y).' },
-        { type: 'text', q: 'Trạng thái một mình, không có ai khác bên cạnh. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>a _ _ _ _</b></span>', a: ['alone'], hint: 'Từ gồm 5 chữ cái bắt đầu bằng "a" (a-l-o-n-e).' },
-        { type: 'text', q: 'Giao tiếp, truyền đạt thông tin cho nhau. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ _ _ _</b></span>', a: ['communicate'], hint: 'Từ dài gồm 11 chữ cái bắt đầu bằng "c" (c-o-m-m-u-n-i-c-a-t-e).' },
-        { type: 'text', q: 'Để ý, nhận ra, chú ý đến một điều gì đó. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>n _ _ _ _ _</b></span>', a: ['notice'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "n" (n-o-t-i-c-e).' },
-        { type: 'text', q: 'Nghe thấy âm thanh một cách tự nhiên. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>h _ _ _</b></span>', a: ['hear'], hint: 'Từ ngắn gồm 4 chữ cái bắt đầu bằng "h" (h-e-a-r).' },
-        { type: 'text', q: 'Hiểu, nắm bắt được ý nghĩa của vấn đề. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>u _ _ _ _ _ _ _ _ _</b></span>', a: ['understand'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "u" (u-n-d-e-r-s-t-a-n-d).' },
-        { type: 'text', q: 'Tín hiệu, dấu hiệu truyền đi. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>s _ _ _ _ _</b></span>', a: ['signal'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "s" (s-i-g-n-a-l).' },
-        { type: 'text', q: 'Thông điệp, tin nhắn được gửi đi. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>m _ _ _ _ _ _</b></span>', a: ['message'], hint: 'Từ gồm 7 chữ cái bắt đầu bằng "m" (m-e-s-s-a-g-e).' },
-        { type: 'text', q: 'Quan sát theo dõi một cách cẩn thận. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>o _ _ _ _ _ _</b></span>', a: ['observe'], hint: 'Từ gồm 7 chữ cái bắt đầu bằng "o" (o-b-s-e-r-v-e).' }
+        // PHASE 3: VOCAB CONTEXT TEXT INPUT WITH BLANKS (49-60)
+        { type: 'text', q: 'Thiên hà, hệ thống khổng lồ chứa hàng tỉ ngôi sao. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ _ _</b></span>', a: ['galaxy'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "g" (g-a-l-a-x-y).' },
+        { type: 'text', q: 'Lực hấp dẫn, trọng lực kéo vật thể. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ _ _ _</b></span>', a: ['gravity'], hint: 'Từ gồm 7 chữ cái bắt đầu bằng "g" (g-r-a-v-i-t-y).' },
+        { type: 'text', q: 'Một cách từ từ, dần dần (trạng từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ _ _ _ _ _</b></span>', a: ['gradually'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "g" (g-r-a-d-u-a-l-l-y).' },
+        { type: 'text', q: 'Bí ẩn, khó lý giải (tính từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>m _ _ _ _ _ _ _ _ _</b></span>', a: ['mysterious'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "m" (m-y-s-t-e-r-i-o-u-s).' },
+        { type: 'text', q: 'Nghiên cứu, sự khảo sát khoa học. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>r _ _ _ _ _ _ _</b></span>', a: ['research'], hint: 'Từ gồm 8 chữ cái bắt đầu bằng "r" (r-e-s-e-a-r-c-h).' },
+        { type: 'text', q: 'Khám phá, thám hiểm vùng đất mới. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>e _ _ _ _ _ _</b></span>', a: ['explore'], hint: 'Từ gồm 7 chữ cái bắt đầu bằng "e" (e-x-p-l-o-r-e).' },
+        { type: 'text', q: 'Vũ trụ bao la chứa toàn bộ không gian và vật chất. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>u _ _ _ _ _ _ _</b></span>', a: ['universe'], hint: 'Từ gồm 8 chữ cái bắt đầu bằng "u" (u-n-i-v-e-r-s-e).' },
+        { type: 'text', q: 'Dự đoán, tiên đoán điều gì sẽ xảy ra. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>p _ _ _ _ _</b></span>', a: ['predict'], hint: 'Từ gồm 7 chữ cái bắt đầu bằng "p" (p-r-e-d-i-c-t).' },
+        { type: 'text', q: 'Cuộc thí nghiệm khoa học. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>e _ _ _ _ _ _ _ _</b></span>', a: ['experiment'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "e" (e-x-p-e-r-i-m-e-n-t).' },
+        { type: 'text', q: 'Khí quyển, bầu khí quyển bao quanh hành tinh. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>a _ _ _ _ _ _ _ _ _</b></span>', a: ['atmosphere'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "a" (a-t-m-o-s-p-h-e-r-e).' },
+        { type: 'text', q: 'Vệ tinh nhân tạo hoặc tự nhiên bay trên quỹ đạo. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>s _ _ _ _ _ _ _ _</b></span>', a: ['satellite'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "s" (s-a-t-e-l-l-i-t-e).' },
+        { type: 'text', q: 'Kính thiên văn dùng để quan sát vật thể ở xa. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>t _ _ _ _ _ _ _ _</b></span>', a: ['telescope'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "t" (t-e-l-e-s-c-o-p-e).' }
     ];
 
     let currentQuestionIndex = 0;
     let globalScore = 0;
-    let userLives = 3;
+    let userLives = 4;
     let currentGameState = "playing";
     let userAnswersLog = [];
 
@@ -635,7 +645,7 @@
         gameScreen.classList.add("active-screen");
         resultScreen.classList.remove("active-screen");
         historyScreen.classList.remove("active-screen");
-        userLives = 3;
+        userLives = 4;
         grammarHintsCount = 3;
         currentQuestionIndex = 0;
         globalScore = 0;
@@ -667,7 +677,7 @@
         let currentQ = quizData[currentQuestionIndex];
 
         if (currentQ.type === 'text') {
-            if (currentQuestionIndex < 25) {
+            if (currentQuestionIndex < 35) {
                 instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền trợ động từ / chia động từ vào ô trống";
             } else {
                 instructionTitle.innerText = "🎯 NHIỆM VỤ: Nhập thuật ngữ từ vựng tiếng Anh theo gợi ý";
@@ -947,14 +957,13 @@
         finalScoreDisplay.innerText = globalScore;
 
         let levelStr = "";
-        if (globalScore >= 6500) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
-        else if (globalScore >= 4500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
-        else if (globalScore >= 2500) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
+        if (globalScore >= 7500) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
+        else if (globalScore >= 5500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
+        else if (globalScore >= 3500) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
         else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
 
         rewardLevel.innerText = levelStr;
 
-        // Điền điểm số trực tiếp vào ô input readonly
         document.getElementById("form-score").value = globalScore + " Điểm";
         
         let historyText = userAnswersLog.map(ans => {
