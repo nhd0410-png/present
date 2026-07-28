@@ -420,13 +420,13 @@
     <!-- INTRO SCREEN -->
     <div id="intro-screen" class="screen active-screen">
         <div class="header-title">Đấu Trường Nhí</div>
-        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Space Grammar & Vocab Invaders v7.0 (Renewed Questions)</p>
+        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Space Grammar & Vocab Invaders v8.0 (50 Questions Edition)</p>
         
         <div class="intro-rules">
-            <strong>🚀 LUẬT CHƠI MỚI VŨ TRỤ NGỮ PHÁP & TỪ VỰNG (60 CÂU HỎI HOÀN TOÀN MỚI):</strong><br>
-            • 🌟 <b>Giai đoạn 1 (Câu 1-35):</b> Nhìn từ <b>in đậm</b> đầu câu để gõ chia động từ tiếng Anh thích hợp.<br>
-            • 🌟 <b>Giai đoạn 2 (Câu 36-48):</b> Trắc nghiệm chọn ý nghĩa từ vựng tiếng Việt chính xác.<br>
-            • 🌟 <b>Giai đoạn 3 (Câu 49-60):</b> Đọc định nghĩa tiếng Việt để gõ từ vựng tiếng Anh theo chữ cái gợi ý <b>(ví dụ: g _ _ _ _ _)</b>.<br>
+            <strong>🚀 LUẬT CHƠI MỚI VŨ TRỤ NGỮ PHÁP & TỪ VỰNG (50 CÂU HỎI BẢN CẬP NHẬT):</strong><br>
+            • 🌟 <b>Giai đoạn 1 (Câu 1-30):</b> Nhìn từ <b>in đậm</b> đầu câu để gõ chia động từ tiếng Anh thích hợp.<br>
+            • 🌟 <b>Giai đoạn 2 (Câu 31-40):</b> Trắc nghiệm chọn ý nghĩa từ vựng tiếng Việt chính xác.<br>
+            • 🌟 <b>Giai đoạn 3 (Câu 41-50):</b> Đọc định nghĩa tiếng Việt để gõ từ vựng tiếng Anh theo chữ cái gợi ý <b>(ví dụ: g _ _ _ s)</b>.<br>
             • 🛸 Con có <b>4 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi câu thử thách! Sẵn sàng bắn phá rào cản vũ trụ!
         </div>
         
@@ -438,7 +438,7 @@
     <!-- GAMEPLAY SCREEN -->
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">60</span></div>
+            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">50</span></div>
             <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
             <div id="phase-timer-display" style="visibility: hidden;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
@@ -529,7 +529,7 @@
 
 <script>
     const quizData = [
-        // RENEWED PHASE 1: GRAMMAR CORE + VOCAB INTEGRATION (1-35)
+        // PHASE 1: GRAMMAR CORE (1-30)
         { type: 'text', q: '<b>Be quiet!</b> The mission control _________ (explain) the flight plan.', a: ['is explaining'], hint: 'Dấu hiệu "Be quiet!" -> Hiện tại tiếp diễn, chủ ngữ số ít.' },
         { type: 'text', q: 'My partner <b>seldom</b> _________ (forget) to check the oxygen levels.', a: ['forgets'], hint: 'Dấu hiệu "seldom" -> Hiện tại đơn số ít.' },
         { type: 'text', q: 'We _________ (just / launch) the new exploration probe into space.', a: ['have just launched'], hint: 'Dấu hiệu "just" -> Hiện tại hoàn thành số nhiều.' },
@@ -560,40 +560,30 @@
         { type: 'text', q: 'We _________ (just / decode) an encrypted message from deep space.', a: ['have just decoded'], hint: 'Dấu hiệu "just" -> Hiện tại hoàn thành.' },
         { type: 'text', q: '<b>At present</b>, the rover _________ (collect) rock samples from the crater.', a: ['is collecting'], hint: 'Dấu hiệu "At present" -> Hiện tại tiếp diễn.' },
         { type: 'text', q: 'The flight director <b>always</b> _________ (verify) every safety protocol.', a: ['verifies'], hint: 'Dấu hiệu "always" -> Hiện tại đơn số ít.' },
-        { type: 'text', q: 'They _________ (not / detect) any biological traces <b>yet</b>.', a: ["have not detected", "haven't detected"], hint: 'Dấu hiệu "yet" -> Phủ định Hiện tại hoàn thành.' },
-        { type: 'text', q: '<b>Be careful!</b> The robotic arm _________ (move) too fast.', a: ['is moving'], hint: 'Dấu hiệu "Be careful!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'Our crew _________ (already / complete) the zero-gravity training.', a: ['has already completed'], hint: 'Dấu hiệu "already" -> Hiện tại hoàn thành.' },
-        { type: 'text', q: 'The space station <b>normally</b> _________ (complete) an orbit every 90 minutes.', a: ['completes'], hint: 'Dấu hiệu "normally" -> Hiện tại đơn số ít.' },
-        { type: 'text', q: '<b>Right now</b>, I _________ (not / think) about the risks of the mission.', a: ["am not thinking", "'m not thinking"], hint: 'Dấu hiệu "Right now" -> Phủ định Hiện tại tiếp diễn.' },
 
-        // PHASE 2: VOCABULARY MEANING MCQ (36-48)
-        { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"galaxy (n)"</b> mang ý nghĩa là gì?', options: ['Thiên hà, dải ngân hà', 'Hố đen vũ trụ', 'Tên lửa đẩy', 'Trạm không gian'], a: 0, hint: 'Hệ thống khổng lồ gồm hàng tỉ ngôi sao, khí và bụi vũ trụ.' },
-        { type: 'mcq', q: 'Từ <b>"gravity (n)"</b> được hiểu chính xác là gì?', options: ['Áp suất không khí', 'Lực hấp dẫn, trọng lực', 'Tốc độ ánh sáng', 'Từ trường hành tinh'], a: 1, hint: 'Lực hút kéo các vật thể về phía trung tâm của Trái Đất hoặc các thể thiên hà khác.' },
-        { type: 'mcq', q: 'Trạng từ <b>"gradually (adv)"</b> có nghĩa là gì?', options: ['Ngay lập tức, đột ngột', 'Một cách nguy hiểm', 'Một cách từ từ, dần dần', 'Hoàn toàn tuyệt đối'], a: 2, hint: 'Chỉ sự thay đổi diễn ra chậm rãi theo thời gian.' },
-        { type: 'mcq', q: 'Tính từ <b>"mysterious (adj)"</b> dùng để diễn tả điều gì?', options: ['Rõ ràng, minh bạch', 'Bí ẩn, khó lý giải', 'Quen thuộc, bình thường', 'Nguy hiểm tột độ'], a: 1, hint: 'Tính từ chỉ những sự việc không thể giải thích hoặc chưa biết rõ nguyên nhân.' },
-        { type: 'mcq', q: 'Từ <b>"research (n/v)"</b> mang ý nghĩa gì?', options: ['Nghiên cứu, sự khảo sát khoa học', 'Cuộc đua không gian', 'Sự phá hủy cấu trúc', 'Sự truyền tin ngầm'], a: 0, hint: 'Quá trình tìm hiểu, thu thập thông tin và dữ liệu chuyên sâu về một lĩnh vực.' },
-        { type: 'mcq', q: 'Hành động <b>"explore (v)"</b> mang ý nghĩa là gì?', options: ['Khám phá, thám hiểm vùng đất mới', 'Trốn chạy kẻ thù', 'Xây dựng căn cứ', 'Phóng tên lửa'], a: 0, hint: 'Đi đến những vùng đất chưa từng được biết đến để tìm hiểu.' },
-        { type: 'mcq', q: 'Từ <b>"universe (n)"</b> có nghĩa là gì?', options: ['Hành tinh mẹ', 'Vũ trụ bao la', 'Hệ mặt trời', 'Khoảng không gian hẹp'], a: 1, hint: 'Toàn bộ không gian, thời gian, vật chất và năng lượng tồn tại.' },
-        { type: 'mcq', q: 'Động từ <b>"predict (v)"</b> mang ý nghĩa gì?', options: ['Nhớ lại quá khứ', 'Dự đoán, tiên đoán tương lai', 'Quan sát hiện tại', 'Phủ nhận sự thật'], a: 1, hint: 'Đưa ra phỏng đoán về điều gì đó sẽ xảy ra trước khi nó đến.' },
-        { type: 'mcq', q: 'Khi nhà khoa học thực hiện <b>"experiment (n)"</b>, từ này có nghĩa là gì?', options: ['Cuộc thí nghiệm khoa học', 'Bản báo cáo tài chính', 'Món trang sức vũ trụ', 'Bản đồ không gian'], a: 0, hint: 'Phép thử nghiệm được thực hiện trong phòng thí nghiệm để kiểm chứng giả thuyết.' },
-        { type: 'mcq', q: 'Từ <b>"atmosphere (n)"</b> chỉ lớp bao quanh hành tinh có nghĩa là gì?', options: ['Khí quyển, bầu khí quyển', 'Lớp vỏ địa chất', 'Đại dương sâu thẳm', 'Vành đai tiểu hành tinh'], a: 0, hint: 'Lớp khí bao quanh một hành tinh hoặc thiên thể.' },
-        { type: 'mcq', q: 'Từ <b>"satellite (n)"</b> nhân tạo hoặc tự nhiên mang ý nghĩa gì?', options: ['Vệ tinh nhân tạo hoặc tự nhiên', 'Tàu con thoi vũ trụ', 'Kính viễn vọng không gian', 'Thiết bị định vị mặt đất'], a: 0, hint: 'Vật thể bay quỹ đạo quay quanh một hành tinh lớn.' },
-        { type: 'mcq', q: 'Động từ <b>"launch (v)"</b> thường dùng khi nói về việc gì?', options: ['Thu hồi tàu vũ trụ', 'Phóng tên lửa hoặc tàu không gian lên quỹ đạo', 'Hạ cánh an toàn', 'Xây dựng bệ phóng'], a: 1, hint: 'Hành động đẩy mạnh một phương tiện bay vào không trung.' },
-        { type: 'mcq', q: 'Từ <b>"telescope (n)"</b> là dụng cụ dùng để làm gì?', options: ['Kính thiên văn quan sát vật thể ở xa', 'Máy đo nhiệt độ bề mặt', 'Thiết bị phát sóng radio', 'Bộ đồ phi hành gia'], a: 0, hint: 'Dụng cụ quang học phóng đại hình ảnh các ngôi sao và thiên hà.' },
+        // PHASE 2: NEW VOCABULARY MCQ (31-40) - REPLACED WITH YOUR NOTES
+        { type: 'mcq', q: 'Từ <b>"camouflage (n)"</b> có nghĩa là gì?', options: ['Sự ngụy trang', 'Cơ quan hô hấp', 'Lực hấp dẫn', 'Động vật ăn thịt'], a: 0, hint: 'Hành động hoặc màu sắc giúp động vật ẩn nấp trong môi trường.' },
+        { type: 'mcq', q: 'Từ <b>"amphibian (n)"</b> chỉ loài động vật nào?', options: ['Loài bò sát', 'Động vật lưỡng cư', 'Loài gặm nhấm', 'Động vật có vú'], a: 1, hint: 'Loài động vật có thể sống cả ở dưới nước và trên mặt đất (như ếch, nhái).' },
+        { type: 'mcq', q: 'Từ <b>"environment (n)"</b> mang ý nghĩa là gì?', options: ['Vũ trụ bao la', 'Môi trường sống', 'Lớp không khí', 'Bệ phóng tàu'], a: 1, hint: 'Tất cả các điều kiện tự nhiên xung quanh con người và sinh vật.' },
+        { type: 'mcq', q: 'Tính từ/Danh từ <b>"vertebrate"</b> dùng để chỉ điều gì?', options: ['Động vật không xương sống', 'Đốt sống / Có xương sống', 'Loài sinh vật biển', 'Cơ quan hô hấp'], a: 1, hint: 'Chỉ các loài động vật có cấu trúc xương sống lưng.' },
+        { type: 'mcq', q: 'Hành động <b>"communicate (v)"</b> có nghĩa là gì?', options: ['Di chuyển nhanh', 'Giao tiếp, truyền đạt', 'Lặn xuống nước', 'Xây dựng tổ'], a: 1, hint: 'Hành động trao đổi thông tin, lời nói hoặc tín hiệu với nhau.' },
+        { type: 'mcq', q: 'Danh từ <b>"frequency (n)"</b> có nghĩa là gì?', options: ['Tần số, sự thường xuyên', 'Bầu khí quyển', 'Trạng thái cô đơn', 'Môi trường tự nhiên'], a: 0, hint: 'Chỉ số lần xuất hiện hoặc lặp lại của một hiện tượng trong một đơn vị thời gian.' },
+        { type: 'mcq', q: 'Tính từ <b>"moist (adj)"</b> dùng để mô tả điều gì?', options: ['Khô rát', 'Sắc nhọn', 'Ẩm ướt', 'Rất nóng'], a: 2, hint: 'Chỉ trạng thái hơi ướt, có độ ẩm nhẹ.' },
+        { type: 'mcq', q: 'Động từ <b>"absorb (v)"</b> mang ý nghĩa là gì?', options: ['Phát ra sóng', 'Hấp thụ, thấm hút', 'Xô đẩy mạnh', 'Thải ra ngoài'], a: 1, hint: 'Hành động hút hoặc tiếp nhận chất lỏng, chất dinh dưỡng hay năng lượng.' },
+        { type: 'mcq', q: 'Tính từ <b>"sticky (adj)"</b> có nghĩa là gì?', options: ['Dính, có chất dính', 'Trơn trượt', 'Rất cứng', 'Mỏng dẻo'], a: 0, hint: 'Đặc tính dễ bám dính vào vật khác khi chạm vào.' },
+        { type: 'mcq', q: 'Cơ quan <b>"lungs (n)"</b> trong cơ thể có nghĩa là gì?', options: ['Tim', 'Dạ dày', 'Phổi', 'Gan'], a: 2, hint: 'Cơ quan hô hấp giúp con người và nhiều động vật hít thở không khí.' },
 
-        // PHASE 3: VOCAB CONTEXT TEXT INPUT WITH BLANKS (49-60)
-        { type: 'text', q: 'Thiên hà, hệ thống khổng lồ chứa hàng tỉ ngôi sao. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ _ _</b></span>', a: ['galaxy'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "g" (g-a-l-a-x-y).' },
-        { type: 'text', q: 'Lực hấp dẫn, trọng lực kéo vật thể. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ _ _ _</b></span>', a: ['gravity'], hint: 'Từ gồm 7 chữ cái bắt đầu bằng "g" (g-r-a-v-i-t-y).' },
-        { type: 'text', q: 'Một cách từ từ, dần dần (trạng từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ _ _ _ _ _</b></span>', a: ['gradually'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "g" (g-r-a-d-u-a-l-l-y).' },
-        { type: 'text', q: 'Bí ẩn, khó lý giải (tính từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>m _ _ _ _ _ _ _ _ _</b></span>', a: ['mysterious'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "m" (m-y-s-t-e-r-i-o-u-s).' },
-        { type: 'text', q: 'Nghiên cứu, sự khảo sát khoa học. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>r _ _ _ _ _ _ _</b></span>', a: ['research'], hint: 'Từ gồm 8 chữ cái bắt đầu bằng "r" (r-e-s-e-a-r-c-h).' },
-        { type: 'text', q: 'Khám phá, thám hiểm vùng đất mới. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>e _ _ _ _ _ _</b></span>', a: ['explore'], hint: 'Từ gồm 7 chữ cái bắt đầu bằng "e" (e-x-p-l-o-r-e).' },
-        { type: 'text', q: 'Vũ trụ bao la chứa toàn bộ không gian và vật chất. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>u _ _ _ _ _ _ _</b></span>', a: ['universe'], hint: 'Từ gồm 8 chữ cái bắt đầu bằng "u" (u-n-i-v-e-r-s-e).' },
-        { type: 'text', q: 'Dự đoán, tiên đoán điều gì sẽ xảy ra. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>p _ _ _ _ _</b></span>', a: ['predict'], hint: 'Từ gồm 7 chữ cái bắt đầu bằng "p" (p-r-e-d-i-c-t).' },
-        { type: 'text', q: 'Cuộc thí nghiệm khoa học. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>e _ _ _ _ _ _ _ _</b></span>', a: ['experiment'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "e" (e-x-p-e-r-i-m-e-n-t).' },
-        { type: 'text', q: 'Khí quyển, bầu khí quyển bao quanh hành tinh. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>a _ _ _ _ _ _ _ _ _</b></span>', a: ['atmosphere'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "a" (a-t-m-o-s-p-h-e-r-e).' },
-        { type: 'text', q: 'Vệ tinh nhân tạo hoặc tự nhiên bay trên quỹ đạo. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>s _ _ _ _ _ _ _ _</b></span>', a: ['satellite'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "s" (s-a-t-e-l-l-i-t-e).' },
-        { type: 'text', q: 'Kính thiên văn dùng để quan sát vật thể ở xa. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>t _ _ _ _ _ _ _ _</b></span>', a: ['telescope'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "t" (t-e-l-e-s-c-o-p-e).' }
+        // PHASE 3: NEW VOCABULARY FILL-IN (41-50) - REPLACED WITH YOUR NOTES
+        { type: 'text', q: 'Mang (cơ quan thở dưới nước của cá hay nòng nọc). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ s</b></span>', a: ['gills'], hint: 'Từ gồm 5 chữ cái bắt đầu bằng "g" (g-i-l-l-s).' },
+        { type: 'text', q: 'Cô độc, cô đơn (tính từ = alone). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ _ l y</b></span>', a: ['lonely'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "l" (l-o-n-e-l-y).' },
+        { type: 'text', q: 'Để ý, chú ý đến cái gì đó (động từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>n _ _ _ c e</b></span>', a: ['notice'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "n" (n-o-t-i-c-e).' },
+        { type: 'text', q: 'Hiểu, thấu hiểu điều gì đó (động từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>u _ _ _ _ s _ _ _ d</b></span>', a: ['understand'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "u" (u-n-d-e-r-s-t-a-n-d).' },
+        { type: 'text', q: 'Mặt đất, đất liền (danh từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ d</b></span>', a: ['land'], hint: 'Từ gồm 4 chữ cái bắt đầu bằng "l" (l-a-n-d).' },
+        { type: 'text', q: 'Nghe bằng tai (động từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>h _ _ r</b></span>', a: ['hear'], hint: 'Từ gồm 4 chữ cái bắt đầu bằng "h" (h-e-a-r).' },
+        { type: 'text', q: 'Sự ngụy trang của động vật (danh từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ g e</b></span>', a: ['camouflage'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "c" (c-a-m-o-u-f-l-a-g-e).' },
+        { type: 'text', q: 'Môi trường xung quanh (danh từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>e _ _ _ _ _ _ _ e n t</b></span>', a: ['environment'], hint: 'Từ gồm 11 chữ cái bắt đầu bằng "e" (e-n-v-i-r-o-n-m-e-n-t).' },
+        { type: 'text', q: 'Động vật lưỡng cư sống cả dưới nước lẫn trên đầm lầy. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>a _ _ _ _ _ _ a n</b></span>', a: ['amphibian'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "a" (a-m-p-h-i-b-i-a-n).' },
+        { type: 'text', q: 'Giao tiếp, trao đổi thông tin (động từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ _ t e</b></span>', a: ['communicate'], hint: 'Từ gồm 11 chữ cái bắt đầu bằng "c" (c-o-m-m-u-n-i-c-a-t-e).' }
     ];
 
     let currentQuestionIndex = 0;
@@ -677,7 +667,7 @@
         let currentQ = quizData[currentQuestionIndex];
 
         if (currentQ.type === 'text') {
-            if (currentQuestionIndex < 35) {
+            if (currentQuestionIndex < 30) {
                 instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền trợ động từ / chia động từ vào ô trống";
             } else {
                 instructionTitle.innerText = "🎯 NHIỆM VỤ: Nhập thuật ngữ từ vựng tiếng Anh theo gợi ý";
@@ -957,9 +947,9 @@
         finalScoreDisplay.innerText = globalScore;
 
         let levelStr = "";
-        if (globalScore >= 7500) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
-        else if (globalScore >= 5500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
-        else if (globalScore >= 3500) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
+        if (globalScore >= 6000) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
+        else if (globalScore >= 4500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
+        else if (globalScore >= 3000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
         else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
 
         rewardLevel.innerText = levelStr;
