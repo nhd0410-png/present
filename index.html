@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đấu Trường Nhí - Space Grammar & Vocab Invaders</title>
+    <title>Đấu Trường Nhí - Living Things Grammar & Vocab Invaders</title>
     <style>
         :root {
             --bg-color: #020010;
@@ -420,14 +420,14 @@
     <!-- INTRO SCREEN -->
     <div id="intro-screen" class="screen active-screen">
         <div class="header-title">Đấu Trường Nhí</div>
-        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Space Grammar & Vocab Invaders v8.0 (50 Questions Edition)</p>
+        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Cambridge English 6 - Unit 3: Living Things Invaders</p>
         
         <div class="intro-rules">
-            <strong>🚀 LUẬT CHƠI MỚI VŨ TRỤ NGỮ PHÁP & TỪ VỰNG (50 CÂU HỎI BẢN CẬP NHẬT):</strong><br>
-            • 🌟 <b>Giai đoạn 1 (Câu 1-30):</b> Nhìn từ <b>in đậm</b> đầu câu để gõ chia động từ tiếng Anh thích hợp.<br>
-            • 🌟 <b>Giai đoạn 2 (Câu 31-40):</b> Trắc nghiệm chọn ý nghĩa từ vựng tiếng Việt chính xác.<br>
-            • 🌟 <b>Giai đoạn 3 (Câu 41-50):</b> Đọc định nghĩa tiếng Việt để gõ từ vựng tiếng Anh theo chữ cái gợi ý <b>(ví dụ: g _ _ _ s)</b>.<br>
-            • 🛸 Con có <b>4 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi câu thử thách! Sẵn sàng bắn phá rào cản vũ trụ!
+            <strong>🚀 LUẬT CHƠI VŨ TRỤ CÂU ĐẠI TỪ QUAN HỆ & TỪ VỰNG:</strong><br>
+            • 🌿 <b>Giai đoạn 1 (Câu 1-20):</b> Điền đại từ quan hệ <b>(who, which, that, where, when, whose)</b> dựa vào từ gợi ý Unit 3.<br>
+            • 🌿 <b>Giai đoạn 2 (Câu 21-37):</b> Trắc nghiệm chọn ý nghĩa từ vựng tiếng Việt từ vở ghi.<br>
+            • 🌿 <b>Giai đoạn 3 (Câu 38-54):</b> Nhập chính xác từ vựng tiếng Anh theo gợi ý chữ cái đầu và số ô trống.<br>
+            • 🛸 Con có <b>4 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi thử thách!
         </div>
         
         <div style="text-align: center;">
@@ -438,7 +438,7 @@
     <!-- GAMEPLAY SCREEN -->
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">50</span></div>
+            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">54</span></div>
             <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
             <div id="phase-timer-display" style="visibility: hidden;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
@@ -490,18 +490,14 @@
         <div style="font-size: 1.5rem; margin: 15px 0;">Điểm số đạt được: <span id="final-score" style="color: var(--accent-color); font-weight:bold;">0</span> điểm</div>
         <div style="font-size: 1.3rem; color: var(--correct-color); font-weight: bold; margin-bottom: 25px;" id="reward-level"></div>
         
-        <!-- Formspree Submission Section -->
         <div id="formspree-container" style="margin: 20px auto; padding: 20px; background: rgba(13, 17, 43, 0.9); border-radius: 12px; border: 2px dashed var(--border-neon); max-width: 450px; box-sizing: border-box;">
             <h3 style="color: #00fff0; margin-top: 0; text-transform: uppercase; letter-spacing: 1px; font-size: 1.1rem;">🚀 Báo Cáo Kết Quả Vũ Trụ</h3>
             <form id="formspree-form" action="https://formspree.io/f/mvznjpeg" method="POST" style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
-                
-                <!-- Ô NHẬP TÊN HỌC SINH -->
                 <div style="width: 100%; text-align: left; padding: 0 20px; box-sizing: border-box;">
                     <label style="font-size: 0.85rem; color: #00fff0; font-weight: bold; display: block; margin-bottom: 5px;">Họ Và Tên Học Sinh:</label>
                     <input type="text" name="Student Name" class="written-input" style="width: 100%; font-size: 1.1rem; padding: 10px; text-align: left;" placeholder="Nhập họ và tên của con..." required>
                 </div>
 
-                <!-- Ô ĐIỂM SỐ KHÔNG THỂ CHỈNH SỬA (READONLY) -->
                 <div style="width: 100%; text-align: left; padding: 0 20px; box-sizing: border-box;">
                     <label style="font-size: 0.85rem; color: #ffeb3b; font-weight: bold; display: block; margin-bottom: 5px;">Tổng Điểm Đạt Được (Khóa):</label>
                     <input type="text" name="Final Score" id="form-score" class="written-input" style="width: 100%; font-size: 1.2rem; font-weight: bold; padding: 10px; background-color: #0b0c26; color: var(--accent-color); border-color: rgba(0, 255, 240, 0.5); cursor: not-allowed;" readonly>
@@ -529,61 +525,65 @@
 
 <script>
     const quizData = [
-        // PHASE 1: GRAMMAR CORE (1-30)
-        { type: 'text', q: '<b>Be quiet!</b> The mission control _________ (explain) the flight plan.', a: ['is explaining'], hint: 'Dấu hiệu "Be quiet!" -> Hiện tại tiếp diễn, chủ ngữ số ít.' },
-        { type: 'text', q: 'My partner <b>seldom</b> _________ (forget) to check the oxygen levels.', a: ['forgets'], hint: 'Dấu hiệu "seldom" -> Hiện tại đơn số ít.' },
-        { type: 'text', q: 'We _________ (just / launch) the new exploration probe into space.', a: ['have just launched'], hint: 'Dấu hiệu "just" -> Hiện tại hoàn thành số nhiều.' },
-        { type: 'text', q: '<b>Look at the radar!</b> A massive asteroid _________ (approach) our station.', a: ['is approaching'], hint: 'Dấu hiệu "Look at the radar!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'The astronauts _________ (not / test) the new suits <b>since last week</b>.', a: ["have not tested", "haven't tested"], hint: 'Dấu hiệu "since last week" -> Phủ định Hiện tại hoàn thành.' },
-        { type: 'text', q: 'Our commander <b>regularly</b> _________ (inspect) the airlocks.', a: ['inspects'], hint: 'Dấu hiệu "regularly" -> Hiện tại đơn số ít.' },
-        { type: 'text', q: '<b>Listen!</b> The warning alarm _________ (ring) loudly across the base.', a: ['is ringing'], hint: 'Dấu hiệu "Listen!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'They <b>frequently</b> _________ (analyze) the chemical composition of the soil.', a: ['analyze'], hint: 'Dấu hiệu "frequently" -> Hiện tại đơn số nhiều.' },
-        { type: 'text', q: 'The laboratory team _________ (already / publish) their research paper.', a: ['has already published'], hint: 'Dấu hiệu "already" -> Hiện tại hoàn thành số ít.' },
-        { type: 'text', q: '<b>At present</b>, the technicians _________ (fix) the solar panels outside.', a: ['are fixing'], hint: 'Dấu hiệu "At present" -> Hiện tại tiếp diễn số nhiều.' },
-        { type: 'text', q: 'She _________ (not / finish) analyzing the alien sample <b>yet</b>.', a: ["has not finished", "hasn't finished"], hint: 'Dấu hiệu "yet" -> Phủ định Hiện tại hoàn thành.' },
-        { type: 'text', q: 'Cosmic rays <b>naturally</b> _________ (travel) through the universe at high speeds.', a: ['travel'], hint: 'Sự thật khoa học -> Hiện tại đơn số nhiều.' },
-        { type: 'text', q: 'The young trainee _________ (feel) anxious before his first spacewalk.', a: ['feels'], hint: 'Trạng thái/cảm xúc -> Hiện tại đơn số ít.' },
-        { type: 'text', q: '<b>Look!</b> The probe _________ (transmit) clear data back to Earth.', a: ['is transmitting'], hint: 'Dấu hiệu "Look!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'He _________ (work) at this space observatory <b>for over five years</b>.', a: ['has worked', 'has been working'], hint: 'Dấu hiệu "for over five years" -> Hiện tại hoàn thành.' },
-        { type: 'text', q: 'We <b>rarely</b> _________ (encounter) such strange phenomena in this sector.', a: ['encounter'], hint: 'Dấu hiệu "rarely" -> Hiện tại đơn số nhiều.' },
-        { type: 'text', q: '<b>Hurry up!</b> The countdown _________ (reach) its final seconds.', a: ['is reaching'], hint: 'Dấu hiệu "Hurry up!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'I _________ (not / see) any meteor showers <b>so far</b> this month.', a: ["have not seen", "haven't seen"], hint: 'Dấu hiệu "so far" -> Phủ định Hiện tại hoàn thành.' },
-        { type: 'text', q: 'The automated system <b>typically</b> _________ (monitor) cabin pressure.', a: ['monitors'], hint: 'Dấu hiệu "typically" -> Hiện tại đơn số ít.' },
-        { type: 'text', q: '<b>Right now</b>, the pilot _________ (not / wear) his heavy helmet.', a: ["is not wearing", "isn't wearing"], hint: 'Dấu hiệu "Right now" -> Phủ định Hiện tại tiếp diễn.' },
-        { type: 'text', q: '<b>At this moment</b>, they _________ (not / conduct) any dangerous experiments.', a: ["are not conducting", "aren't conducting"], hint: 'Dấu hiệu "At this moment" -> Phủ định Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'My younger brother _________ (not / enjoy) watching science fiction movies.', a: ["does not enjoy", "doesn't enjoy"], hint: 'Sở thích -> Phủ định Hiện tại đơn số ít.' },
-        { type: 'text', q: 'Experts <b>often</b> _________ (discuss) the possibility of extraterrestrial life.', a: ['discuss'], hint: 'Dấu hiệu "often" -> Hiện tại đơn số nhiều.' },
-        { type: 'text', q: '<b>Look!</b> The shooting stars _________ (cross) the night sky.', a: ['are crossing'], hint: 'Dấu hiệu "Look!" -> Hiện tại tiếp diễn số nhiều.' },
-        { type: 'text', q: 'The astronomers _________ (discover) three new exoplanets <b>recently</b>.', a: ['have discovered'], hint: 'Dấu hiệu "recently" -> Hiện tại hoàn thành số nhiều.' },
-        { type: 'text', q: 'The alien creature <b>hardly ever</b> _________ (reveal) its true form.', a: ['reveals'], hint: 'Dấu hiệu "hardly ever" -> Hiện tại đơn số ít.' },
-        { type: 'text', q: '<b>Listen!</b> The wind _________ (howl) across the Martian landscape.', a: ['is howling'], hint: 'Dấu hiệu "Listen!" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'We _________ (just / decode) an encrypted message from deep space.', a: ['have just decoded'], hint: 'Dấu hiệu "just" -> Hiện tại hoàn thành.' },
-        { type: 'text', q: '<b>At present</b>, the rover _________ (collect) rock samples from the crater.', a: ['is collecting'], hint: 'Dấu hiệu "At present" -> Hiện tại tiếp diễn.' },
-        { type: 'text', q: 'The flight director <b>always</b> _________ (verify) every safety protocol.', a: ['verifies'], hint: 'Dấu hiệu "always" -> Hiện tại đơn số ít.' },
+        // PHASE 1: CAMBRIDGE ENGLISH 6 - UNIT 3 LIVING THINGS GRAMMAR (1-20)
+        { type: 'text', q: 'A scientist is a <b>person</b> _________ studies living things and animal habitats.', a: ['who', 'that'], hint: 'Chỉ người (person) -> dùng WHO hoặc THAT.' },
+        { type: 'text', q: 'An amphibian is a <b>creature</b> _________ can live on both land and in water.', a: ['which', 'that'], hint: 'Chỉ sinh vật/động vật (creature) -> dùng WHICH hoặc THAT.' },
+        { type: 'text', q: 'This is the <b>rainforest</b> _________ many colourful parrots build their nests.', a: ['where'], hint: 'Chỉ địa điểm/rừng mưa (rainforest) -> dùng WHERE.' },
+        { type: 'text', q: 'Spring is the <b>season</b> _________ many animals wake up from hibernation.', a: ['when'], hint: 'Chỉ thời gian/mùa (season) -> dùng WHEN.' },
+        { type: 'text', q: 'Look at the <b>boy</b> _________ <b>pet lizard</b> is resting on his shoulder!', a: ['whose'], hint: 'Dấu hiệu sở hữu: boy (người) + pet lizard (con vật) -> dùng WHOSE.' },
+        { type: 'text', q: 'Gills are special <b>organs</b> _________ help fish absorb oxygen underwater.', a: ['which', 'that'], hint: 'Chỉ cơ quan/vật (organs) -> dùng WHICH hoặc THAT.' },
+        { type: 'text', q: 'We visited the local <b>zoo</b> _________ my uncle works as a wildlife vet.', a: ['where'], hint: 'Chỉ địa điểm/sở thú (zoo) -> dùng WHERE.' },
+        { type: 'text', q: 'The <b>teacher</b> _________ taught us about animal camouflage was very kind.', a: ['who', 'that'], hint: 'Chỉ người (teacher) -> dùng WHO hoặc THAT.' },
+        { type: 'text', q: 'Do you remember the <b>day</b> _________ we found a small frog near the pond?', a: ['when'], hint: 'Chỉ thời gian/ngày (day) -> dùng WHEN.' },
+        { type: 'text', q: 'That is the <b>frog</b> _________ <b>sticky skin</b> helps it catch insects easily.', a: ['whose'], hint: 'Dấu hiệu sở hữu: frog (con vật) + sticky skin (làn da dính) -> dùng WHOSE.' },
+        { type: 'text', q: 'Camouflage is a <b>pattern</b> _________ helps animals hide from predators.', a: ['which', 'that'], hint: 'Chỉ đặc điểm/mẫu hình (pattern) -> dùng WHICH hoặc THAT.' },
+        { type: 'text', q: 'That is the green <b>park</b> _________ we saw a family of ducks swimming.', a: ['where'], hint: 'Chỉ địa điểm/công viên (park) -> dùng WHERE.' },
+        { type: 'text', q: 'An eagle is a <b>bird</b> _________ has sharp eyes to hunt small mammals.', a: ['which', 'that'], hint: 'Chỉ loài chim/vật (bird) -> dùng WHICH hoặc THAT.' },
+        { type: 'text', q: 'The <b>vet</b> _________ cured my cat\'s sore leg was gentle and friendly.', a: ['who', 'that'], hint: 'Chỉ người/bác sĩ thú y (vet) -> dùng WHO hoặc THAT.' },
+        { type: 'text', q: 'I will always remember the <b>year</b> _________ our class built a birdhouse.', a: ['when'], hint: 'Chỉ thời gian/năm (year) -> dùng WHEN.' },
+        { type: 'text', q: 'Fish are <b>vertebrates</b> _________ use fins and tails to swim.', a: ['which', 'that'], hint: 'Chỉ động vật/vật (vertebrates) -> dùng WHICH hoặc THAT.' },
+        { type: 'text', q: 'The <b>aquarium</b> _________ we saw the sea turtles is near the coast.', a: ['where'], hint: 'Chỉ địa điểm/thủy cung (aquarium) -> dùng WHERE.' },
+        { type: 'text', q: 'The <b>girl</b> _________ <b>project</b> won first prize studied amphibian life cycles.', a: ['whose'], hint: 'Dấu hiệu sở hữu: girl (bạn gái) + project (dự án) -> dùng WHOSE.' },
+        { type: 'text', q: 'I talked to the <b>forest ranger</b> _________ protects wild birds.', a: ['who', 'that'], hint: 'Chỉ người/lâm viên (forest ranger) -> dùng WHO hoặc THAT.' },
+        { type: 'text', q: 'Autumn is the <b>time</b> _________ emperor penguins gather in colonies.', a: ['when'], hint: 'Chỉ thời gian (time) -> dùng WHEN.' },
 
-        // PHASE 2: NEW VOCABULARY MCQ (31-40) - REPLACED WITH YOUR NOTES
-        { type: 'mcq', q: 'Từ <b>"camouflage (n)"</b> có nghĩa là gì?', options: ['Sự ngụy trang', 'Cơ quan hô hấp', 'Lực hấp dẫn', 'Động vật ăn thịt'], a: 0, hint: 'Hành động hoặc màu sắc giúp động vật ẩn nấp trong môi trường.' },
-        { type: 'mcq', q: 'Từ <b>"amphibian (n)"</b> chỉ loài động vật nào?', options: ['Loài bò sát', 'Động vật lưỡng cư', 'Loài gặm nhấm', 'Động vật có vú'], a: 1, hint: 'Loài động vật có thể sống cả ở dưới nước và trên mặt đất (như ếch, nhái).' },
-        { type: 'mcq', q: 'Từ <b>"environment (n)"</b> mang ý nghĩa là gì?', options: ['Vũ trụ bao la', 'Môi trường sống', 'Lớp không khí', 'Bệ phóng tàu'], a: 1, hint: 'Tất cả các điều kiện tự nhiên xung quanh con người và sinh vật.' },
-        { type: 'mcq', q: 'Tính từ/Danh từ <b>"vertebrate"</b> dùng để chỉ điều gì?', options: ['Động vật không xương sống', 'Đốt sống / Có xương sống', 'Loài sinh vật biển', 'Cơ quan hô hấp'], a: 1, hint: 'Chỉ các loài động vật có cấu trúc xương sống lưng.' },
-        { type: 'mcq', q: 'Hành động <b>"communicate (v)"</b> có nghĩa là gì?', options: ['Di chuyển nhanh', 'Giao tiếp, truyền đạt', 'Lặn xuống nước', 'Xây dựng tổ'], a: 1, hint: 'Hành động trao đổi thông tin, lời nói hoặc tín hiệu với nhau.' },
-        { type: 'mcq', q: 'Danh từ <b>"frequency (n)"</b> có nghĩa là gì?', options: ['Tần số, sự thường xuyên', 'Bầu khí quyển', 'Trạng thái cô đơn', 'Môi trường tự nhiên'], a: 0, hint: 'Chỉ số lần xuất hiện hoặc lặp lại của một hiện tượng trong một đơn vị thời gian.' },
-        { type: 'mcq', q: 'Tính từ <b>"moist (adj)"</b> dùng để mô tả điều gì?', options: ['Khô rát', 'Sắc nhọn', 'Ẩm ướt', 'Rất nóng'], a: 2, hint: 'Chỉ trạng thái hơi ướt, có độ ẩm nhẹ.' },
-        { type: 'mcq', q: 'Động từ <b>"absorb (v)"</b> mang ý nghĩa là gì?', options: ['Phát ra sóng', 'Hấp thụ, thấm hút', 'Xô đẩy mạnh', 'Thải ra ngoài'], a: 1, hint: 'Hành động hút hoặc tiếp nhận chất lỏng, chất dinh dưỡng hay năng lượng.' },
-        { type: 'mcq', q: 'Tính từ <b>"sticky (adj)"</b> có nghĩa là gì?', options: ['Dính, có chất dính', 'Trơn trượt', 'Rất cứng', 'Mỏng dẻo'], a: 0, hint: 'Đặc tính dễ bám dính vào vật khác khi chạm vào.' },
-        { type: 'mcq', q: 'Cơ quan <b>"lungs (n)"</b> trong cơ thể có nghĩa là gì?', options: ['Tim', 'Dạ dày', 'Phổi', 'Gan'], a: 2, hint: 'Cơ quan hô hấp giúp con người và nhiều động vật hít thở không khí.' },
+        // PHASE 2: VOCABULARY MEANING MCQ (21-37)
+        { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"amphibian (n)"</b> mang ý nghĩa là gì?', options: ['Lưỡng cư (sống cả ở nước và trên bờ)', 'Động vật bò sát', 'Động vật có vú', 'Động vật ăn thịt'], a: 0, hint: 'Loài động vật có thể sống cả ở dưới nước và trên đất liền.' },
+        { type: 'mcq', q: 'Từ <b>"land (n)"</b> trong các chủ đề tự nhiên mang nghĩa là gì?', options: ['Đại dương', 'Bầu khí quyển', 'Mặt đất, đất liền', 'Lòng đất sâu'], a: 2, hint: 'Phần bề mặt khô của Trái Đất không bị bao phủ bởi nước.' },
+        { type: 'mcq', q: 'Từ <b>"environment (n)"</b> có nghĩa là gì?', options: ['Khí hậu', 'Môi trường', 'Thời tiết', 'Cảnh quan'], a: 1, hint: 'Toàn bộ các yếu tố tự nhiên và xã hội xung quanh sự sống.' },
+        { type: 'mcq', q: 'Từ <b>"vertebrate (adj/n)"</b> dùng để chỉ nhóm động vật nào?', options: ['Có xương sống', 'Không có xương sống', 'Có vảy cứng', 'Có vỏ mai'], a: 0, hint: 'Nhóm động vật có cột sống nâng đỡ cơ thể.' },
+        { type: 'mcq', q: 'Tính từ <b>"sticky (adj)"</b> có nghĩa là gì?', options: ['Trơn trượt', 'Dính, có tính bám dính', 'Khô rát', 'Mềm mại'], a: 1, hint: 'Dùng để diễn tả bề mặt có khả năng bám dính như keo.' },
+        { type: 'mcq', q: 'Tính từ <b>"moist (adj)"</b> diễn tả trạng thái nào?', options: ['Khô héo', 'Ẩm ướt, hơi ẩm', 'Nóng bức', 'Lạnh giá'], a: 1, hint: 'Hơi ướt, có độ ẩm vừa phải.' },
+        { type: 'mcq', q: 'Từ <b>"lungs (n)"</b> chỉ cơ quan hô hấp nào?', options: ['Tim', 'Phổi', 'Gan', 'Dạ dày'], a: 1, hint: 'Cơ quan giúp con người và động vật hít thở không khí.' },
+        { type: 'mcq', q: 'Từ <b>"gills (n)"</b> chỉ cơ quan hô hấp nào của cá và nòng nọc?', options: ['Vây', 'Vảy', 'Mang (cơ quan thở dưới nước)', 'Đuôi'], a: 2, hint: 'Cơ quan giúp động vật dưới nước lấy ô-xy từ nước.' },
+        { type: 'mcq', q: 'Động từ <b>"absorb (v)"</b> có nghĩa là gì?', options: ['Hấp thụ, thẩm thấu', 'Thải ra, tiết ra', 'Phản chiếu', 'Tản nhiệt'], a: 0, hint: 'Hành động hút hoặc thấm chất lỏng, năng lượng vào bên trong.' },
+        { type: 'mcq', q: 'Từ <b>"camouflage (n)"</b> có nghĩa là gì?', options: ['Sự di cư', 'Sự ngụy trang', 'Sự săn mồi', 'Sự sinh sản'], a: 1, hint: 'Hành vi hoặc màu sắc giúp động vật ẩn nấp vào môi trường.' },
+        { type: 'mcq', q: 'Danh từ <b>"frequency (n)"</b> có nghĩa là gì?', options: ['Tần số, sự thường xuyên', 'Khoảng cách', 'Tốc độ', 'Cường độ'], a: 0, hint: 'Mức độ lặp đi lặp lại của một sự việc trong một khoảng thời gian.' },
+        { type: 'mcq', q: 'Trạng từ <b>"frequently (adv)"</b> có nghĩa là gì?', options: ['Hiếm khi', 'Thường xuyên', 'Không bao giờ', 'Lần đầu tiên'], a: 1, hint: 'Diễn tả hành động xảy ra nhiều lần, lặp lại thường xuyên.' },
+        { type: 'mcq', q: 'Tính từ <b>"lonely (adj)"</b> diễn tả cảm giác gì?', options: ['Vui vẻ', 'Cô độc, lẻ loi', 'Tức giận', 'Hào hứng'], a: 1, hint: 'Cảm giác đơn độc, một mình không có ai bên cạnh.' },
+        { type: 'mcq', q: 'Động từ <b>"communicate (v)"</b> có nghĩa là gì?', options: ['Giao tiếp, trao đổi thông tin', 'Di chuyển', 'Thi đấu', 'Lắng nghe'], a: 0, hint: 'Hành động trao đổi lời nói, tín hiệu hoặc thông tin.' },
+        { type: 'mcq', q: 'Động từ <b>"notice (v)"</b> có nghĩa là gì?', options: ['Bỏ qua', 'Để ý, nhận thấy', 'Quên mất', 'Ghi chú'], a: 1, hint: 'Nhận ra hoặc chú ý đến điều gì đó bằng mắt hoặc cảm nhận.' },
+        { type: 'mcq', q: 'Động từ <b>"hear (v)"</b> chỉ hành động nào?', options: ['Nghe (bằng tai)', 'Nhìn (bằng mắt)', 'Nếm (bằng lưỡi)', 'Sờ (bằng tay)'], a: 0, hint: 'Cảm nhận âm thanh bằng đôi tai.' },
+        { type: 'mcq', q: 'Động từ <b>"understand (v)"</b> có nghĩa là gì?', options: ['Thắc mắc', 'Hiểu, nắm rõ', 'Nhầm lẫn', 'Giải thích'], a: 1, hint: 'Nắm vững ý nghĩa hoặc bản chất của một vấn đề.' },
 
-        // PHASE 3: NEW VOCABULARY FILL-IN (41-50) - REPLACED WITH YOUR NOTES
-        { type: 'text', q: 'Mang (cơ quan thở dưới nước của cá hay nòng nọc). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ s</b></span>', a: ['gills'], hint: 'Từ gồm 5 chữ cái bắt đầu bằng "g" (g-i-l-l-s).' },
-        { type: 'text', q: 'Cô độc, cô đơn (tính từ = alone). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ _ l y</b></span>', a: ['lonely'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "l" (l-o-n-e-l-y).' },
-        { type: 'text', q: 'Để ý, chú ý đến cái gì đó (động từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>n _ _ _ c e</b></span>', a: ['notice'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "n" (n-o-t-i-c-e).' },
-        { type: 'text', q: 'Hiểu, thấu hiểu điều gì đó (động từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>u _ _ _ _ s _ _ _ d</b></span>', a: ['understand'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "u" (u-n-d-e-r-s-t-a-n-d).' },
-        { type: 'text', q: 'Mặt đất, đất liền (danh từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ d</b></span>', a: ['land'], hint: 'Từ gồm 4 chữ cái bắt đầu bằng "l" (l-a-n-d).' },
-        { type: 'text', q: 'Nghe bằng tai (động từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>h _ _ r</b></span>', a: ['hear'], hint: 'Từ gồm 4 chữ cái bắt đầu bằng "h" (h-e-a-r).' },
-        { type: 'text', q: 'Sự ngụy trang của động vật (danh từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ g e</b></span>', a: ['camouflage'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "c" (c-a-m-o-u-f-l-a-g-e).' },
-        { type: 'text', q: 'Môi trường xung quanh (danh từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>e _ _ _ _ _ _ _ e n t</b></span>', a: ['environment'], hint: 'Từ gồm 11 chữ cái bắt đầu bằng "e" (e-n-v-i-r-o-n-m-e-n-t).' },
-        { type: 'text', q: 'Động vật lưỡng cư sống cả dưới nước lẫn trên đầm lầy. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>a _ _ _ _ _ _ a n</b></span>', a: ['amphibian'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "a" (a-m-p-h-i-b-i-a-n).' },
-        { type: 'text', q: 'Giao tiếp, trao đổi thông tin (động từ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ _ t e</b></span>', a: ['communicate'], hint: 'Từ gồm 11 chữ cái bắt đầu bằng "c" (c-o-m-m-u-n-i-c-a-t-e).' }
+        // PHASE 3: VOCAB SPELLING INPUT (38-54)
+        { type: 'text', q: 'Động vật lưỡng cư (sống cả dưới nước và trên bờ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>a _ _ _ _ _ _ _</b></span>', a: ['amphibian'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "a" (a-m-p-h-i-b-i-a-n).' },
+        { type: 'text', q: 'Mặt đất, đất liền. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ _</b></span>', a: ['land'], hint: 'Từ gồm 4 chữ cái bắt đầu bằng "l" (l-a-n-d).' },
+        { type: 'text', q: 'Môi trường xung quanh sự sống. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>e _ _ _ _ _ _ _ _ _ _</b></span>', a: ['environment'], hint: 'Từ gồm 11 chữ cái bắt đầu bằng "e" (e-n-v-i-r-o-n-m-e-n-t).' },
+        { type: 'text', q: 'Có xương sống / động vật có xương sống. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>v _ _ _ _ _ _ _ _</b></span>', a: ['vertebrate'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "v" (v-e-r-t-e-b-r-a-t-e).' },
+        { type: 'text', q: 'Dính, có độ bám dính cao. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>s _ _ _ _ _</b></span>', a: ['sticky'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "s" (s-t-i-c-k-y).' },
+        { type: 'text', q: 'Ẩm ướt, hơi ẩm. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>m _ _ _</b></span>', a: ['moist'], hint: 'Từ gồm 5 chữ cái bắt đầu bằng "m" (m-o-i-s-t).' },
+        { type: 'text', q: 'Phổi (cơ quan hô hấp). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ _ _</b></span>', a: ['lungs'], hint: 'Từ gồm 5 chữ cái bắt đầu bằng "l" (l-u-n-g-s).' },
+        { type: 'text', q: 'Mang (cơ quan thở dưới nước). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ _</b></span>', a: ['gills'], hint: 'Từ gồm 5 chữ cái bắt đầu bằng "g" (g-i-l-l-s).' },
+        { type: 'text', q: 'Hấp thụ, thẩm thấu. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>a _ _ _ _ _</b></span>', a: ['absorb'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "a" (a-b-s-o-r-b).' },
+        { type: 'text', q: 'Sự ngụy trang hòa lẫn môi trường. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ _ _</b></span>', a: ['camouflage'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "c" (c-a-m-o-u-f-l-a-g-e).' },
+        { type: 'text', q: 'Tần số, độ lặp lại. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>f _ _ _ _ _ _ _ _</b></span>', a: ['frequency'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "f" (f-r-e-q-u-e-n-c-y).' },
+        { type: 'text', q: 'Thường xuyên, lặp đi lặp lại. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>f _ _ _ _ _ _ _ _ _</b></span>', a: ['frequently'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "f" (f-r-e-q-u-e-n-t-l-y).' },
+        { type: 'text', q: 'Cô độc, đơn độc. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ _ _ _</b></span>', a: ['lonely'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "l" (l-o-n-e-l-y).' },
+        { type: 'text', q: 'Giao tiếp, trao đổi thông tin. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ _ _ _</b></span>', a: ['communicate'], hint: 'Từ gồm 11 chữ cái bắt đầu bằng "c" (c-o-m-m-u-n-i-c-a-t-e).' },
+        { type: 'text', q: 'Để ý, nhận ra, chú ý thấy. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>n _ _ _ _ _</b></span>', a: ['notice'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "n" (n-o-t-i-c-e).' },
+        { type: 'text', q: 'Nghe thấy (bằng tai). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>h _ _ _</b></span>', a: ['hear'], hint: 'Từ gồm 4 chữ cái bắt đầu bằng "h" (h-e-a-r).' },
+        { type: 'text', q: 'Hiểu, nắm rõ vấn đề. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>u _ _ _ _ _ _ _ _ _</b></span>', a: ['understand'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "u" (u-n-d-e-r-s-t-a-n-d).' }
     ];
 
     let currentQuestionIndex = 0;
@@ -667,10 +667,10 @@
         let currentQ = quizData[currentQuestionIndex];
 
         if (currentQ.type === 'text') {
-            if (currentQuestionIndex < 30) {
-                instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền trợ động từ / chia động từ vào ô trống";
+            if (currentQuestionIndex < 20) {
+                instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền đại từ quan hệ (who, which, that, where, when, whose)";
             } else {
-                instructionTitle.innerText = "🎯 NHIỆM VỤ: Nhập thuật ngữ từ vựng tiếng Anh theo gợi ý";
+                instructionTitle.innerText = "🎯 NHIỆM VỤ: Nhập từ vựng tiếng Anh theo gợi ý số ô chữ";
             }
             questionPrompt.innerHTML = currentQ.q;
 
@@ -947,7 +947,7 @@
         finalScoreDisplay.innerText = globalScore;
 
         let levelStr = "";
-        if (globalScore >= 6000) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
+        if (globalScore >= 6500) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
         else if (globalScore >= 4500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
         else if (globalScore >= 3000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
         else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
