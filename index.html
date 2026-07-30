@@ -44,6 +44,16 @@
             to { background-color: #20000a; }
         }
 
+        #laser-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 100;
+        }
+
         #quiz-container {
             width: 100%;
             max-width: 950px;
@@ -57,6 +67,7 @@
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
+            z-index: 1;
         }
 
         .header-title {
@@ -78,6 +89,8 @@
             color: #00fff0;
             margin-bottom: 10px;
             font-weight: bold;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .timer-zone-wrapper {
@@ -232,14 +245,6 @@
             0% { transform: scale(1) rotate(0); opacity: 1; filter: hue-rotate(0deg) brightness(3); }
             50% { transform: scale(1.4) rotate(45deg); opacity: 0.6; filter: hue-rotate(90deg) brightness(5); }
             100% { transform: scale(0) rotate(180deg); opacity: 0; }
-        }
-
-        #laser-canvas {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 4;
         }
 
         .powerup-cockpit {
@@ -424,7 +429,7 @@
         
         <div class="intro-rules">
             <strong>🚀 LUẬT CHƠI VŨ TRỤ CÂU ĐẠI TỪ QUAN HỆ & TỪ VỰNG:</strong><br>
-            • 🌿 <b>Giai đoạn 1 (Câu 1-20):</b> Điền đại từ quan hệ <b>(who, which, that, where, when, whose)</b> dựa vào từ gợi ý Unit 3.<br>
+            • 🌿 <b>Giai đoạn 1 (Câu 1-20):</b> Điền đại từ quan hệ <b>(who, which, where, when, whose)</b>. Cảnh báo: Các câu có dấu phẩy (,) tuyệt đối <b>KHÔNG DÙNG "that"</b>!<br>
             • 🌿 <b>Giai đoạn 2 (Câu 21-37):</b> Trắc nghiệm chọn ý nghĩa từ vựng tiếng Việt từ vở ghi.<br>
             • 🌿 <b>Giai đoạn 3 (Câu 38-54):</b> Nhập chính xác từ vựng tiếng Anh theo gợi ý chữ cái đầu và số ô trống.<br>
             • 🛸 Con có <b>4 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi thử thách!
@@ -441,7 +446,7 @@
             <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">54</span></div>
             <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
-            <div id="phase-timer-display" style="visibility: hidden;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
+            <div id="phase-timer-display" style="visibility: visible;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
         </div>
 
         <div class="question-box">
@@ -525,27 +530,27 @@
 
 <script>
     const quizData = [
-        // PHASE 1: CAMBRIDGE ENGLISH 6 - UNIT 3 LIVING THINGS GRAMMAR (1-20)
-        { type: 'text', q: 'A scientist is a <b>person</b> _________ studies living things and animal habitats.', a: ['who', 'that'], hint: 'Chỉ người (person) -> dùng WHO hoặc THAT.' },
-        { type: 'text', q: 'An amphibian is a <b>creature</b> _________ can live on both land and in water.', a: ['which', 'that'], hint: 'Chỉ sinh vật/động vật (creature) -> dùng WHICH hoặc THAT.' },
-        { type: 'text', q: 'This is the <b>rainforest</b> _________ many colourful parrots build their nests.', a: ['where'], hint: 'Chỉ địa điểm/rừng mưa (rainforest) -> dùng WHERE.' },
-        { type: 'text', q: 'Spring is the <b>season</b> _________ many animals wake up from hibernation.', a: ['when'], hint: 'Chỉ thời gian/mùa (season) -> dùng WHEN.' },
-        { type: 'text', q: 'Look at the <b>boy</b> _________ <b>pet lizard</b> is resting on his shoulder!', a: ['whose'], hint: 'Dấu hiệu sở hữu: boy (người) + pet lizard (con vật) -> dùng WHOSE.' },
-        { type: 'text', q: 'Gills are special <b>organs</b> _________ help fish absorb oxygen underwater.', a: ['which', 'that'], hint: 'Chỉ cơ quan/vật (organs) -> dùng WHICH hoặc THAT.' },
-        { type: 'text', q: 'We visited the local <b>zoo</b> _________ my uncle works as a wildlife vet.', a: ['where'], hint: 'Chỉ địa điểm/sở thú (zoo) -> dùng WHERE.' },
-        { type: 'text', q: 'The <b>teacher</b> _________ taught us about animal camouflage was very kind.', a: ['who', 'that'], hint: 'Chỉ người (teacher) -> dùng WHO hoặc THAT.' },
-        { type: 'text', q: 'Do you remember the <b>day</b> _________ we found a small frog near the pond?', a: ['when'], hint: 'Chỉ thời gian/ngày (day) -> dùng WHEN.' },
-        { type: 'text', q: 'That is the <b>frog</b> _________ <b>sticky skin</b> helps it catch insects easily.', a: ['whose'], hint: 'Dấu hiệu sở hữu: frog (con vật) + sticky skin (làn da dính) -> dùng WHOSE.' },
-        { type: 'text', q: 'Camouflage is a <b>pattern</b> _________ helps animals hide from predators.', a: ['which', 'that'], hint: 'Chỉ đặc điểm/mẫu hình (pattern) -> dùng WHICH hoặc THAT.' },
-        { type: 'text', q: 'That is the green <b>park</b> _________ we saw a family of ducks swimming.', a: ['where'], hint: 'Chỉ địa điểm/công viên (park) -> dùng WHERE.' },
-        { type: 'text', q: 'An eagle is a <b>bird</b> _________ has sharp eyes to hunt small mammals.', a: ['which', 'that'], hint: 'Chỉ loài chim/vật (bird) -> dùng WHICH hoặc THAT.' },
-        { type: 'text', q: 'The <b>vet</b> _________ cured my cat\'s sore leg was gentle and friendly.', a: ['who', 'that'], hint: 'Chỉ người/bác sĩ thú y (vet) -> dùng WHO hoặc THAT.' },
-        { type: 'text', q: 'I will always remember the <b>year</b> _________ our class built a birdhouse.', a: ['when'], hint: 'Chỉ thời gian/năm (year) -> dùng WHEN.' },
-        { type: 'text', q: 'Fish are <b>vertebrates</b> _________ use fins and tails to swim.', a: ['which', 'that'], hint: 'Chỉ động vật/vật (vertebrates) -> dùng WHICH hoặc THAT.' },
-        { type: 'text', q: 'The <b>aquarium</b> _________ we saw the sea turtles is near the coast.', a: ['where'], hint: 'Chỉ địa điểm/thủy cung (aquarium) -> dùng WHERE.' },
-        { type: 'text', q: 'The <b>girl</b> _________ <b>project</b> won first prize studied amphibian life cycles.', a: ['whose'], hint: 'Dấu hiệu sở hữu: girl (bạn gái) + project (dự án) -> dùng WHOSE.' },
-        { type: 'text', q: 'I talked to the <b>forest ranger</b> _________ protects wild birds.', a: ['who', 'that'], hint: 'Chỉ người/lâm viên (forest ranger) -> dùng WHO hoặc THAT.' },
-        { type: 'text', q: 'Autumn is the <b>time</b> _________ emperor penguins gather in colonies.', a: ['when'], hint: 'Chỉ thời gian (time) -> dùng WHEN.' },
+        // PHASE 1: NON-DEFINING RELATIVE CLAUSES WITH COMMAS (1-20) -> strictly prevents using "that"!
+        { type: 'text', q: 'Frogs, _________ are amphibians, can live both on land and in water.', a: ['which'], hint: 'Có dấu phẩy (,) phía trước -> CẤM DÙNG "that", chỉ dùng WHICH!' },
+        { type: 'text', q: 'This nature reserve, _________ many wild animals live, is strictly protected.', a: ['where'], hint: 'Chỉ địa điểm có dấu phẩy (,) -> dùng WHERE.' },
+        { type: 'text', q: 'Earth\'s environment, _________ keeps animals safe, must be protected.', a: ['which'], hint: 'Có dấu phẩy (,) phía trước -> KHÔNG DÙNG "that", chỉ dùng WHICH!' },
+        { type: 'text', q: 'A vertebrate, _________ has a backbone, is a complex animal.', a: ['which'], hint: 'Mệnh đề có dấu phẩy (,) -> KHÔNG dùng "that", chỉ dùng WHICH!' },
+        { type: 'text', q: 'Lungs, _________ are organs inside our body, help us breathe air.', a: ['which'], hint: 'Có dấu phẩy (,) -> CẤM DÙNG "that", phải chọn WHICH!' },
+        { type: 'text', q: 'Gills, _________ are organs on a fish, help them breathe underwater.', a: ['which'], hint: 'Có dấu phẩy (,) -> KHÔNG dùng "that", phải dùng WHICH!' },
+        { type: 'text', q: 'Look at the green frog, _________ skin is very sticky!', a: ['whose'], hint: 'Có dấu phẩy + dấu hiệu sở hữu (frog + skin) -> dùng WHOSE.' },
+        { type: 'text', q: 'This swamp, _________ the air is moist, is full of frogs.', a: ['where'], hint: 'Địa điểm có dấu phẩy (,) -> dùng WHERE.' },
+        { type: 'text', q: 'Tree roots, _________ absorb water from the soil, grow deep underground.', a: ['which'], hint: 'Có dấu phẩy (,) -> KHÔNG dùng "that", chỉ chọn WHICH!' },
+        { type: 'text', q: 'Camouflage, _________ helps animals hide from predators, is amazing.', a: ['which'], hint: 'Có dấu phẩy (,) -> CẤM DÙNG "that", chỉ chọn WHICH!' },
+        { type: 'text', q: 'Dr. Smith, _________ is a famous biologist, studies wild animals.', a: ['who'], hint: 'Tên người + dấu phẩy (,) -> CẤM DÙNG "that", chỉ chọn WHO!' },
+        { type: 'text', q: 'This lonely bird, _________ was sitting on the tree, started to sing.', a: ['which'], hint: 'Có dấu phẩy (,) -> KHÔNG dùng "that", chỉ chọn WHICH!' },
+        { type: 'text', q: 'Dolphins, _________ are intelligent ocean animals, communicate with sound.', a: ['which'], hint: 'Có dấu phẩy (,) -> KHÔNG dùng "that", chỉ chọn WHICH!' },
+        { type: 'text', q: 'Peter, _________ noticed the small frog, was very excited.', a: ['who'], hint: 'Tên người + dấu phẩy (,) -> CẤM DÙNG "that", chỉ dùng WHO!' },
+        { type: 'text', q: 'Spring, _________ we can hear many birds sing, is my favorite season.', a: ['when'], hint: 'Chỉ thời gian có dấu phẩy (,) -> dùng WHEN.' },
+        { type: 'text', q: 'Our science teacher, _________ loves nature, helps us understand biology.', a: ['who'], hint: 'Chỉ người + dấu phẩy (,) -> KHÔNG dùng "that", chỉ chọn WHO!' },
+        { type: 'text', q: 'That special fish, _________ gills absorb oxygen underwater, is very rare.', a: ['whose'], hint: 'Có dấu phẩy + dấu hiệu sở hữu (fish + gills) -> dùng WHOSE.' },
+        { type: 'text', q: 'We met Professor Green, _________ work helps protect the environment.', a: ['whose'], hint: 'Danh từ riêng + sở hữu -> dùng WHOSE.' },
+        { type: 'text', q: 'Early morning, _________ birds start singing, is very quiet.', a: ['when'], hint: 'Chỉ thời gian có dấu phẩy (,) -> dùng WHEN.' },
+        { type: 'text', q: 'This rainforest habitat, _________ many vertebrates live, is huge.', a: ['where'], hint: 'Chỉ địa điểm/môi trường sống có dấu phẩy (,) -> dùng WHERE.' },
 
         // PHASE 2: VOCABULARY MEANING MCQ (21-37)
         { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"amphibian (n)"</b> mang ý nghĩa là gì?', options: ['Lưỡng cư (sống cả ở nước và trên bờ)', 'Động vật bò sát', 'Động vật có vú', 'Động vật ăn thịt'], a: 0, hint: 'Loài động vật có thể sống cả ở dưới nước và trên đất liền.' },
@@ -668,7 +673,7 @@
 
         if (currentQ.type === 'text') {
             if (currentQuestionIndex < 20) {
-                instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền đại từ quan hệ (who, which, that, where, when, whose)";
+                instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền đại từ quan hệ (who, which, where, when, whose)";
             } else {
                 instructionTitle.innerText = "🎯 NHIỆM VỤ: Nhập từ vựng tiếng Anh theo gợi ý số ô chữ";
             }
@@ -806,6 +811,7 @@
 
             fireArcadeLaser(tokenElement, false, () => {
                 if (userLives <= 0) {
+                    userAnswersLog.push({ qIndex: currentQuestionIndex, userText: tokenElement.innerText, isCorrect: false, isTimeOut: false });
                     handleGameOverLoss();
                 } else {
                     statusMessage.innerHTML = "<span style='color: var(--wrong-color)'>💥 Sai tọa độ mục tiêu! Hãy suy nghĩ và thử lại đáp án khác.</span>";
@@ -874,7 +880,7 @@
         function drawLaserBeam() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (laserProgress < 1) {
-                laserProgress += 0.2;
+                laserProgress += 0.25;
                 let currentX = startX + (endX - startX) * laserProgress;
                 let currentY = startY + (endY - startY) * laserProgress;
 
@@ -903,12 +909,13 @@
     function createExplosionBurst(x, y, color) {
         for (let i = 0; i < 20; i++) {
             let p = document.createElement("div");
-            p.style.position = "absolute";
+            p.style.position = "fixed";
             p.style.width = "6px"; p.style.height = "6px";
             p.style.borderRadius = "50%"; p.style.pointerEvents = "none";
             p.style.backgroundColor = color;
-            p.style.left = (x - window.scrollX) + "px";
-            p.style.top = (y - window.scrollY) + "px";
+            p.style.left = x + "px";
+            p.style.top = y + "px";
+            p.style.zIndex = "101";
 
             let angle = Math.random() * Math.PI * 2;
             let speed = Math.random() * 70 + 30;
