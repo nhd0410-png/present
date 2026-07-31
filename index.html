@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đấu Trường Nhí - Living Things Grammar & Vocab Invaders</title>
+    <title>Đấu Trường Nhí - Defining Relative Clauses & Unit 4 Vocab Invaders</title>
     <style>
         :root {
             --bg-color: #020010;
@@ -425,13 +425,12 @@
     <!-- INTRO SCREEN -->
     <div id="intro-screen" class="screen active-screen">
         <div class="header-title">Đấu Trường Nhí</div>
-        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Cambridge English 6 - Unit 3: Living Things Invaders</p>
+        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Cambridge Global English 6 - Unit 4: Inventions & Discoveries</p>
         
         <div class="intro-rules">
             <strong>🚀 LUẬT CHƠI VŨ TRỤ CÂU ĐẠI TỪ QUAN HỆ & TỪ VỰNG:</strong><br>
-            • 🌿 <b>Giai đoạn 1 (Câu 1-20):</b> Điền đại từ quan hệ <b>(who, which, where, when, whose)</b>. Cảnh báo: Các câu có dấu phẩy (,) tuyệt đối <b>KHÔNG DÙNG "that"</b>!<br>
-            • 🌿 <b>Giai đoạn 2 (Câu 21-37):</b> Trắc nghiệm chọn ý nghĩa từ vựng tiếng Việt từ vở ghi.<br>
-            • 🌿 <b>Giai đoạn 3 (Câu 38-54):</b> Nhập chính xác từ vựng tiếng Anh theo gợi ý chữ cái đầu và số ô trống.<br>
+            • 🌿 <b>Giai đoạn 1 (Câu 1-20):</b> Mệnh đề quan hệ xác định (Defining Relative Clauses). Điền đại từ quan hệ phù hợp <b>(who, which, that, where, when, whose)</b>.<br>
+            • 🌿 <b>Giai đoạn 2 (Câu 21-40):</b> Trắc nghiệm 100% từ vựng Unit 4 Cambridge Global English Grade 6 (chọn đáp án đúng A, B, C, D).<br>
             • 🛸 Con có <b>4 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi thử thách!
         </div>
         
@@ -443,7 +442,7 @@
     <!-- GAMEPLAY SCREEN -->
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">54</span></div>
+            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">40</span></div>
             <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
             <div id="phase-timer-display" style="visibility: visible;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
@@ -530,65 +529,49 @@
 
 <script>
     const quizData = [
-        // PHASE 1: NON-DEFINING RELATIVE CLAUSES WITH COMMAS (1-20) -> strictly prevents using "that"!
-        { type: 'text', q: 'Frogs, _________ are amphibians, can live both on land and in water.', a: ['which'], hint: 'Có dấu phẩy (,) phía trước -> CẤM DÙNG "that", chỉ dùng WHICH!' },
-        { type: 'text', q: 'This nature reserve, _________ many wild animals live, is strictly protected.', a: ['where'], hint: 'Chỉ địa điểm có dấu phẩy (,) -> dùng WHERE.' },
-        { type: 'text', q: 'Earth\'s environment, _________ keeps animals safe, must be protected.', a: ['which'], hint: 'Có dấu phẩy (,) phía trước -> KHÔNG DÙNG "that", chỉ dùng WHICH!' },
-        { type: 'text', q: 'A vertebrate, _________ has a backbone, is a complex animal.', a: ['which'], hint: 'Mệnh đề có dấu phẩy (,) -> KHÔNG dùng "that", chỉ dùng WHICH!' },
-        { type: 'text', q: 'Lungs, _________ are organs inside our body, help us breathe air.', a: ['which'], hint: 'Có dấu phẩy (,) -> CẤM DÙNG "that", phải chọn WHICH!' },
-        { type: 'text', q: 'Gills, _________ are organs on a fish, help them breathe underwater.', a: ['which'], hint: 'Có dấu phẩy (,) -> KHÔNG dùng "that", phải dùng WHICH!' },
-        { type: 'text', q: 'Look at the green frog, _________ skin is very sticky!', a: ['whose'], hint: 'Có dấu phẩy + dấu hiệu sở hữu (frog + skin) -> dùng WHOSE.' },
-        { type: 'text', q: 'This swamp, _________ the air is moist, is full of frogs.', a: ['where'], hint: 'Địa điểm có dấu phẩy (,) -> dùng WHERE.' },
-        { type: 'text', q: 'Tree roots, _________ absorb water from the soil, grow deep underground.', a: ['which'], hint: 'Có dấu phẩy (,) -> KHÔNG dùng "that", chỉ chọn WHICH!' },
-        { type: 'text', q: 'Camouflage, _________ helps animals hide from predators, is amazing.', a: ['which'], hint: 'Có dấu phẩy (,) -> CẤM DÙNG "that", chỉ chọn WHICH!' },
-        { type: 'text', q: 'Dr. Smith, _________ is a famous biologist, studies wild animals.', a: ['who'], hint: 'Tên người + dấu phẩy (,) -> CẤM DÙNG "that", chỉ chọn WHO!' },
-        { type: 'text', q: 'This lonely bird, _________ was sitting on the tree, started to sing.', a: ['which'], hint: 'Có dấu phẩy (,) -> KHÔNG dùng "that", chỉ chọn WHICH!' },
-        { type: 'text', q: 'Dolphins, _________ are intelligent ocean animals, communicate with sound.', a: ['which'], hint: 'Có dấu phẩy (,) -> KHÔNG dùng "that", chỉ chọn WHICH!' },
-        { type: 'text', q: 'Peter, _________ noticed the small frog, was very excited.', a: ['who'], hint: 'Tên người + dấu phẩy (,) -> CẤM DÙNG "that", chỉ dùng WHO!' },
-        { type: 'text', q: 'Spring, _________ we can hear many birds sing, is my favorite season.', a: ['when'], hint: 'Chỉ thời gian có dấu phẩy (,) -> dùng WHEN.' },
-        { type: 'text', q: 'Our science teacher, _________ loves nature, helps us understand biology.', a: ['who'], hint: 'Chỉ người + dấu phẩy (,) -> KHÔNG dùng "that", chỉ chọn WHO!' },
-        { type: 'text', q: 'That special fish, _________ gills absorb oxygen underwater, is very rare.', a: ['whose'], hint: 'Có dấu phẩy + dấu hiệu sở hữu (fish + gills) -> dùng WHOSE.' },
-        { type: 'text', q: 'We met Professor Green, _________ work helps protect the environment.', a: ['whose'], hint: 'Danh từ riêng + sở hữu -> dùng WHOSE.' },
-        { type: 'text', q: 'Early morning, _________ birds start singing, is very quiet.', a: ['when'], hint: 'Chỉ thời gian có dấu phẩy (,) -> dùng WHEN.' },
-        { type: 'text', q: 'This rainforest habitat, _________ many vertebrates live, is huge.', a: ['where'], hint: 'Chỉ địa điểm/môi trường sống có dấu phẩy (,) -> dùng WHERE.' },
+        // PHASE 1: DEFINING RELATIVE CLAUSES (NO COMMAS) (1-20)
+        { type: 'text', q: 'The scientist, ________ discovered the ancient artifact became famous worldwide.', a: ['who', 'that'], hint: 'Chỉ người đóng vai trò chủ ngữ -> dùng WHO  .' },
+        { type: 'text', q: 'A museum is a place, ________ people can learn about ancient history.', a: ['where'], hint: 'Chỉ địa điểm -> dùng WHERE.' },
+        { type: 'text', q: 'This is the tool, ________ ancient people used for hunting.', a: ['which', 'that'], hint: 'Chỉ vật -> dùng WHICH  .' },
+        { type: 'text', q: 'I know a guide, ________ knows everything about ancient ruins.', a: ['who', 'that'], hint: 'Chỉ người -> dùng WHO  .' },
+        { type: 'text', q: 'The explorer, ________ map was lost had to ask for help.', a: ['whose'], hint: 'Sở hữu (explorer + map) -> dùng WHOSE.' },
+        { type: 'text', q: '1922 was the year, ________ scientists found King Tut\'s tomb.', a: ['when'], hint: 'Chỉ thời gian (year) -> dùng WHEN.' },
+        { type: 'text', q: 'A submarine is a vessel, ________ can travel deep underwater.', a: ['which', 'that'], hint: 'Chỉ vật (vessel) -> dùng WHICH  .' },
+        { type: 'text', q: 'This is the laboratory, ________ researchers test new inventions.', a: ['where'], hint: 'Chỉ địa điểm (laboratory) -> dùng WHERE.' },
+        { type: 'text', q: 'The student, ________ won the science fair received a golden medal.', a: ['who', 'that'], hint: 'Chỉ người -> dùng WHO  .' },
+        { type: 'text', q: 'A compass is an instrument, ________ shows north and south.', a: ['which', 'that'], hint: 'Chỉ đồ vật (instrument) -> dùng WHICH  .' },
+        { type: 'text', q: 'The archaeologist, ________ discovery changed history was praised by all.', a: ['whose'], hint: 'Sở hữu (archaeologist + discovery) -> dùng WHOSE.' },
+        { type: 'text', q: 'That is the island, ________ explorers discovered old stone tools.', a: ['where'], hint: 'Chỉ địa điểm (island) -> dùng WHERE.' },
+        { type: 'text', q: 'Summer is the season, ________ many tourists visit historical sites.', a: ['when'], hint: 'Chỉ thời gian (season) -> dùng WHEN.' },
+        { type: 'text', q: 'The invention, ________ changed human communication was the telephone.', a: ['which', 'that'], hint: 'Chỉ vật/phát minh -> dùng WHICH.' },
+        { type: 'text', q: 'A person, ________ studies history and artifacts is a historian.', a: ['who', 'that'], hint: 'Chỉ người -> dùng WHO.' },
+        { type: 'text', q: 'We visited the workshop, ________ craftsmen make traditional clay pots.', a: ['where'], hint: 'Chỉ nơi chốn (workshop) -> dùng WHERE.' },
+        { type: 'text', q: 'The student, ________ project won first prize was very happy.', a: ['whose'], hint: 'Sở hữu (student + project) -> dùng WHOSE.' },
+        { type: 'text', q: 'A telescope is a device, ________ helps us see distant stars.', a: ['which', 'that'], hint: 'Chỉ thiết bị/đồ vật -> dùng WHICH .' },
+        { type: 'text', q: 'The morning, ________ we started our expedition was very foggy.', a: ['when'], hint: 'Chỉ thời gian (morning) -> dùng WHEN.' },
+        { type: 'text', q: 'An inventor is someone, ________ creates new and useful machines.', a: ['who', 'that'], hint: 'Chỉ người -> dùng WHO .' },
 
-        // PHASE 2: VOCABULARY MEANING MCQ (21-37)
-        { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"amphibian (n)"</b> mang ý nghĩa là gì?', options: ['Lưỡng cư (sống cả ở nước và trên bờ)', 'Động vật bò sát', 'Động vật có vú', 'Động vật ăn thịt'], a: 0, hint: 'Loài động vật có thể sống cả ở dưới nước và trên đất liền.' },
-        { type: 'mcq', q: 'Từ <b>"land (n)"</b> trong các chủ đề tự nhiên mang nghĩa là gì?', options: ['Đại dương', 'Bầu khí quyển', 'Mặt đất, đất liền', 'Lòng đất sâu'], a: 2, hint: 'Phần bề mặt khô của Trái Đất không bị bao phủ bởi nước.' },
-        { type: 'mcq', q: 'Từ <b>"environment (n)"</b> có nghĩa là gì?', options: ['Khí hậu', 'Môi trường', 'Thời tiết', 'Cảnh quan'], a: 1, hint: 'Toàn bộ các yếu tố tự nhiên và xã hội xung quanh sự sống.' },
-        { type: 'mcq', q: 'Từ <b>"vertebrate (adj/n)"</b> dùng để chỉ nhóm động vật nào?', options: ['Có xương sống', 'Không có xương sống', 'Có vảy cứng', 'Có vỏ mai'], a: 0, hint: 'Nhóm động vật có cột sống nâng đỡ cơ thể.' },
-        { type: 'mcq', q: 'Tính từ <b>"sticky (adj)"</b> có nghĩa là gì?', options: ['Trơn trượt', 'Dính, có tính bám dính', 'Khô rát', 'Mềm mại'], a: 1, hint: 'Dùng để diễn tả bề mặt có khả năng bám dính như keo.' },
-        { type: 'mcq', q: 'Tính từ <b>"moist (adj)"</b> diễn tả trạng thái nào?', options: ['Khô héo', 'Ẩm ướt, hơi ẩm', 'Nóng bức', 'Lạnh giá'], a: 1, hint: 'Hơi ướt, có độ ẩm vừa phải.' },
-        { type: 'mcq', q: 'Từ <b>"lungs (n)"</b> chỉ cơ quan hô hấp nào?', options: ['Tim', 'Phổi', 'Gan', 'Dạ dày'], a: 1, hint: 'Cơ quan giúp con người và động vật hít thở không khí.' },
-        { type: 'mcq', q: 'Từ <b>"gills (n)"</b> chỉ cơ quan hô hấp nào của cá và nòng nọc?', options: ['Vây', 'Vảy', 'Mang (cơ quan thở dưới nước)', 'Đuôi'], a: 2, hint: 'Cơ quan giúp động vật dưới nước lấy ô-xy từ nước.' },
-        { type: 'mcq', q: 'Động từ <b>"absorb (v)"</b> có nghĩa là gì?', options: ['Hấp thụ, thẩm thấu', 'Thải ra, tiết ra', 'Phản chiếu', 'Tản nhiệt'], a: 0, hint: 'Hành động hút hoặc thấm chất lỏng, năng lượng vào bên trong.' },
-        { type: 'mcq', q: 'Từ <b>"camouflage (n)"</b> có nghĩa là gì?', options: ['Sự di cư', 'Sự ngụy trang', 'Sự săn mồi', 'Sự sinh sản'], a: 1, hint: 'Hành vi hoặc màu sắc giúp động vật ẩn nấp vào môi trường.' },
-        { type: 'mcq', q: 'Danh từ <b>"frequency (n)"</b> có nghĩa là gì?', options: ['Tần số, sự thường xuyên', 'Khoảng cách', 'Tốc độ', 'Cường độ'], a: 0, hint: 'Mức độ lặp đi lặp lại của một sự việc trong một khoảng thời gian.' },
-        { type: 'mcq', q: 'Trạng từ <b>"frequently (adv)"</b> có nghĩa là gì?', options: ['Hiếm khi', 'Thường xuyên', 'Không bao giờ', 'Lần đầu tiên'], a: 1, hint: 'Diễn tả hành động xảy ra nhiều lần, lặp lại thường xuyên.' },
-        { type: 'mcq', q: 'Tính từ <b>"lonely (adj)"</b> diễn tả cảm giác gì?', options: ['Vui vẻ', 'Cô độc, lẻ loi', 'Tức giận', 'Hào hứng'], a: 1, hint: 'Cảm giác đơn độc, một mình không có ai bên cạnh.' },
-        { type: 'mcq', q: 'Động từ <b>"communicate (v)"</b> có nghĩa là gì?', options: ['Giao tiếp, trao đổi thông tin', 'Di chuyển', 'Thi đấu', 'Lắng nghe'], a: 0, hint: 'Hành động trao đổi lời nói, tín hiệu hoặc thông tin.' },
-        { type: 'mcq', q: 'Động từ <b>"notice (v)"</b> có nghĩa là gì?', options: ['Bỏ qua', 'Để ý, nhận thấy', 'Quên mất', 'Ghi chú'], a: 1, hint: 'Nhận ra hoặc chú ý đến điều gì đó bằng mắt hoặc cảm nhận.' },
-        { type: 'mcq', q: 'Động từ <b>"hear (v)"</b> chỉ hành động nào?', options: ['Nghe (bằng tai)', 'Nhìn (bằng mắt)', 'Nếm (bằng lưỡi)', 'Sờ (bằng tay)'], a: 0, hint: 'Cảm nhận âm thanh bằng đôi tai.' },
-        { type: 'mcq', q: 'Động từ <b>"understand (v)"</b> có nghĩa là gì?', options: ['Thắc mắc', 'Hiểu, nắm rõ', 'Nhầm lẫn', 'Giải thích'], a: 1, hint: 'Nắm vững ý nghĩa hoặc bản chất của một vấn đề.' },
-
-        // PHASE 3: VOCAB SPELLING INPUT (38-54)
-        { type: 'text', q: 'Động vật lưỡng cư (sống cả dưới nước và trên bờ). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>a _ _ _ _ _ _ _</b></span>', a: ['amphibian'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "a" (a-m-p-h-i-b-i-a-n).' },
-        { type: 'text', q: 'Mặt đất, đất liền. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ _</b></span>', a: ['land'], hint: 'Từ gồm 4 chữ cái bắt đầu bằng "l" (l-a-n-d).' },
-        { type: 'text', q: 'Môi trường xung quanh sự sống. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>e _ _ _ _ _ _ _ _ _ _</b></span>', a: ['environment'], hint: 'Từ gồm 11 chữ cái bắt đầu bằng "e" (e-n-v-i-r-o-n-m-e-n-t).' },
-        { type: 'text', q: 'Có xương sống / động vật có xương sống. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>v _ _ _ _ _ _ _ _</b></span>', a: ['vertebrate'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "v" (v-e-r-t-e-b-r-a-t-e).' },
-        { type: 'text', q: 'Dính, có độ bám dính cao. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>s _ _ _ _ _</b></span>', a: ['sticky'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "s" (s-t-i-c-k-y).' },
-        { type: 'text', q: 'Ẩm ướt, hơi ẩm. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>m _ _ _</b></span>', a: ['moist'], hint: 'Từ gồm 5 chữ cái bắt đầu bằng "m" (m-o-i-s-t).' },
-        { type: 'text', q: 'Phổi (cơ quan hô hấp). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ _ _</b></span>', a: ['lungs'], hint: 'Từ gồm 5 chữ cái bắt đầu bằng "l" (l-u-n-g-s).' },
-        { type: 'text', q: 'Mang (cơ quan thở dưới nước). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>g _ _ _ _</b></span>', a: ['gills'], hint: 'Từ gồm 5 chữ cái bắt đầu bằng "g" (g-i-l-l-s).' },
-        { type: 'text', q: 'Hấp thụ, thẩm thấu. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>a _ _ _ _ _</b></span>', a: ['absorb'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "a" (a-b-s-o-r-b).' },
-        { type: 'text', q: 'Sự ngụy trang hòa lẫn môi trường. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ _ _</b></span>', a: ['camouflage'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "c" (c-a-m-o-u-f-l-a-g-e).' },
-        { type: 'text', q: 'Tần số, độ lặp lại. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>f _ _ _ _ _ _ _ _</b></span>', a: ['frequency'], hint: 'Từ gồm 9 chữ cái bắt đầu bằng "f" (f-r-e-q-u-e-n-c-y).' },
-        { type: 'text', q: 'Thường xuyên, lặp đi lặp lại. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>f _ _ _ _ _ _ _ _ _</b></span>', a: ['frequently'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "f" (f-r-e-q-u-e-n-t-l-y).' },
-        { type: 'text', q: 'Cô độc, đơn độc. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>l _ _ _ _ _</b></span>', a: ['lonely'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "l" (l-o-n-e-l-y).' },
-        { type: 'text', q: 'Giao tiếp, trao đổi thông tin. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>c _ _ _ _ _ _ _ _ _ _</b></span>', a: ['communicate'], hint: 'Từ gồm 11 chữ cái bắt đầu bằng "c" (c-o-m-m-u-n-i-c-a-t-e).' },
-        { type: 'text', q: 'Để ý, nhận ra, chú ý thấy. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>n _ _ _ _ _</b></span>', a: ['notice'], hint: 'Từ gồm 6 chữ cái bắt đầu bằng "n" (n-o-t-i-c-e).' },
-        { type: 'text', q: 'Nghe thấy (bằng tai). Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>h _ _ _</b></span>', a: ['hear'], hint: 'Từ gồm 4 chữ cái bắt đầu bằng "h" (h-e-a-r).' },
-        { type: 'text', q: 'Hiểu, nắm rõ vấn đề. Điền từ:<br><span style="color:#ffeb3b; font-size:1.6rem; letter-spacing:3px;"><b>u _ _ _ _ _ _ _ _ _</b></span>', a: ['understand'], hint: 'Từ gồm 10 chữ cái bắt đầu bằng "u" (u-n-d-e-r-s-t-a-n-d).' }
+        // PHASE 2: CAMBRIDGE GRADE 6 UNIT 4 VOCABULARY MCQ ONLY (21-40)
+        { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"invention (n)"</b> mang ý nghĩa là gì?', options: ['Sự phát minh, vật sáng chế', 'Môi trường sống', 'Trận thi đấu', 'Sự di cư'], a: 0, hint: 'Một thứ hoàn toàn mới do con người sáng tạo ra.' },
+        { type: 'mcq', q: 'Động từ <b>"discover (v)"</b> có nghĩa là gì?', options: ['Sửa chữa', 'Khám phá, tìm ra', 'Trốn tránh', 'Xây dựng'], a: 1, hint: 'Tìm ra một điều gì đó đã tồn tại mà trước đây chưa ai biết.' },
+        { type: 'mcq', q: 'Tính từ <b>"ancient (adj)"</b> dùng để miêu tả điều gì?', options: ['Hiện đại, mới mẻ', 'Cổ đại, rất xưa', 'Nhanh chóng', 'Nguy hiểm'], a: 1, hint: 'Có từ thời xa xưa trong lịch sử.' },
+        { type: 'mcq', q: 'Từ <b>"scientist (n)"</b> dùng để chỉ ai?', options: ['Bác sĩ', 'Nhà khoa học', 'Họa sĩ', 'Nhà giáo'], a: 1, hint: 'Người nghiên cứu các ngành khoa học.' },
+        { type: 'mcq', q: 'Động từ <b>"explore (v)"</b> có nghĩa là gì?', options: ['Thám hiểm, khám phá', 'Bán hàng', 'Phá hủy', 'Ngăn cản'], a: 0, hint: 'Đi tới những nơi lạ để tìm hiểu và nghiên cứu.' },
+        { type: 'mcq', q: 'Từ <b>"museum (n)"</b> là địa điểm nào?', options: ['Công viên nước', 'Bảo tàng (nơi trưng bày hiện vật)', 'Rạp chiếu phim', 'Bệnh viện'], a: 1, hint: 'Nơi giữ gìn và trưng bày các hiện vật lịch sử, nghệ thuật.' },
+        { type: 'mcq', q: 'Từ <b>"material (n)"</b> mang nghĩa là gì?', options: ['Vật liệu, chất liệu', 'Thời tiết', 'Năng lượng', 'Âm thanh'], a: 0, hint: 'Chất dùng để chế tạo hoặc làm ra sản phẩm (gỗ, đá, kim loại...).' },
+        { type: 'mcq', q: 'Từ <b>"tool (n)"</b> có nghĩa là gì?', options: ['Dụng cụ, công cụ', 'Trang phục', 'Vũ khí', 'Đồ chơi'], a: 0, hint: 'Vật cầm tay như búa, dao, kéo dùng để làm việc.' },
+        { type: 'mcq', q: 'Từ <b>"design (v/n)"</b> có nghĩa là gì?', options: ['Thiết kế, bản thiết kế', 'Đọc sách', 'Di chuyển', 'Săn bắt'], a: 0, hint: 'Lập kế hoạch và vẽ phác thảo cấu tạo của một vật.' },
+        { type: 'mcq', q: 'Động từ <b>"protect (v)"</b> có nghĩa là gì?', options: ['Làm hỏng', 'Bảo vệ, giữ gìn', 'Tấn công', 'Bỏ rơi'], a: 1, hint: 'Giữ cho ai hoặc cái gì khỏi bị nguy hiểm, tổn hại.' },
+        { type: 'mcq', q: 'Động từ <b>"survive (v)"</b> diễn tả hành động nào?', options: ['Sống sót, sinh tồn', 'Quên đi', 'Kết thúc', 'Bắt đầu'], a: 0, hint: 'Tiếp tục sống sau một sự kiện nguy hiểm hoặc điều kiện khắc nghiệt.' },
+        { type: 'mcq', q: 'Danh từ <b>"structure (n)"</b> có nghĩa là gì?', options: ['Cấu trúc, công trình xây dựng', 'Tiền bạc', 'Thức ăn', 'Cảm xúc'], a: 0, hint: 'Cách sắp xếp các phần hoặc một công trình như tòa nhà, kim tự tháp.' },
+        { type: 'mcq', q: 'Từ <b>"history (n)"</b> chỉ lĩnh vực nào?', options: ['Âm nhạc', 'Lịch sử (những sự kiện quá khứ)', 'Địa lý', 'Hóa học'], a: 1, hint: 'Môn học hoặc quá trình diễn ra các sự kiện trong quá khứ.' },
+        { type: 'mcq', q: 'Từ <b>"artifact (n)"</b> có nghĩa là gì?', options: ['Cổ vật, hiện vật lịch sử', 'Sinh vật biển', 'Hiện tượng thời tiết', 'Máy vi tính'], a: 0, hint: 'Đồ vật do người xưa tạo ra mang giá trị lịch sử.' },
+        { type: 'mcq', q: 'Danh từ <b>"equipment (n)"</b> có nghĩa là gì?', options: ['Trang thiết bị, dụng cụ chuyên dụng', 'Động vật nuôi', 'Đất đai', 'Nguồn nước'], a: 0, hint: 'Các dụng cụ cần thiết cho một hoạt động cụ thể.' },
+        { type: 'mcq', q: 'Động từ <b>"trade (v/n)"</b> nghĩa là gì?', options: ['Mua bán, trao đổi thương mại', 'Học tập', 'Ngủ nghỉ', 'Vẽ tranh'], a: 0, hint: 'Hoạt động trao đổi hàng hóa giữa người với người.' },
+        { type: 'mcq', q: 'Động từ <b>"create (v)"</b> có nghĩa là gì?', options: ['Tạo ra, sáng tạo', 'Tìm kiếm', 'Phá hủy', 'Đốm lửa'], a: 0, hint: 'Làm ra một cái gì đó mới chưa từng có.' },
+        { type: 'mcq', q: 'Danh từ <b>"object (n)"</b> chỉ cái gì?', options: ['Đồ vật, vật thể', 'Ý tưởng', 'Cảm giác', 'Thời gian'], a: 0, hint: 'Một vật cứng có thể nhìn thấy và chạm vào được.' },
+        { type: 'mcq', q: 'Tính từ <b>"natural (adj)"</b> có nghĩa là gì?', options: ['Nhân tạo', 'Thuộc về tự nhiên', 'Đắt đỏ', 'Nguy hiểm'], a: 1, hint: 'Có sẵn trong thiên nhiên, không phải do con người làm ra.' },
+        { type: 'mcq', q: 'Từ <b>"stone (n)"</b> là loại chất liệu nào?', options: ['Đá', 'Gỗ', 'Nhựa', 'Thủy tinh'], a: 0, hint: 'Chất liệu cứng lấy từ lòng đất hoặc núi đá.' }
     ];
 
     let currentQuestionIndex = 0;
@@ -672,11 +655,7 @@
         let currentQ = quizData[currentQuestionIndex];
 
         if (currentQ.type === 'text') {
-            if (currentQuestionIndex < 20) {
-                instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền đại từ quan hệ (who, which, where, when, whose)";
-            } else {
-                instructionTitle.innerText = "🎯 NHIỆM VỤ: Nhập từ vựng tiếng Anh theo gợi ý số ô chữ";
-            }
+            instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền đại từ quan hệ (who, which, that, where, when, whose)";
             questionPrompt.innerHTML = currentQ.q;
 
             correctionZone.innerHTML = `
@@ -692,7 +671,7 @@
             }, 150);
 
         } else if (currentQ.type === 'mcq') {
-            instructionTitle.innerText = "🎯 NHIỆM VỤ: Chọn đáp án tiếng Việt chính xác nhất";
+            instructionTitle.innerText = "🎯 NHIỆM VỤ: Chọn đáp án từ vựng tiếng Việt chính xác nhất";
             questionPrompt.innerHTML = currentQ.q;
 
             currentQ.options.forEach((opt, idx) => {
@@ -771,7 +750,7 @@
                 inputField.style.borderColor = "var(--wrong-color)";
                 userLives--;
                 updateLivesUI();
-                statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>THẤT BẠI: Chưa đúng! Đáp án chuẩn: "${currentQ.a[0]}".</span>`;
+                statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>THẤT BẠI: Chưa đúng! Đáp án chuẩn: "${currentQ.a.join(' / ')}".</span>`;
                 if (userLives <= 0) {
                     setTimeout(() => { handleGameOverLoss(); }, 1500);
                     return;
@@ -825,7 +804,7 @@
         document.body.classList.remove("panic-mode");
         
         let currentQ = quizData[currentQuestionIndex];
-        let correctStr = currentQ.type === 'mcq' ? currentQ.options[currentQ.a] : currentQ.a[0];
+        let correctStr = currentQ.type === 'mcq' ? currentQ.options[currentQ.a] : currentQ.a.join(' / ');
 
         if (document.getElementById("correction-field")) document.getElementById("correction-field").disabled = true;
 
@@ -954,9 +933,9 @@
         finalScoreDisplay.innerText = globalScore;
 
         let levelStr = "";
-        if (globalScore >= 6500) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
-        else if (globalScore >= 4500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
-        else if (globalScore >= 3000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
+        if (globalScore >= 5000) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
+        else if (globalScore >= 3500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
+        else if (globalScore >= 2000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
         else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
 
         rewardLevel.innerText = levelStr;
@@ -967,7 +946,7 @@
             let itemData = quizData[ans.qIndex];
             if (!itemData) return "";
             let displayPrompt = itemData.q.replace(/<[^>]*>/g, ''); 
-            let correctAnsStr = itemData.type === 'mcq' ? itemData.options[itemData.a] : itemData.a[0];
+            let correctAnsStr = itemData.type === 'mcq' ? itemData.options[itemData.a] : itemData.a.join(' / ');
             return `Thử thách ${ans.qIndex + 1}: ${displayPrompt}\n- Con chọn/nhập: ${ans.userText}\n- Kết quả: ${ans.isCorrect ? 'ĐÚNG ✔' : 'SAI ✘ (Đáp án đúng: ' + correctAnsStr + ')'}`;
         }).join("\n\n");
         
@@ -987,7 +966,7 @@
             itemDiv.className = `history-item ${ans.isCorrect ? "history-correct" : "history-wrong"}`;
             
             let displayPrompt = itemData.q.replace(/<[^>]*>/g, ''); 
-            let correctAnsStr = itemData.type === 'mcq' ? itemData.options[itemData.a] : itemData.a[0];
+            let correctAnsStr = itemData.type === 'mcq' ? itemData.options[itemData.a] : itemData.a.join(' / ');
 
             itemDiv.innerHTML = `
                 <div style="font-weight:bold; color:#fff;">Thử thách ${ans.qIndex + 1}: ${displayPrompt}</div>
