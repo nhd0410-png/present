@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đấu Trường Nhí - Defining Relative Clauses & Unit 4 Vocab Invaders</title>
+    <title>Đấu Trường Nhí - Non-Defining Relative Clauses & Unit 4 Vocab Invaders</title>
     <style>
         :root {
             --bg-color: #020010;
@@ -429,9 +429,9 @@
         
         <div class="intro-rules">
             <strong>🚀 LUẬT CHƠI VŨ TRỤ CÂU ĐẠI TỪ QUAN HỆ & TỪ VỰNG:</strong><br>
-            • 🌿 <b>Giai đoạn 1 (Câu 1-20):</b> Mệnh đề quan hệ xác định (Defining Relative Clauses). Điền đại từ quan hệ phù hợp <b>(who, which, that, where, when, whose)</b>.<br>
+            • 🌿 <b>Giai đoạn 1 (Câu 1-20):</b> Mệnh đề quan hệ không xác định (Non-Defining Relative Clauses - có dấu phẩy). Điền đại từ quan hệ phù hợp <b>(who, which, where, when, whose)</b>. <i>Lưu ý: "that" KHÔNG được sử dụng sau dấu phẩy!</i><br>
             • 🌿 <b>Giai đoạn 2 (Câu 21-40):</b> Trắc nghiệm 100% từ vựng Unit 4 Cambridge Global English Grade 6 (chọn đáp án đúng A, B, C, D).<br>
-            • 🛸 Con có <b>4 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi thử thách!
+            • 🛸 Con có <b>5 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi thử thách!
         </div>
         
         <div style="text-align: center;">
@@ -443,7 +443,7 @@
     <div id="game-screen" class="screen">
         <div class="progress-info">
             <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">40</span></div>
-            <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️</span></div>
+            <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
             <div id="phase-timer-display" style="visibility: visible;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
         </div>
@@ -529,29 +529,29 @@
 
 <script>
     const quizData = [
-        // PHASE 1: DEFINING RELATIVE CLAUSES (NO COMMAS) (1-20)
-        { type: 'text', q: 'The scientist, ________ discovered the ancient artifact became famous worldwide.', a: ['who', 'that'], hint: 'Chỉ người đóng vai trò chủ ngữ -> dùng WHO  .' },
+        // PHASE 1: NON-DEFINING RELATIVE CLAUSES WITH COMMAS (1-20) - "THAT" IS UNUSABLE
+        { type: 'text', q: 'The scientist, ________ discovered the ancient artifact, became famous worldwide.', a: ['who'], hint: 'Chỉ người đóng vai trò chủ ngữ sau dấu phẩy -> dùng WHO (không dùng THAT).' },
         { type: 'text', q: 'A museum is a place, ________ people can learn about ancient history.', a: ['where'], hint: 'Chỉ địa điểm -> dùng WHERE.' },
-        { type: 'text', q: 'This is the tool, ________ ancient people used for hunting.', a: ['which', 'that'], hint: 'Chỉ vật -> dùng WHICH  .' },
-        { type: 'text', q: 'I know a guide, ________ knows everything about ancient ruins.', a: ['who', 'that'], hint: 'Chỉ người -> dùng WHO  .' },
-        { type: 'text', q: 'The explorer, ________ map was lost had to ask for help.', a: ['whose'], hint: 'Sở hữu (explorer + map) -> dùng WHOSE.' },
+        { type: 'text', q: 'This is the tool, ________ ancient people used for hunting.', a: ['which'], hint: 'Chỉ vật sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
+        { type: 'text', q: 'I know a guide, ________ knows everything about ancient ruins.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO (không dùng THAT).' },
+        { type: 'text', q: 'The explorer, ________ map was lost, had to ask for help.', a: ['whose'], hint: 'Sở hữu (explorer + map) -> dùng WHOSE.' },
         { type: 'text', q: '1922 was the year, ________ scientists found King Tut\'s tomb.', a: ['when'], hint: 'Chỉ thời gian (year) -> dùng WHEN.' },
-        { type: 'text', q: 'A submarine is a vessel, ________ can travel deep underwater.', a: ['which', 'that'], hint: 'Chỉ vật (vessel) -> dùng WHICH  .' },
+        { type: 'text', q: 'A submarine is a vessel, ________ can travel deep underwater.', a: ['which'], hint: 'Chỉ vật (vessel) sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
         { type: 'text', q: 'This is the laboratory, ________ researchers test new inventions.', a: ['where'], hint: 'Chỉ địa điểm (laboratory) -> dùng WHERE.' },
-        { type: 'text', q: 'The student, ________ won the science fair received a golden medal.', a: ['who', 'that'], hint: 'Chỉ người -> dùng WHO  .' },
-        { type: 'text', q: 'A compass is an instrument, ________ shows north and south.', a: ['which', 'that'], hint: 'Chỉ đồ vật (instrument) -> dùng WHICH  .' },
-        { type: 'text', q: 'The archaeologist, ________ discovery changed history was praised by all.', a: ['whose'], hint: 'Sở hữu (archaeologist + discovery) -> dùng WHOSE.' },
+        { type: 'text', q: 'The student, ________ won the science fair, received a golden medal.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO (không dùng THAT).' },
+        { type: 'text', q: 'A compass is an instrument, ________ shows north and south.', a: ['which'], hint: 'Chỉ đồ vật (instrument) sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
+        { type: 'text', q: 'The archaeologist, ________ discovery changed history, was praised by all.', a: ['whose'], hint: 'Sở hữu (archaeologist + discovery) -> dùng WHOSE.' },
         { type: 'text', q: 'That is the island, ________ explorers discovered old stone tools.', a: ['where'], hint: 'Chỉ địa điểm (island) -> dùng WHERE.' },
         { type: 'text', q: 'Summer is the season, ________ many tourists visit historical sites.', a: ['when'], hint: 'Chỉ thời gian (season) -> dùng WHEN.' },
-        { type: 'text', q: 'The invention, ________ changed human communication was the telephone.', a: ['which', 'that'], hint: 'Chỉ vật/phát minh -> dùng WHICH.' },
-        { type: 'text', q: 'A person, ________ studies history and artifacts is a historian.', a: ['who', 'that'], hint: 'Chỉ người -> dùng WHO.' },
+        { type: 'text', q: 'The invention, ________ changed human communication, was the telephone.', a: ['which'], hint: 'Chỉ vật/phát minh sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
+        { type: 'text', q: 'A person, ________ studies history and artifacts, is a historian.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO (không dùng THAT).' },
         { type: 'text', q: 'We visited the workshop, ________ craftsmen make traditional clay pots.', a: ['where'], hint: 'Chỉ nơi chốn (workshop) -> dùng WHERE.' },
-        { type: 'text', q: 'The student, ________ project won first prize was very happy.', a: ['whose'], hint: 'Sở hữu (student + project) -> dùng WHOSE.' },
-        { type: 'text', q: 'A telescope is a device, ________ helps us see distant stars.', a: ['which', 'that'], hint: 'Chỉ thiết bị/đồ vật -> dùng WHICH .' },
-        { type: 'text', q: 'The morning, ________ we started our expedition was very foggy.', a: ['when'], hint: 'Chỉ thời gian (morning) -> dùng WHEN.' },
-        { type: 'text', q: 'An inventor is someone, ________ creates new and useful machines.', a: ['who', 'that'], hint: 'Chỉ người -> dùng WHO .' },
+        { type: 'text', q: 'The student, ________ project won first prize, was very happy.', a: ['whose'], hint: 'Sở hữu (student + project) -> dùng WHOSE.' },
+        { type: 'text', q: 'A telescope is a device, ________ helps us see distant stars.', a: ['which'], hint: 'Chỉ thiết bị/đồ vật sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
+        { type: 'text', q: 'The morning, ________ we started our expedition, was very foggy.', a: ['when'], hint: 'Chỉ thời gian (morning) -> dùng WHEN.' },
+        { type: 'text', q: 'An inventor is someone, ________ creates new and useful machines.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO (không dùng THAT).' },
 
-        // PHASE 2: CAMBRIDGE GRADE 6 UNIT 4 VOCABULARY MCQ ONLY (21-40)
+        // PHASE 2: CAMBRIDGE GRADE 6 UNIT 4 VOCABULARY MCQ ONLY (21-40) - UNCHANGED
         { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"invention (n)"</b> mang ý nghĩa là gì?', options: ['Sự phát minh, vật sáng chế', 'Môi trường sống', 'Trận thi đấu', 'Sự di cư'], a: 0, hint: 'Một thứ hoàn toàn mới do con người sáng tạo ra.' },
         { type: 'mcq', q: 'Động từ <b>"discover (v)"</b> có nghĩa là gì?', options: ['Sửa chữa', 'Khám phá, tìm ra', 'Trốn tránh', 'Xây dựng'], a: 1, hint: 'Tìm ra một điều gì đó đã tồn tại mà trước đây chưa ai biết.' },
         { type: 'mcq', q: 'Tính từ <b>"ancient (adj)"</b> dùng để miêu tả điều gì?', options: ['Hiện đại, mới mẻ', 'Cổ đại, rất xưa', 'Nhanh chóng', 'Nguy hiểm'], a: 1, hint: 'Có từ thời xa xưa trong lịch sử.' },
@@ -576,7 +576,7 @@
 
     let currentQuestionIndex = 0;
     let globalScore = 0;
-    let userLives = 4;
+    let userLives = 5;
     let currentGameState = "playing";
     let userAnswersLog = [];
 
@@ -623,7 +623,7 @@
         gameScreen.classList.add("active-screen");
         resultScreen.classList.remove("active-screen");
         historyScreen.classList.remove("active-screen");
-        userLives = 4;
+        userLives = 5;
         grammarHintsCount = 3;
         currentQuestionIndex = 0;
         globalScore = 0;
@@ -655,7 +655,7 @@
         let currentQ = quizData[currentQuestionIndex];
 
         if (currentQ.type === 'text') {
-            instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền đại từ quan hệ (who, which, that, where, when, whose)";
+            instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền đại từ quan hệ (who, which, where, when, whose) - Không dùng 'that'!";
             questionPrompt.innerHTML = currentQ.q;
 
             correctionZone.innerHTML = `
