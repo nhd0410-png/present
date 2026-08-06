@@ -429,8 +429,8 @@
         
         <div class="intro-rules">
             <strong>🚀 LUẬT CHƠI VŨ TRỤ CÂU ĐẠI TỪ QUAN HỆ & TỪ VỰNG:</strong><br>
-            • 🌿 <b>Giai đoạn 1 (Câu 1-30):</b> Mệnh đề quan hệ không xác định (Non-Defining Relative Clauses - có dấu phẩy). Điền đại từ quan hệ phù hợp <b>(who, which, where, when, whose)</b>. <i>Lưu ý: "that" KHÔNG được sử dụng sau dấu phẩy!</i><br>
-            • 🌿 <b>Giai đoạn 2 (Câu 31-60):</b> Trắc nghiệm 100% từ vựng Unit 4 Cambridge Global English Grade 6 (chọn đáp án đúng A, B, C, D).<br>
+            • 🌿 <b>Giai đoạn 1 (Câu 1-20):</b> Mệnh đề quan hệ không xác định (Non-Defining Relative Clauses - có dấu phẩy). Điền đại từ quan hệ phù hợp <b>(who, which, where, when, whose)</b>. <i>Lưu ý: "that" KHÔNG được sử dụng sau dấu phẩy!</i><br>
+            • 🌿 <b>Giai đoạn 2 (Câu 21-40):</b> Trắc nghiệm 100% từ vựng Unit 4 Cambridge Global English Grade 6 (chọn đáp án đúng A, B, C, D).<br>
             • 🛸 Con có <b>5 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi thử thách!
         </div>
         
@@ -442,7 +442,7 @@
     <!-- GAMEPLAY SCREEN -->
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">60</span></div>
+            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">40</span></div>
             <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
             <div id="phase-timer-display" style="visibility: visible;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
@@ -529,69 +529,49 @@
 
 <script>
     const quizData = [
-        // PHASE 1: NON-DEFINING RELATIVE CLAUSES WITH COMMAS (1-30) - "THAT" IS UNUSABLE
-        { type: 'text', q: 'The scientist, ________ discovered the ancient artifact, became famous worldwide.', a: ['who'], hint: 'Chỉ người đóng vai trò chủ ngữ sau dấu phẩy -> dùng WHO (không dùng THAT).' },
-        { type: 'text', q: 'A museum is a place, ________ people can learn about ancient history.', a: ['where'], hint: 'Chỉ địa điểm -> dùng WHERE.' },
-        { type: 'text', q: 'This is the tool, ________ ancient people used for hunting.', a: ['which'], hint: 'Chỉ vật sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
-        { type: 'text', q: 'I know a guide, ________ knows everything about ancient ruins.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO (không dùng THAT).' },
-        { type: 'text', q: 'The explorer, ________ map was lost, had to ask for help.', a: ['whose'], hint: 'Sở hữu (explorer + map) -> dùng WHOSE.' },
-        { type: 'text', q: '1922 was the year, ________ scientists found King Tut\'s tomb.', a: ['when'], hint: 'Chỉ thời gian (year) -> dùng WHEN.' },
-        { type: 'text', q: 'A submarine is a vessel, ________ can travel deep underwater.', a: ['which'], hint: 'Chỉ vật (vessel) sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
-        { type: 'text', q: 'This is the laboratory, ________ researchers test new inventions.', a: ['where'], hint: 'Chỉ địa điểm (laboratory) -> dùng WHERE.' },
-        { type: 'text', q: 'The student, ________ won the science fair, received a golden medal.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO (không dùng THAT).' },
-        { type: 'text', q: 'A compass is an instrument, ________ shows north and south.', a: ['which'], hint: 'Chỉ đồ vật (instrument) sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
-        { type: 'text', q: 'The archaeologist, ________ discovery changed history, was praised by all.', a: ['whose'], hint: 'Sở hữu (archaeologist + discovery) -> dùng WHOSE.' },
-        { type: 'text', q: 'That is the island, ________ explorers discovered old stone tools.', a: ['where'], hint: 'Chỉ địa điểm (island) -> dùng WHERE.' },
-        { type: 'text', q: 'Summer is the season, ________ many tourists visit historical sites.', a: ['when'], hint: 'Chỉ thời gian (season) -> dùng WHEN.' },
-        { type: 'text', q: 'The invention, ________ changed human communication, was the telephone.', a: ['which'], hint: 'Chỉ vật/phát minh sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
-        { type: 'text', q: 'A person, ________ studies history and artifacts, is a historian.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO (không dùng THAT).' },
-        { type: 'text', q: 'We visited the workshop, ________ craftsmen make traditional clay pots.', a: ['where'], hint: 'Chỉ nơi chốn (workshop) -> dùng WHERE.' },
-        { type: 'text', q: 'The student, ________ project won first prize, was very happy.', a: ['whose'], hint: 'Sở hữu (student + project) -> dùng WHOSE.' },
-        { type: 'text', q: 'A telescope is a device, ________ helps us see distant stars.', a: ['which'], hint: 'Chỉ thiết bị/đồ vật sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
-        { type: 'text', q: 'The morning, ________ we started our expedition, was very foggy.', a: ['when'], hint: 'Chỉ thời gian (morning) -> dùng WHEN.' },
-        { type: 'text', q: 'An inventor is someone, ________ creates new and useful machines.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO (không dùng THAT).' },
-        { type: 'text', q: 'My uncle, ________ lives in London, is a professional engineer.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO.' },
-        { type: 'text', q: 'The new museum, ________ opened last week, has many ancient items.', a: ['which'], hint: 'Chỉ vật/nơi chốn làm chủ ngữ sau dấu phẩy -> dùng WHICH.' },
-        { type: 'text', q: 'Paris, ________ the Eiffel Tower is located, is a famous tourist destination.', a: ['where'], hint: 'Chỉ địa điểm -> dùng WHERE.' },
-        { type: 'text', q: 'The professor, ________ book became a bestseller, won a prestige award.', a: ['whose'], hint: 'Sở hữu (professor + book) -> dùng WHOSE.' },
-        { type: 'text', q: 'Last December, ________ we visited Egypt, was very cold and dry.', a: ['when'], hint: 'Chỉ thời gian -> dùng WHEN.' },
-        { type: 'text', q: 'The ancient castle, ________ stood on top of the hill, was destroyed.', a: ['which'], hint: 'Chỉ vật sau dấu phẩy -> dùng WHICH.' },
-        { type: 'text', q: 'Dr. Smith, ________ led the expedition, found an ancient tomb.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO.' },
-        { type: 'text', q: 'The city library, ________ we study every afternoon, has thousands of rare books.', a: ['where'], hint: 'Chỉ nơi chốn -> dùng WHERE.' },
-        { type: 'text', q: 'Midnight, ________ the astronomical event started, was dark and quiet.', a: ['when'], hint: 'Chỉ thời gian -> dùng WHEN.' },
-        { type: 'text', q: 'The artist, ________ painting was sold for millions, is very talented.', a: ['whose'], hint: 'Sở hữu (artist + painting) -> dùng WHOSE.' },
+        // PHASE 1: RENEWED NON-DEFINING RELATIVE CLAUSES WITH COMMAS (1-20)
+        { type: 'text', q: 'Alexander Graham Bell, ________ invented the telephone, was born in Scotland.', a: ['who'], hint: 'Chỉ người đóng vai trò chủ ngữ sau dấu phẩy -> dùng WHO (không dùng THAT).' },
+        { type: 'text', q: 'The Solar System, ________ includes eight major planets, is billions of years old.', a: ['which'], hint: 'Chỉ hệ thống/vật thể sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
+        { type: 'text', q: 'Silicon Valley, ________ many tech companies are located, is in California.', a: ['where'], hint: 'Chỉ địa điểm/nơi chốn -> dùng WHERE.' },
+        { type: 'text', q: 'Marie Curie, ________ research on radioactivity won two Nobel Prizes, was a famous scientist.', a: ['whose'], hint: 'Sở hữu (Marie Curie + research) -> dùng WHOSE.' },
+        { type: 'text', q: '1969, ________ humans first walked on the Moon, was a historic year.', a: ['when'], hint: 'Chỉ mốc thời gian -> dùng WHEN.' },
+        { type: 'text', q: 'The steam engine, ________ powered early trains, transformed global industry.', a: ['which'], hint: 'Chỉ đồ vật/máy móc làm chủ ngữ sau dấu phẩy -> dùng WHICH.' },
+        { type: 'text', q: 'Thomas Edison, ________ created the incandescent light bulb, held over 1,000 patents.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO.' },
+        { type: 'text', q: 'Oxford University, ________ many world leaders studied, is the oldest university in the English-speaking world.', a: ['where'], hint: 'Chỉ địa điểm -> dùng WHERE.' },
+        { type: 'text', q: 'The Wright brothers, ________ first airplane flew in 1903, changed global travel forever.', a: ['whose'], hint: 'Sở hữu (Wright brothers + airplane) -> dùng WHOSE.' },
+        { type: 'text', q: 'Spring, ________ flowers bloom and nature awakens, is my favorite season.', a: ['when'], hint: 'Chỉ thời gian/mùa -> dùng WHEN.' },
+        { type: 'text', q: 'The Great Wall of China, ________ spans thousands of miles, attracts millions of visitors.', a: ['which'], hint: 'Chỉ công trình/vật thể sau dấu phẩy -> dùng WHICH.' },
+        { type: 'text', q: 'Leonardo da Vinci, ________ painted the Mona Lisa, was also a brilliant inventor.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO.' },
+        { type: 'text', q: 'Cairo, ________ the Ancient Pyramids stand, is the capital of Egypt.', a: ['where'], hint: 'Chỉ nơi chốn -> dùng WHERE.' },
+        { type: 'text', q: 'Galileo, ________ telescope revealed the moons of Jupiter, was an Italian astronomer.', a: ['whose'], hint: 'Sở hữu (Galileo + telescope) -> dùng WHOSE.' },
+        { type: 'text', q: '1945, ________ World War II ended, marked the start of a new global era.', a: ['when'], hint: 'Chỉ thời gian -> dùng WHEN.' },
+        { type: 'text', q: 'The printing press, ________ was invented by Gutenberg, made books widely available.', a: ['which'], hint: 'Chỉ phát minh/đồ vật -> dùng WHICH.' },
+        { type: 'text', q: 'Isaac Newton, ________ formulated the laws of motion, studied at Cambridge.', a: ['who'], hint: 'Chỉ người -> dùng WHO.' },
+        { type: 'text', q: 'The Louvre, ________ thousands of famous artworks are preserved, is a giant museum in Paris.', a: ['where'], hint: 'Chỉ địa điểm -> dùng WHERE.' },
+        { type: 'text', q: 'The architect, ________ blueprint was chosen for the new monument, felt extremely proud.', a: ['whose'], hint: 'Sở hữu (architect + blueprint) -> dùng WHOSE.' },
+        { type: 'text', q: 'Ancient Rome, ________ conquered much of Europe, was known for its engineering marvels.', a: ['which'], hint: 'Chỉ quốc gia/đế chế đóng vai trò chủ ngữ -> dùng WHICH.' },
 
-        // PHASE 2: CAMBRIDGE GRADE 6 UNIT 4 VOCABULARY MCQ ONLY (31-60)
-        { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"invention (n)"</b> mang ý nghĩa là gì?', options: ['Sự phát minh, vật sáng chế', 'Môi trường sống', 'Trận thi đấu', 'Sự di cư'], a: 0, hint: 'Một thứ hoàn toàn mới do con người sáng tạo ra.' },
-        { type: 'mcq', q: 'Động từ <b>"discover (v)"</b> có nghĩa là gì?', options: ['Sửa chữa', 'Khám phá, tìm ra', 'Trốn tránh', 'Xây dựng'], a: 1, hint: 'Tìm ra một điều gì đó đã tồn tại mà trước đây chưa ai biết.' },
-        { type: 'mcq', q: 'Tính từ <b>"ancient (adj)"</b> dùng để miêu tả điều gì?', options: ['Hiện đại, mới mẻ', 'Cổ đại, rất xưa', 'Nhanh chóng', 'Nguy hiểm'], a: 1, hint: 'Có từ thời xa xưa trong lịch sử.' },
+        // PHASE 2: CAMBRIDGE GRADE 6 UNIT 4 VOCABULARY MCQ ONLY (21-40) - COMMAS REMOVED FROM OPTIONS
+        { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"invention (n)"</b> mang ý nghĩa là gì?', options: ['Sự phát minh hoặc vật sáng chế', 'Môi trường sống', 'Trận thi đấu', 'Sự di cư'], a: 0, hint: 'Một thứ hoàn toàn mới do con người sáng tạo ra.' },
+        { type: 'mcq', q: 'Động từ <b>"discover (v)"</b> có nghĩa là gì?', options: ['Sửa chữa', 'Khám phá hoặc tìm ra', 'Trốn tránh', 'Xây dựng'], a: 1, hint: 'Tìm ra một điều gì đó đã tồn tại mà trước đây chưa ai biết.' },
+        { type: 'mcq', q: 'Tính từ <b>"ancient (adj)"</b> dùng để miêu tả điều gì?', options: ['Hiện đại tươi mới', 'Cổ đại hoặc rất xưa', 'Nhanh chóng', 'Nguy hiểm'], a: 1, hint: 'Có từ thời xa xưa trong lịch sử.' },
         { type: 'mcq', q: 'Từ <b>"scientist (n)"</b> dùng để chỉ ai?', options: ['Bác sĩ', 'Nhà khoa học', 'Họa sĩ', 'Nhà giáo'], a: 1, hint: 'Người nghiên cứu các ngành khoa học.' },
-        { type: 'mcq', q: 'Động từ <b>"explore (v)"</b> có nghĩa là gì?', options: ['Thám hiểm, khám phá', 'Bán hàng', 'Phá hủy', 'Ngăn cản'], a: 0, hint: 'Đi tới những nơi lạ để tìm hiểu và nghiên cứu.' },
-        { type: 'mcq', q: 'Từ <b>"museum (n)"</b> là địa điểm nào?', options: ['Công viên nước', 'Bảo tàng (nơi trưng bày hiện vật)', 'Rạp chiếu phim', 'Bệnh viện'], a: 1, hint: 'Nơi giữ gìn và trưng bày các hiện vật lịch sử, nghệ thuật.' },
-        { type: 'mcq', q: 'Từ <b>"material (n)"</b> mang nghĩa là gì?', options: ['Vật liệu, chất liệu', 'Thời tiết', 'Năng lượng', 'Âm thanh'], a: 0, hint: 'Chất dùng để chế tạo hoặc làm ra sản phẩm (gỗ, đá, kim loại...).' },
-        { type: 'mcq', q: 'Từ <b>"tool (n)"</b> có nghĩa là gì?', options: ['Dụng cụ, công cụ', 'Trang phục', 'Vũ khí', 'Đồ chơi'], a: 0, hint: 'Vật cầm tay như búa, dao, kéo dùng để làm việc.' },
-        { type: 'mcq', q: 'Từ <b>"design (v/n)"</b> có nghĩa là gì?', options: ['Thiết kế, bản thiết kế', 'Đọc sách', 'Di chuyển', 'Săn bắt'], a: 0, hint: 'Lập kế hoạch và vẽ phác thảo cấu tạo của một vật.' },
-        { type: 'mcq', q: 'Động từ <b>"protect (v)"</b> có nghĩa là gì?', options: ['Làm hỏng', 'Bảo vệ, giữ gìn', 'Tấn công', 'Bỏ rơi'], a: 1, hint: 'Giữ cho ai hoặc cái gì khỏi bị nguy hiểm, tổn hại.' },
-        { type: 'mcq', q: 'Động từ <b>"survive (v)"</b> diễn tả hành động nào?', options: ['Sống sót, sinh tồn', 'Quên đi', 'Kết thúc', 'Bắt đầu'], a: 0, hint: 'Tiếp tục sống sau một sự kiện nguy hiểm hoặc điều kiện khắc nghiệt.' },
-        { type: 'mcq', q: 'Danh từ <b>"structure (n)"</b> có nghĩa là gì?', options: ['Cấu trúc, công trình xây dựng', 'Tiền bạc', 'Thức ăn', 'Cảm xúc'], a: 0, hint: 'Cách sắp xếp các phần hoặc một công trình như tòa nhà, kim tự tháp.' },
-        { type: 'mcq', q: 'Từ <b>"history (n)"</b> chỉ lĩnh vực nào?', options: ['Âm nhạc', 'Lịch sử (những sự kiện quá khứ)', 'Địa lý', 'Hóa học'], a: 1, hint: 'Môn học hoặc quá trình diễn ra các sự kiện trong quá khứ.' },
-        { type: 'mcq', q: 'Từ <b>"artifact (n)"</b> có nghĩa là gì?', options: ['Cổ vật, hiện vật lịch sử', 'Sinh vật biển', 'Hiện tượng thời tiết', 'Máy vi tính'], a: 0, hint: 'Đồ vật do người xưa tạo ra mang giá trị lịch sử.' },
-        { type: 'mcq', q: 'Danh từ <b>"equipment (n)"</b> có nghĩa là gì?', options: ['Trang thiết bị, dụng cụ chuyên dụng', 'Động vật nuôi', 'Đất đai', 'Nguồn nước'], a: 0, hint: 'Các dụng cụ cần thiết cho một hoạt động cụ thể.' },
-        { type: 'mcq', q: 'Động từ <b>"trade (v/n)"</b> nghĩa là gì?', options: ['Mua bán, trao đổi thương mại', 'Học tập', 'Ngủ nghỉ', 'Vẽ tranh'], a: 0, hint: 'Hoạt động trao đổi hàng hóa giữa người với người.' },
-        { type: 'mcq', q: 'Động từ <b>"create (v)"</b> có nghĩa là gì?', options: ['Tạo ra, sáng tạo', 'Tìm kiếm', 'Phá hủy', 'Đốm lửa'], a: 0, hint: 'Làm ra một cái gì đó mới chưa từng có.' },
-        { type: 'mcq', q: 'Danh từ <b>"object (n)"</b> chỉ cái gì?', options: ['Đồ vật, vật thể', 'Ý tưởng', 'Cảm giác', 'Thời gian'], a: 0, hint: 'Một vật cứng có thể nhìn thấy và chạm vào được.' },
+        { type: 'mcq', q: 'Động từ <b>"explore (v)"</b> có nghĩa là gì?', options: ['Thám hiểm và khám phá', 'Bán hàng', 'Phá hủy', 'Ngăn cản'], a: 0, hint: 'Đi tới những nơi lạ để tìm hiểu và nghiên cứu.' },
+        { type: 'mcq', q: 'Từ <b>"museum (n)"</b> là địa điểm nào?', options: ['Công viên nước', 'Bảo tàng trưng bày hiện vật', 'Rạp chiếu phim', 'Bệnh viện'], a: 1, hint: 'Nơi giữ gìn và trưng bày các hiện vật lịch sử và nghệ thuật.' },
+        { type: 'mcq', q: 'Từ <b>"material (n)"</b> mang nghĩa là gì?', options: ['Vật liệu hoặc chất liệu', 'Thời tiết', 'Năng lượng', 'Âm thanh'], a: 0, hint: 'Chất dùng để chế tạo hoặc làm ra sản phẩm như gỗ, đá, kim loại.' },
+        { type: 'mcq', q: 'Từ <b>"tool (n)"</b> có nghĩa là gì?', options: ['Dụng cụ hoặc công cụ', 'Trang phục', 'Vũ khí', 'Đồ chơi'], a: 0, hint: 'Vật cầm tay như búa, dao, kéo dùng để làm việc.' },
+        { type: 'mcq', q: 'Từ <b>"design (v/n)"</b> có nghĩa là gì?', options: ['Thiết kế hoặc bản thiết kế', 'Đọc sách', 'Di chuyển', 'Săn bắt'], a: 0, hint: 'Lập kế hoạch và vẽ phác thảo cấu tạo của một vật.' },
+        { type: 'mcq', q: 'Động từ <b>"protect (v)"</b> có nghĩa là gì?', options: ['Làm hỏng', 'Bảo vệ hoặc giữ gìn', 'Tấn công', 'Bỏ rơi'], a: 1, hint: 'Giữ cho ai hoặc cái gì khỏi bị nguy hiểm hay tổn hại.' },
+        { type: 'mcq', q: 'Động từ <b>"survive (v)"</b> diễn tả hành động nào?', options: ['Sống sót sinh tồn', 'Quên đi', 'Kết thúc', 'Bắt đầu'], a: 0, hint: 'Tiếp tục sống sau một sự kiện nguy hiểm hoặc điều kiện khắc nghiệt.' },
+        { type: 'mcq', q: 'Danh từ <b>"structure (n)"</b> có nghĩa là gì?', options: ['Cấu trúc hoặc công trình xây dựng', 'Tiền bạc', 'Thức ăn', 'Cảm xúc'], a: 0, hint: 'Cách sắp xếp các phần hoặc một công trình như tòa nhà hay kim tự tháp.' },
+        { type: 'mcq', q: 'Từ <b>"history (n)"</b> chỉ lĩnh vực nào?', options: ['Âm nhạc', 'Lịch sử và các sự kiện quá khứ', 'Địa lý', 'Hóa học'], a: 1, hint: 'Môn học hoặc quá trình diễn ra các sự kiện trong quá khứ.' },
+        { type: 'mcq', q: 'Từ <b>"artifact (n)"</b> có nghĩa là gì?', options: ['Cổ vật hoặc hiện vật lịch sử', 'Sinh vật biển', 'Hiện tượng thời tiết', 'Máy vi tính'], a: 0, hint: 'Đồ vật do người xưa tạo ra mang giá trị lịch sử.' },
+        { type: 'mcq', q: 'Danh từ <b>"equipment (n)"</b> có nghĩa là gì?', options: ['Trang thiết bị dụng cụ chuyên dụng', 'Động vật nuôi', 'Đất đai', 'Nguồn nước'], a: 0, hint: 'Các dụng cụ cần thiết cho một hoạt động cụ thể.' },
+        { type: 'mcq', q: 'Động từ <b>"trade (v/n)"</b> nghĩa là gì?', options: ['Mua bán trao đổi thương mại', 'Học tập', 'Ngủ nghỉ', 'Vẽ tranh'], a: 0, hint: 'Hoạt động trao đổi hàng hóa giữa người với người.' },
+        { type: 'mcq', q: 'Động từ <b>"create (v)"</b> có nghĩa là gì?', options: ['Tạo ra hoặc sáng tạo', 'Tìm kiếm', 'Phá hủy', 'Đốm lửa'], a: 0, hint: 'Làm ra một cái gì đó mới chưa từng có.' },
+        { type: 'mcq', q: 'Danh từ <b>"object (n)"</b> chỉ cái gì?', options: ['Đồ vật hoặc vật thể', 'Ý tưởng', 'Cảm giác', 'Thời gian'], a: 0, hint: 'Một vật cứng có thể nhìn thấy và chạm vào được.' },
         { type: 'mcq', q: 'Tính từ <b>"natural (adj)"</b> có nghĩa là gì?', options: ['Nhân tạo', 'Thuộc về tự nhiên', 'Đắt đỏ', 'Nguy hiểm'], a: 1, hint: 'Có sẵn trong thiên nhiên, không phải do con người làm ra.' },
-        { type: 'mcq', q: 'Từ <b>"stone (n)"</b> là loại chất liệu nào?', options: ['Đá', 'Gỗ', 'Nhựa', 'Thủy tinh'], a: 0, hint: 'Chất liệu cứng lấy từ lòng đất hoặc núi đá.' },
-        { type: 'mcq', q: 'Từ <b>"machine (n)"</b> mang ý nghĩa là gì?', options: ['Cái máy, máy móc', 'Ngôn ngữ', 'Con đường', 'Thức ăn'], a: 0, hint: 'Thiết bị chạy bằng điện hoặc động cơ.' },
-        { type: 'mcq', q: 'Động từ <b>"improve (v)"</b> có nghĩa là gì?', options: ['Cải thiện, nâng cao', 'Làm hỏng', 'Trốn chạy', 'Mua sắm'], a: 0, hint: 'Làm cho một cái gì đó tốt hơn.' },
-        { type: 'mcq', q: 'Từ <b>"century (n)"</b> dùng để chỉ khoảng thời gian nào?', options: ['Thế kỷ (100 năm)', 'Thập kỷ (10 năm)', 'Một tuần', 'Một tháng'], a: 0, hint: 'Thời gian kéo dài đúng 100 năm.' },
-        { type: 'mcq', q: 'Tính từ <b>"modern (adj)"</b> có nghĩa là gì?', options: ['Hiện đại, tân tiến', 'Cổ xưa', 'Chậm chạp', 'Rất tối'], a: 0, hint: 'Mới mẻ, thuộc thời buổi hiện tại.' },
-        { type: 'mcq', q: 'Danh từ <b>"experiment (n)"</b> có nghĩa là gì?', options: ['Thí nghiệm, cuộc thử nghiệm', 'Chuyến du lịch', 'Bài hát', 'Trò chơi'], a: 0, hint: 'Hoạt động khoa học để kiểm tra một lý thuyết.' },
-        { type: 'mcq', q: 'Từ <b>"explorer (n)"</b> chỉ người làm nghề/công việc gì?', options: ['Nhà thám hiểm', 'Bác sĩ', 'Thợ làm bánh', 'Cảnh sát'], a: 0, hint: 'Người đi đến những vùng đất mới để tìm hiểu.' },
-        { type: 'mcq', q: 'Động từ <b>"solve (v)"</b> có nghĩa là gì?', options: ['Giải quyết, giải đáp', 'Làm rối', 'Bỏ qua', 'Tạo lỗi'], a: 0, hint: 'Tìm ra câu trả lời cho một bài toán hay vấn đề.' },
-        { type: 'mcq', q: 'Từ <b>"energy (n)"</b> mang nghĩa là gì?', options: ['Năng lượng', 'Âm nhạc', 'Trang phục', 'Thời tiết'], a: 0, hint: 'Sức mạnh dùng để vận hành máy móc hoặc cơ thể.' },
-        { type: 'mcq', q: 'Danh từ <b>"device (n)"</b> có nghĩa là gì?', options: ['Thiết bị, dụng cụ', 'Con vật', 'Bài phát biểu', 'Kế hoạch'], a: 0, hint: 'Một vật được làm ra cho mục đích kỹ thuật nhất định.' },
-        { type: 'mcq', q: 'Tính từ <b>"useful (adj)"</b> dùng để tả cái gì?', options: ['Hữu ích, có ích', 'Vô dụng', 'Nguy hiểm', 'Đắt tiền'], a: 0, hint: 'Giúp ích được nhiều việc cho con người.' }
+        { type: 'mcq', q: 'Từ <b>"stone (n)"</b> là loại chất liệu nào?', options: ['Đá', 'Gỗ', 'Nhựa', 'Thủy tinh'], a: 0, hint: 'Chất liệu cứng lấy từ lòng đất hoặc núi đá.' }
     ];
 
     let currentQuestionIndex = 0;
@@ -953,9 +933,9 @@
         finalScoreDisplay.innerText = globalScore;
 
         let levelStr = "";
-        if (globalScore >= 7500) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
-        else if (globalScore >= 5000) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
-        else if (globalScore >= 3000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
+        if (globalScore >= 5000) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
+        else if (globalScore >= 3500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
+        else if (globalScore >= 2000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
         else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
 
         rewardLevel.innerText = levelStr;
