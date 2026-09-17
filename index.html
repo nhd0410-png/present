@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đấu Trường Nhí - Non-Defining Relative Clauses & Unit 4 Vocab Invaders</title>
+    <title>Đấu Trường Nhí - Present Perfect Galaxy Challenge</title>
     <style>
         :root {
             --bg-color: #020010;
@@ -151,47 +151,6 @@
             align-items: center;
         }
 
-        .word-token {
-            display: inline-block;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(0, 255, 240, 0.3);
-            border-radius: 6px;
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.2s ease;
-            font-weight: 600;
-            color: #fff;
-            width: 90%;
-            max-width: 650px;
-            text-align: left;
-            box-sizing: border-box;
-        }
-
-        .word-token:hover:not(.disabled) {
-            background: rgba(0, 255, 240, 0.2);
-            box-shadow: 0 0 10px rgba(0, 255, 240, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .word-token.selected-wrong {
-            background: rgba(255, 65, 108, 0.4) !important;
-            border-color: var(--wrong-color) !important;
-            text-decoration: line-through;
-            cursor: not-allowed;
-        }
-
-        .word-token.selected-target {
-            background: rgba(57, 255, 22, 0.3) !important;
-            border-color: var(--correct-color) !important;
-            box-shadow: 0 0 15px var(--correct-color);
-        }
-
-        .word-token.disabled {
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
         .battle-deck {
             display: grid;
             grid-template-columns: 1fr 180px;
@@ -324,8 +283,8 @@
         }
 
         .written-input {
-            width: 80%;
-            max-width: 400px;
+            width: 85%;
+            max-width: 500px;
             padding: 12px 20px;
             font-size: 1.3rem;
             border: 2px solid var(--border-neon);
@@ -425,12 +384,12 @@
     <!-- INTRO SCREEN -->
     <div id="intro-screen" class="screen active-screen">
         <div class="header-title">Đấu Trường Nhí</div>
-        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Cambridge Global English 6 - Unit 4: Inventions & Discoveries</p>
+        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Present Perfect Grammar Challenge - 35 Fill-in-the-Blank Questions</p>
         
         <div class="intro-rules">
-            <strong>🚀 LUẬT CHƠI VŨ TRỤ CÂU ĐẠI TỪ QUAN HỆ & TỪ VỰNG:</strong><br>
-            • 🌿 <b>Giai đoạn 1 (Câu 1-20):</b> Mệnh đề quan hệ không xác định (Non-Defining Relative Clauses - có dấu phẩy). Điền đại từ quan hệ phù hợp <b>(who, which, where, when, whose)</b>. <i>Lưu ý: "that" KHÔNG được sử dụng sau dấu phẩy!</i><br>
-            • 🌿 <b>Giai đoạn 2 (Câu 21-40):</b> Trắc nghiệm 100% từ vựng Unit 4 Cambridge Global English Grade 6 (chọn đáp án đúng A, B, C, D).<br>
+            <strong>🚀 LUẬT CHƠI THỬ THÁCH THÌ HIỆN TẠI HOÀN THÀNH (PRESENT PERFECT):</strong><br>
+            • 🌿 Điền dạng đúng của động từ trong ngoặc theo thì Present Perfect <b>(have/has + V3/ed)</b> vào ô trống.<br>
+            • 📝 Đối với câu hỏi, con có thể điền cả cụm động từ hoặc câu hỏi hoàn chỉnh.<br>
             • 🛸 Con có <b>5 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi thử thách!
         </div>
         
@@ -442,7 +401,7 @@
     <!-- GAMEPLAY SCREEN -->
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">40</span></div>
+            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">35</span></div>
             <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
             <div id="phase-timer-display" style="visibility: visible;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
@@ -529,49 +488,41 @@
 
 <script>
     const quizData = [
-        // PHASE 1: RENEWED NON-DEFINING RELATIVE CLAUSES WITH COMMAS (1-20)
-        { type: 'text', q: 'Alexander Graham Bell, ________ invented the telephone, was born in Scotland.', a: ['who'], hint: 'Chỉ người đóng vai trò chủ ngữ sau dấu phẩy -> dùng WHO (không dùng THAT).' },
-        { type: 'text', q: 'The Solar System, ________ includes eight major planets, is billions of years old.', a: ['which'], hint: 'Chỉ hệ thống/vật thể sau dấu phẩy -> dùng WHICH (không dùng THAT).' },
-        { type: 'text', q: 'Silicon Valley, ________ many tech companies are located, is in California.', a: ['where'], hint: 'Chỉ địa điểm/nơi chốn -> dùng WHERE.' },
-        { type: 'text', q: 'Marie Curie, ________ research on radioactivity won two Nobel Prizes, was a famous scientist.', a: ['whose'], hint: 'Sở hữu (Marie Curie + research) -> dùng WHOSE.' },
-        { type: 'text', q: '1969, ________ humans first walked on the Moon, was a historic year.', a: ['when'], hint: 'Chỉ mốc thời gian -> dùng WHEN.' },
-        { type: 'text', q: 'The steam engine, ________ powered early trains, transformed global industry.', a: ['which'], hint: 'Chỉ đồ vật/máy móc làm chủ ngữ sau dấu phẩy -> dùng WHICH.' },
-        { type: 'text', q: 'Thomas Edison, ________ created the incandescent light bulb, held over 1,000 patents.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO.' },
-        { type: 'text', q: 'Oxford University, ________ many world leaders studied, is the oldest university in the English-speaking world.', a: ['where'], hint: 'Chỉ địa điểm -> dùng WHERE.' },
-        { type: 'text', q: 'The Wright brothers, ________ first airplane flew in 1903, changed global travel forever.', a: ['whose'], hint: 'Sở hữu (Wright brothers + airplane) -> dùng WHOSE.' },
-        { type: 'text', q: 'Spring, ________ flowers bloom and nature awakens, is my favorite season.', a: ['when'], hint: 'Chỉ thời gian/mùa -> dùng WHEN.' },
-        { type: 'text', q: 'The Great Wall of China, ________ spans thousands of miles, attracts millions of visitors.', a: ['which'], hint: 'Chỉ công trình/vật thể sau dấu phẩy -> dùng WHICH.' },
-        { type: 'text', q: 'Leonardo da Vinci, ________ painted the Mona Lisa, was also a brilliant inventor.', a: ['who'], hint: 'Chỉ người sau dấu phẩy -> dùng WHO.' },
-        { type: 'text', q: 'Cairo, ________ the Ancient Pyramids stand, is the capital of Egypt.', a: ['where'], hint: 'Chỉ nơi chốn -> dùng WHERE.' },
-        { type: 'text', q: 'Galileo, ________ telescope revealed the moons of Jupiter, was an Italian astronomer.', a: ['whose'], hint: 'Sở hữu (Galileo + telescope) -> dùng WHOSE.' },
-        { type: 'text', q: '1945, ________ World War II ended, marked the start of a new global era.', a: ['when'], hint: 'Chỉ thời gian -> dùng WHEN.' },
-        { type: 'text', q: 'The printing press, ________ was invented by Gutenberg, made books widely available.', a: ['which'], hint: 'Chỉ phát minh/đồ vật -> dùng WHICH.' },
-        { type: 'text', q: 'Isaac Newton, ________ formulated the laws of motion, studied at Cambridge.', a: ['who'], hint: 'Chỉ người -> dùng WHO.' },
-        { type: 'text', q: 'The Louvre, ________ thousands of famous artworks are preserved, is a giant museum in Paris.', a: ['where'], hint: 'Chỉ địa điểm -> dùng WHERE.' },
-        { type: 'text', q: 'The architect, ________ blueprint was chosen for the new monument, felt extremely proud.', a: ['whose'], hint: 'Sở hữu (architect + blueprint) -> dùng WHOSE.' },
-        { type: 'text', q: 'Ancient Rome, ________ conquered much of Europe, was known for its engineering marvels.', a: ['which'], hint: 'Chỉ quốc gia/đế chế đóng vai trò chủ ngữ -> dùng WHICH.' },
-
-        // PHASE 2: CAMBRIDGE GRADE 6 UNIT 4 VOCABULARY MCQ ONLY (21-40) - COMMAS REMOVED FROM OPTIONS
-        { type: 'mcq', q: 'Trong tiếng Anh, từ <b>"invention (n)"</b> mang ý nghĩa là gì?', options: ['Sự phát minh hoặc vật sáng chế', 'Môi trường sống', 'Trận thi đấu', 'Sự di cư'], a: 0, hint: 'Một thứ hoàn toàn mới do con người sáng tạo ra.' },
-        { type: 'mcq', q: 'Động từ <b>"discover (v)"</b> có nghĩa là gì?', options: ['Sửa chữa', 'Khám phá hoặc tìm ra', 'Trốn tránh', 'Xây dựng'], a: 1, hint: 'Tìm ra một điều gì đó đã tồn tại mà trước đây chưa ai biết.' },
-        { type: 'mcq', q: 'Tính từ <b>"ancient (adj)"</b> dùng để miêu tả điều gì?', options: ['Hiện đại tươi mới', 'Cổ đại hoặc rất xưa', 'Nhanh chóng', 'Nguy hiểm'], a: 1, hint: 'Có từ thời xa xưa trong lịch sử.' },
-        { type: 'mcq', q: 'Từ <b>"scientist (n)"</b> dùng để chỉ ai?', options: ['Bác sĩ', 'Nhà khoa học', 'Họa sĩ', 'Nhà giáo'], a: 1, hint: 'Người nghiên cứu các ngành khoa học.' },
-        { type: 'mcq', q: 'Động từ <b>"explore (v)"</b> có nghĩa là gì?', options: ['Thám hiểm và khám phá', 'Bán hàng', 'Phá hủy', 'Ngăn cản'], a: 0, hint: 'Đi tới những nơi lạ để tìm hiểu và nghiên cứu.' },
-        { type: 'mcq', q: 'Từ <b>"museum (n)"</b> là địa điểm nào?', options: ['Công viên nước', 'Bảo tàng trưng bày hiện vật', 'Rạp chiếu phim', 'Bệnh viện'], a: 1, hint: 'Nơi giữ gìn và trưng bày các hiện vật lịch sử và nghệ thuật.' },
-        { type: 'mcq', q: 'Từ <b>"material (n)"</b> mang nghĩa là gì?', options: ['Vật liệu hoặc chất liệu', 'Thời tiết', 'Năng lượng', 'Âm thanh'], a: 0, hint: 'Chất dùng để chế tạo hoặc làm ra sản phẩm như gỗ, đá, kim loại.' },
-        { type: 'mcq', q: 'Từ <b>"tool (n)"</b> có nghĩa là gì?', options: ['Dụng cụ hoặc công cụ', 'Trang phục', 'Vũ khí', 'Đồ chơi'], a: 0, hint: 'Vật cầm tay như búa, dao, kéo dùng để làm việc.' },
-        { type: 'mcq', q: 'Từ <b>"design (v/n)"</b> có nghĩa là gì?', options: ['Thiết kế hoặc bản thiết kế', 'Đọc sách', 'Di chuyển', 'Săn bắt'], a: 0, hint: 'Lập kế hoạch và vẽ phác thảo cấu tạo của một vật.' },
-        { type: 'mcq', q: 'Động từ <b>"protect (v)"</b> có nghĩa là gì?', options: ['Làm hỏng', 'Bảo vệ hoặc giữ gìn', 'Tấn công', 'Bỏ rơi'], a: 1, hint: 'Giữ cho ai hoặc cái gì khỏi bị nguy hiểm hay tổn hại.' },
-        { type: 'mcq', q: 'Động từ <b>"survive (v)"</b> diễn tả hành động nào?', options: ['Sống sót sinh tồn', 'Quên đi', 'Kết thúc', 'Bắt đầu'], a: 0, hint: 'Tiếp tục sống sau một sự kiện nguy hiểm hoặc điều kiện khắc nghiệt.' },
-        { type: 'mcq', q: 'Danh từ <b>"structure (n)"</b> có nghĩa là gì?', options: ['Cấu trúc hoặc công trình xây dựng', 'Tiền bạc', 'Thức ăn', 'Cảm xúc'], a: 0, hint: 'Cách sắp xếp các phần hoặc một công trình như tòa nhà hay kim tự tháp.' },
-        { type: 'mcq', q: 'Từ <b>"history (n)"</b> chỉ lĩnh vực nào?', options: ['Âm nhạc', 'Lịch sử và các sự kiện quá khứ', 'Địa lý', 'Hóa học'], a: 1, hint: 'Môn học hoặc quá trình diễn ra các sự kiện trong quá khứ.' },
-        { type: 'mcq', q: 'Từ <b>"artifact (n)"</b> có nghĩa là gì?', options: ['Cổ vật hoặc hiện vật lịch sử', 'Sinh vật biển', 'Hiện tượng thời tiết', 'Máy vi tính'], a: 0, hint: 'Đồ vật do người xưa tạo ra mang giá trị lịch sử.' },
-        { type: 'mcq', q: 'Danh từ <b>"equipment (n)"</b> có nghĩa là gì?', options: ['Trang thiết bị dụng cụ chuyên dụng', 'Động vật nuôi', 'Đất đai', 'Nguồn nước'], a: 0, hint: 'Các dụng cụ cần thiết cho một hoạt động cụ thể.' },
-        { type: 'mcq', q: 'Động từ <b>"trade (v/n)"</b> nghĩa là gì?', options: ['Mua bán trao đổi thương mại', 'Học tập', 'Ngủ nghỉ', 'Vẽ tranh'], a: 0, hint: 'Hoạt động trao đổi hàng hóa giữa người với người.' },
-        { type: 'mcq', q: 'Động từ <b>"create (v)"</b> có nghĩa là gì?', options: ['Tạo ra hoặc sáng tạo', 'Tìm kiếm', 'Phá hủy', 'Đốm lửa'], a: 0, hint: 'Làm ra một cái gì đó mới chưa từng có.' },
-        { type: 'mcq', q: 'Danh từ <b>"object (n)"</b> chỉ cái gì?', options: ['Đồ vật hoặc vật thể', 'Ý tưởng', 'Cảm giác', 'Thời gian'], a: 0, hint: 'Một vật cứng có thể nhìn thấy và chạm vào được.' },
-        { type: 'mcq', q: 'Tính từ <b>"natural (adj)"</b> có nghĩa là gì?', options: ['Nhân tạo', 'Thuộc về tự nhiên', 'Đắt đỏ', 'Nguy hiểm'], a: 1, hint: 'Có sẵn trong thiên nhiên, không phải do con người làm ra.' },
-        { type: 'mcq', q: 'Từ <b>"stone (n)"</b> là loại chất liệu nào?', options: ['Đá', 'Gỗ', 'Nhựa', 'Thủy tinh'], a: 0, hint: 'Chất liệu cứng lấy từ lòng đất hoặc núi đá.' }
+        { type: 'text', q: '1. She _____ (visit) London twice this year.', a: ['has visited'], hint: 'Chủ ngữ "She" -> dùng HAS + V3 (visited)' },
+        { type: 'text', q: '2. _____ you _____ (finish) your homework yet?', a: ['have you finished', 'have finished'], hint: 'Câu hỏi với "you" -> HAVE + subject + V3 (finished)' },
+        { type: 'text', q: '3. They _____ (not / see) that movie before.', a: ['have not seen', "haven't seen"], hint: 'Phủ định với "They" -> HAVE NOT / HAVEN\'T + V3 (seen)' },
+        { type: 'text', q: '4. He _____ (buy) a new smartphone.', a: ['has bought'], hint: 'Chủ ngữ "He" -> HAS + V3 (bought)' },
+        { type: 'text', q: '5. _____ she _____ (call) you today?', a: ['has she called', 'has called'], hint: 'Câu hỏi với "she" -> HAS + subject + V3 (called)' },
+        { type: 'text', q: '6. We _____ (live) in this city since 2018.', a: ['have lived'], hint: 'Chủ ngữ "We" -> HAVE + V3 (lived)' },
+        { type: 'text', q: '7. I _____ (never / eat) sushi before.', a: ['have never eaten'], hint: 'Chủ ngữ "I" -> HAVE + never + V3 (eaten)' },
+        { type: 'text', q: '8. _____ they _____ (find) their missing keys?', a: ['have they found', 'have found'], hint: 'Câu hỏi với "they" -> HAVE + subject + V3 (found)' },
+        { type: 'text', q: '9. The scientist _____ (discover) a new plant species.', a: ['has discovered'], hint: 'Số ít ("The scientist") -> HAS + V3 (discovered)' },
+        { type: 'text', q: '10. She _____ (not / complete) her project yet.', a: ['has not completed', "hasn't completed"], hint: 'Phủ định với "She" -> HAS NOT / HASN\'T + V3 (completed)' },
+        { type: 'text', q: '11. _____ you _____ (ever / fly) in a helicopter?', a: ['have you ever flown', 'have ever flown'], hint: 'Câu hỏi kinh nghiệm -> HAVE + subject + ever + V3 (flown)' },
+        { type: 'text', q: '12. He _____ (break) his glasses again.', a: ['has broken'], hint: 'Chủ ngữ "He" -> HAS + V3 (broken)' },
+        { type: 'text', q: '13. My parents _____ (travel) to five different countries.', a: ['have traveled', 'have travelled'], hint: 'Số nhiều ("My parents") -> HAVE + V3 (traveled / travelled)' },
+        { type: 'text', q: '14. _____ the train _____ (already / leave)?', a: ['has the train already left', 'has already left'], hint: 'Số ít ("the train") -> HAS + subject + already + V3 (left)' },
+        { type: 'text', q: '15. I _____ (lose) my wallet somewhere in the park.', a: ['have lost'], hint: 'Chủ ngữ "I" -> HAVE + V3 (lost)' },
+        { type: 'text', q: '16. They _____ (not / clean) their room today.', a: ['have not cleaned', "haven't cleaned"], hint: 'Phủ định với "They" -> HAVE NOT / HAVEN\'T + V3 (cleaned)' },
+        { type: 'text', q: '17. _____ you _____ (meet) the new English teacher?', a: ['have you met', 'have met'], hint: 'Câu hỏi với "you" -> HAVE + subject + V3 (met)' },
+        { type: 'text', q: '18. She _____ (write) three books so far.', a: ['has written'], hint: 'Chủ ngữ "She" -> HAS + V3 (written)' },
+        { type: 'text', q: '19. We _____ (watch) this documentary twice.', a: ['have watched'], hint: 'Chủ ngữ "We" -> HAVE + V3 (watched)' },
+        { type: 'text', q: '20. _____ he _____ (read) the latest news article?', a: ['has he read', 'has read'], hint: 'Câu hỏi với "he" -> HAS + subject + V3 (read)' },
+        { type: 'text', q: '21. The team _____ (win) the championship match.', a: ['has won', 'have won'], hint: 'Chủ ngữ tập thể -> HAS / HAVE + V3 (won)' },
+        { type: 'text', q: '22. I _____ (not / receive) your email yet.', a: ['have not received', "haven't received"], hint: 'Phủ định với "I" -> HAVE NOT / HAVEN\'T + V3 (received)' },
+        { type: 'text', q: '23. _____ you _____ (ever / visit) an ancient museum?', a: ['have you ever visited', 'have ever visited'], hint: 'Câu hỏi trải nghiệm -> HAVE + subject + ever + V3 (visited)' },
+        { type: 'text', q: '24. She _____ (speak) to the manager about the issue.', a: ['has spoken'], hint: 'Chủ ngữ "She" -> HAS + V3 (spoken)' },
+        { type: 'text', q: '25. They _____ (build) a new solar-powered vehicle.', a: ['have built'], hint: 'Chủ ngữ "They" -> HAVE + V3 (built)' },
+        { type: 'text', q: '26. _____ he _____ (fix) the broken laptop?', a: ['has he fixed', 'has fixed'], hint: 'Câu hỏi với "he" -> HAS + subject + V3 (fixed)' },
+        { type: 'text', q: '27. We _____ (not / learn) this grammar rule yet.', a: ['have not learned', "haven't learned", 'have not learnt', "haven't learnt"], hint: 'Phủ định với "We" -> HAVE NOT / HAVEN\'T + V3 (learned/learnt)' },
+        { type: 'text', q: '28. Alexander _____ (create) a useful new gadget.', a: ['has created'], hint: 'Tên riêng số ít -> HAS + V3 (created)' },
+        { type: 'text', q: '29. _____ you _____ (hear) about the latest invention?', a: ['have you heard', 'have heard'], hint: 'Câu hỏi với "you" -> HAVE + subject + V3 (heard)' },
+        { type: 'text', q: '30. The children _____ (paint) a mural on the wall.', a: ['have painted'], hint: 'Số nhiều ("The children") -> HAVE + V3 (painted)' },
+        { type: 'text', q: '31. She _____ (forget) her account password.', a: ['has forgotten'], hint: 'Chủ ngữ "She" -> HAS + V3 (forgotten)' },
+        { type: 'text', q: '32. _____ they _____ (start) the space mission?', a: ['have they started', 'have started'], hint: 'Câu hỏi với "they" -> HAVE + subject + V3 (started)' },
+        { type: 'text', q: '33. I _____ (already / take) all the required photos.', a: ['have already taken'], hint: 'Chủ ngữ "I" -> HAVE + already + V3 (taken)' },
+        { type: 'text', q: '34. He _____ (not / wear) his heavy coat today.', a: ['has not worn', "hasn't worn"], hint: 'Phủ định với "He" -> HAS NOT / HASN\'T + V3 (worn)' },
+        { type: 'text', q: '35. _____ you _____ (understand) the lesson so far?', a: ['have you understood', 'have understood'], hint: 'Câu hỏi với "you" -> HAVE + subject + V3 (understood)' }
     ];
 
     let currentQuestionIndex = 0;
@@ -654,35 +605,20 @@
         currentQNum.innerText = currentQuestionIndex + 1;
         let currentQ = quizData[currentQuestionIndex];
 
-        if (currentQ.type === 'text') {
-            instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền đại từ quan hệ (who, which, where, when, whose) - Không dùng 'that'!";
-            questionPrompt.innerHTML = currentQ.q;
+        instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền từ/cụm từ thích hợp vào chỗ trống (Present Perfect)";
+        questionPrompt.innerHTML = currentQ.q;
 
-            correctionZone.innerHTML = `
-                <div class="correction-container">
-                    <input type="text" id="correction-field" class="written-input" placeholder="Nhập câu trả lời của con..." autocomplete="off" onkeyup="checkEnterKey(event)">
-                    <br><br>
-                    <button class="control-btn blue" onclick="submitTextAnswer()">Xác Nhận Năng Lượng 🚀</button>
-                </div>
-            `;
-            setTimeout(() => {
-                let field = document.getElementById("correction-field");
-                if (field) field.focus();
-            }, 150);
-
-        } else if (currentQ.type === 'mcq') {
-            instructionTitle.innerText = "🎯 NHIỆM VỤ: Chọn đáp án từ vựng tiếng Việt chính xác nhất";
-            questionPrompt.innerHTML = currentQ.q;
-
-            currentQ.options.forEach((opt, idx) => {
-                let token = document.createElement("div");
-                token.className = "word-token";
-                token.id = `token-${idx}`;
-                token.innerHTML = `<strong>${String.fromCharCode(65 + idx)}.</strong> ${opt}`;
-                token.onclick = () => handleMCQClick(idx, token);
-                sentenceBox.appendChild(token);
-            });
-        }
+        correctionZone.innerHTML = `
+            <div class="correction-container">
+                <input type="text" id="correction-field" class="written-input" placeholder="Nhập câu trả lời của con..." autocomplete="off" onkeyup="checkEnterKey(event)">
+                <br><br>
+                <button class="control-btn blue" onclick="submitTextAnswer()">Xác Nhận Năng Lượng 🚀</button>
+            </div>
+        `;
+        setTimeout(() => {
+            let field = document.getElementById("correction-field");
+            if (field) field.focus();
+        }, 150);
 
         document.getElementById("ll-hint").disabled = (grammarHintsCount <= 0);
         startCountdownTimer();
@@ -734,7 +670,8 @@
         document.body.classList.remove("panic-mode");
 
         let currentQ = quizData[currentQuestionIndex];
-        let isCorrect = currentQ.a.some(ans => userText.toLowerCase() === ans.toLowerCase());
+        let normUser = userText.toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' ').trim();
+        let isCorrect = currentQ.a.some(ans => normUser === ans.toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' ').trim());
 
         fireArcadeLaser(inputField, isCorrect, () => {
             inputField.disabled = true;
@@ -760,51 +697,12 @@
         });
     }
 
-    function handleMCQClick(idx, tokenElement) {
-        if (currentGameState !== "playing" || tokenElement.classList.contains("disabled") || tokenElement.classList.contains("selected-wrong")) return;
-
-        let currentQ = quizData[currentQuestionIndex];
-        let isCorrect = (idx === currentQ.a);
-
-        if (isCorrect) {
-            currentGameState = "finished";
-            clearInterval(timerInterval);
-            document.body.classList.remove("panic-mode");
-
-            tokenElement.classList.add("selected-target");
-            const tokens = sentenceBox.querySelectorAll(".word-token");
-            tokens.forEach(t => { if (t !== tokenElement) t.classList.add("disabled"); });
-
-            fireArcadeLaser(tokenElement, true, () => {
-                userAnswersLog.push({ qIndex: currentQuestionIndex, userText: tokenElement.innerText, isCorrect: true, isTimeOut: false });
-                let gainedPoints = 150 + timeLeft;
-                globalScore += gainedPoints;
-                scoreDisplay.innerText = globalScore;
-                statusMessage.innerHTML = `<span style='color: var(--correct-color)'>🎯 CHÍNH XÁC! Con lựa chọn rất tốt! +${gainedPoints} Điểm.</span>`;
-                nextBtn.style.display = "inline-block";
-            });
-        } else {
-            userLives--;
-            updateLivesUI();
-            tokenElement.classList.add("selected-wrong");
-
-            fireArcadeLaser(tokenElement, false, () => {
-                if (userLives <= 0) {
-                    userAnswersLog.push({ qIndex: currentQuestionIndex, userText: tokenElement.innerText, isCorrect: false, isTimeOut: false });
-                    handleGameOverLoss();
-                } else {
-                    statusMessage.innerHTML = "<span style='color: var(--wrong-color)'>💥 Sai tọa độ mục tiêu! Hãy suy nghĩ và thử lại đáp án khác.</span>";
-                }
-            });
-        }
-    }
-
     function handleTimeOut() {
         currentGameState = "finished";
         document.body.classList.remove("panic-mode");
         
         let currentQ = quizData[currentQuestionIndex];
-        let correctStr = currentQ.type === 'mcq' ? currentQ.options[currentQ.a] : currentQ.a.join(' / ');
+        let correctStr = currentQ.a.join(' / ');
 
         if (document.getElementById("correction-field")) document.getElementById("correction-field").disabled = true;
 
@@ -933,7 +831,7 @@
         finalScoreDisplay.innerText = globalScore;
 
         let levelStr = "";
-        if (globalScore >= 5000) levelStr = "👑 ĐẠI TƯỚNG VŨ TRỤ (Xuất Sắc!)";
+        if (globalScore >= 5000) levelStr = "👑 ĐẠI TƯỚNG NGỮ PHÁP (Xuất Sắc!)";
         else if (globalScore >= 3500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
         else if (globalScore >= 2000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
         else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
@@ -946,7 +844,7 @@
             let itemData = quizData[ans.qIndex];
             if (!itemData) return "";
             let displayPrompt = itemData.q.replace(/<[^>]*>/g, ''); 
-            let correctAnsStr = itemData.type === 'mcq' ? itemData.options[itemData.a] : itemData.a.join(' / ');
+            let correctAnsStr = itemData.a.join(' / ');
             return `Thử thách ${ans.qIndex + 1}: ${displayPrompt}\n- Con chọn/nhập: ${ans.userText}\n- Kết quả: ${ans.isCorrect ? 'ĐÚNG ✔' : 'SAI ✘ (Đáp án đúng: ' + correctAnsStr + ')'}`;
         }).join("\n\n");
         
@@ -966,7 +864,7 @@
             itemDiv.className = `history-item ${ans.isCorrect ? "history-correct" : "history-wrong"}`;
             
             let displayPrompt = itemData.q.replace(/<[^>]*>/g, ''); 
-            let correctAnsStr = itemData.type === 'mcq' ? itemData.options[itemData.a] : itemData.a.join(' / ');
+            let correctAnsStr = itemData.a.join(' / ');
 
             itemDiv.innerHTML = `
                 <div style="font-weight:bold; color:#fff;">Thử thách ${ans.qIndex + 1}: ${displayPrompt}</div>
