@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đấu Trường Nhí - Present Perfect Galaxy Challenge</title>
+    <title>Đấu Trường Nhí - Unit 1 Global Success 10</title>
     <style>
         :root {
             --bg-color: #020010;
@@ -33,15 +33,6 @@
             margin: 0;
             padding: 10px;
             overflow-x: hidden;
-        }
-
-        body.panic-mode {
-            animation: spacePanic 0.5s infinite alternate;
-        }
-
-        @keyframes spacePanic {
-            from { background-color: #020010; }
-            to { background-color: #20000a; }
         }
 
         #laser-canvas {
@@ -93,43 +84,6 @@
             gap: 10px;
         }
 
-        .timer-zone-wrapper {
-            margin: 15px 0;
-            text-align: center;
-            display: none;
-        }
-
-        .timer-container {
-            width: 100%;
-            height: 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid rgba(0, 255, 240, 0.4);
-            box-shadow: inset 0 0 10px rgba(0, 255, 240, 0.2);
-        }
-
-        .timer-bar {
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(to right, #00ff87, #00fff0);
-            transition: width 1s linear, background 0.5s;
-        }
-
-        #countdown-text {
-            color: #00ff87;
-            font-size: 1.3rem;
-            font-weight: 900;
-            text-shadow: 0 0 8px currentColor;
-        }
-        #countdown-text.warning { color: #ffaa00; }
-        #countdown-text.panic { color: #ff4b5c; animation: textBlink 0.4s infinite alternate; }
-
-        @keyframes textBlink {
-            from { opacity: 1; transform: scale(1); }
-            to { opacity: 0.5; transform: scale(1.05); }
-        }
-
         .question-box {
             background: rgba(13, 17, 43, 0.9);
             border: 2px solid #fff;
@@ -140,15 +94,6 @@
             margin-bottom: 15px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        .interactive-sentence {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 10px;
-            margin: 15px 0;
-            align-items: center;
         }
 
         .battle-deck {
@@ -183,27 +128,6 @@
             width: 100%;
             height: 100%;
             filter: drop-shadow(0 0 8px rgba(0, 255, 240, 0.6));
-            transition: opacity 0.1s;
-        }
-
-        .spaceship-container.shooting {
-            animation: recoil 0.1s ease-out;
-        }
-
-        .spaceship-container.exploded {
-            animation: shipBlowUp 0.5s ease-out forwards;
-        }
-
-        @keyframes recoil {
-            0% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(8px) scale(0.95); }
-            100% { transform: translateY(0) scale(1); }
-        }
-
-        @keyframes shipBlowUp {
-            0% { transform: scale(1) rotate(0); opacity: 1; filter: hue-rotate(0deg) brightness(3); }
-            50% { transform: scale(1.4) rotate(45deg); opacity: 0.6; filter: hue-rotate(90deg) brightness(5); }
-            100% { transform: scale(0) rotate(180deg); opacity: 0; }
         }
 
         .powerup-cockpit {
@@ -255,7 +179,6 @@
             border-color: #333 !important;
             color: #555 !important;
             cursor: not-allowed;
-            box-shadow: none;
         }
 
         .lifeline-count {
@@ -274,12 +197,6 @@
             border-radius: 8px;
             text-align: center;
             margin-top: 15px;
-            animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-10px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
 
         .written-input {
@@ -296,10 +213,6 @@
             box-shadow: 0 0 10px rgba(0, 255, 240, 0.2);
         }
 
-        .written-input:focus {
-            box-shadow: 0 0 15px #00fff0;
-        }
-
         #status-message {
             min-height: 35px;
             margin-top: 10px;
@@ -307,7 +220,6 @@
             font-weight: bold;
             color: var(--accent-color);
             text-align: center;
-            line-height: 1.5;
         }
 
         .action-btn {
@@ -351,24 +263,16 @@
             transition: transform 0.2s;
         }
 
-        .start-game-btn:hover, .control-btn:hover {
-            transform: scale(1.03);
-        }
-
         .control-btn { font-size: 1rem; padding: 12px 25px; }
-        .control-btn.blue { background: linear-gradient(135deg, #00b4db, #0083b0); color: #fff; box-shadow: 0 0 15px rgba(0,180,219,0.4); }
+        .control-btn.blue { background: linear-gradient(135deg, #00b4db, #0083b0); color: #fff; }
 
         .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
-
         .history-container { text-align: left; max-height: 350px; overflow-y: auto; margin-top: 20px; }
         .history-item { background: rgba(255, 255, 255, 0.03); padding: 15px; margin-bottom: 10px; border-radius: 6px; border-left: 4px solid #fff; }
         .history-item.history-correct { border-left-color: var(--correct-color); }
         .history-item.history-wrong { border-left-color: var(--wrong-color); }
 
-        .heart-icon {
-            color: #ff4b5c;
-            font-size: 1.4rem;
-        }
+        .heart-icon { color: #ff4b5c; font-size: 1.4rem; }
 
         @media (max-width: 600px) {
             .battle-deck { grid-template-columns: 1fr; }
@@ -384,50 +288,44 @@
     <!-- INTRO SCREEN -->
     <div id="intro-screen" class="screen active-screen">
         <div class="header-title">Đấu Trường Nhí</div>
-        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Present Perfect Grammar Challenge - 35 Fill-in-the-Blank Questions</p>
+        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Unit 1 Global Success 10: Housework & Present Simple Challenge (25 Câu)</p>
         
         <div class="intro-rules">
-            <strong>🚀 LUẬT CHƠI THỬ THÁCH THÌ HIỆN TẠI HOÀN THÀNH (PRESENT PERFECT):</strong><br>
-            • 🌿 Điền dạng đúng của động từ trong ngoặc theo thì Present Perfect <b>(have/has + V3/ed)</b> vào ô trống.<br>
-            • 📝 Đối với câu hỏi, con có thể điền cả cụm động từ hoặc câu hỏi hoàn chỉnh.<br>
-            • 🛸 Con có <b>5 Mạng ❤️</b> và <b>50 giây ⏳</b> cho mỗi thử thách!
+            <strong>🚀 BỘ CÂU HỎI TIẾNG ANH 10 - UNIT 1 (25 CÂU):</strong><br>
+            • <b>Phần 1 (Câu 1-10):</b> Trắc nghiệm Từ vựng Công việc nhà (Housework) - Chọn A, B, C, D hoặc gõ chữ cái đại diện!<br>
+            • <b>Phần 2 (Câu 11-25):</b> Chia động từ Thì Hiện Tại Đơn (Khẳng định, Phủ định và Nghi vấn).<br>
+            • 📝 Chú ý chia động từ theo đúng ngôi chủ ngữ (S) và dạng câu!<br>
+            • 🛸 Con có <b>5 Mạng ❤️</b> và <b>Không Giới Hạn Thời Gian ♾️</b> cho mỗi câu hỏi!
         </div>
         
         <div style="text-align: center;">
-            <button class="start-game-btn" onclick="startGame()">Bắt Đầu Chiến Đấu 🚀</button>
+            <button class="start-game-btn" onclick="startGame()">Bắt Đầu Bứt Phá 🚀</button>
         </div>
     </div>
 
     <!-- GAMEPLAY SCREEN -->
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">35</span></div>
+            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">25</span></div>
             <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
-            <div id="phase-timer-display" style="visibility: visible;">⏳ Còn lại: <span id="countdown-text">50s</span></div>
+            <div style="color: #00fff0;">⏳ Thời gian: <span>Không giới hạn ♾️</span></div>
         </div>
 
         <div class="question-box">
-            <div id="instruction-title" style="font-size: 1rem; color: #00fff0; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">🎯 NHIỆM VỤ:</div>
+            <div id="instruction-title" style="font-size: 1rem; color: #00fff0; margin-bottom: 10px; text-transform: uppercase;">🎯 NHIỆM VỤ CƠ BẢN:</div>
             <div id="question-prompt" style="font-weight: 600; margin-bottom: 15px;"></div>
-            <div id="interactive-sentence-box" class="interactive-sentence"></div>
-        </div>
-
-        <div id="timer-wrapper-element" class="timer-zone-wrapper" style="display: block;">
-            <div class="timer-container">
-                <div id="timer-bar" class="timer-bar"></div>
-            </div>
         </div>
 
         <div id="correction-zone"></div>
-
         <div id="status-message"></div>
+
         <div style="text-align: center;">
             <button id="next-btn" class="action-btn" onclick="nextQuestion()">Câu Tiếp Theo ➜</button>
         </div>
 
         <div class="battle-deck">
-            <div class="space-arena" id="arena-box">
+            <div class="space-arena">
                 <div class="spaceship-container" id="player-ship">
                     <svg class="spaceship-svg" viewBox="0 0 60 60">
                         <path d="M30,5 L10,50 L25,42 L30,55 L35,42 L50,50 Z" fill="#00ff87" stroke="#ffffff" stroke-width="2"/>
@@ -438,7 +336,7 @@
                 </div>
             </div>
 
-            <div class="powerup-cockpit" id="lifelines-zone">
+            <div class="powerup-cockpit">
                 <div class="cockpit-label">Hỗ Trợ Vũ Trụ</div>
                 <button id="ll-hint" class="lifeline-btn" onclick="useGrammarHint()">
                     <span>Gợi Ý Hệ Thống</span> <span id="count-hint" class="lifeline-count">3</span>
@@ -452,25 +350,6 @@
         <h2>Chúc Mừng Con Đã Hoàn Thành!</h2>
         <div style="font-size: 1.5rem; margin: 15px 0;">Điểm số đạt được: <span id="final-score" style="color: var(--accent-color); font-weight:bold;">0</span> điểm</div>
         <div style="font-size: 1.3rem; color: var(--correct-color); font-weight: bold; margin-bottom: 25px;" id="reward-level"></div>
-        
-        <div id="formspree-container" style="margin: 20px auto; padding: 20px; background: rgba(13, 17, 43, 0.9); border-radius: 12px; border: 2px dashed var(--border-neon); max-width: 450px; box-sizing: border-box;">
-            <h3 style="color: #00fff0; margin-top: 0; text-transform: uppercase; letter-spacing: 1px; font-size: 1.1rem;">🚀 Báo Cáo Kết Quả Vũ Trụ</h3>
-            <form id="formspree-form" action="https://formspree.io/f/mvznjpeg" method="POST" style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
-                <div style="width: 100%; text-align: left; padding: 0 20px; box-sizing: border-box;">
-                    <label style="font-size: 0.85rem; color: #00fff0; font-weight: bold; display: block; margin-bottom: 5px;">Họ Và Tên Học Sinh:</label>
-                    <input type="text" name="Student Name" class="written-input" style="width: 100%; font-size: 1.1rem; padding: 10px; text-align: left;" placeholder="Nhập họ và tên của con..." required>
-                </div>
-
-                <div style="width: 100%; text-align: left; padding: 0 20px; box-sizing: border-box;">
-                    <label style="font-size: 0.85rem; color: #ffeb3b; font-weight: bold; display: block; margin-bottom: 5px;">Tổng Điểm Đạt Được (Khóa):</label>
-                    <input type="text" name="Final Score" id="form-score" class="written-input" style="width: 100%; font-size: 1.2rem; font-weight: bold; padding: 10px; background-color: #0b0c26; color: var(--accent-color); border-color: rgba(0, 255, 240, 0.5); cursor: not-allowed;" readonly>
-                </div>
-
-                <input type="hidden" name="Full History Log" id="form-history">
-                <button type="submit" class="control-btn blue" style="font-size: 1rem; padding: 12px 30px; width: 90%; margin-top: 10px;">Gửi Thành Tích Lên Hệ Thống 🌌</button>
-            </form>
-            <div id="form-status" style="margin-top: 15px; font-weight: bold; min-height: 20px; font-size: 1rem;"></div>
-        </div>
 
         <div class="btn-group">
             <button class="control-btn" onclick="restartGame()">Chơi Lại Từ Đầu</button>
@@ -488,41 +367,79 @@
 
 <script>
     const quizData = [
-        { type: 'text', q: '1. She _____ (visit) London twice this year.', a: ['has visited'], hint: 'Chủ ngữ "She" -> dùng HAS + V3 (visited)' },
-        { type: 'text', q: '2. _____ you _____ (finish) your homework yet?', a: ['have you finished', 'have finished'], hint: 'Câu hỏi với "you" -> HAVE + subject + V3 (finished)' },
-        { type: 'text', q: '3. They _____ (not / see) that movie before.', a: ['have not seen', "haven't seen"], hint: 'Phủ định với "They" -> HAVE NOT / HAVEN\'T + V3 (seen)' },
-        { type: 'text', q: '4. He _____ (buy) a new smartphone.', a: ['has bought'], hint: 'Chủ ngữ "He" -> HAS + V3 (bought)' },
-        { type: 'text', q: '5. _____ she _____ (call) you today?', a: ['has she called', 'has called'], hint: 'Câu hỏi với "she" -> HAS + subject + V3 (called)' },
-        { type: 'text', q: '6. We _____ (live) in this city since 2018.', a: ['have lived'], hint: 'Chủ ngữ "We" -> HAVE + V3 (lived)' },
-        { type: 'text', q: '7. I _____ (never / eat) sushi before.', a: ['have never eaten'], hint: 'Chủ ngữ "I" -> HAVE + never + V3 (eaten)' },
-        { type: 'text', q: '8. _____ they _____ (find) their missing keys?', a: ['have they found', 'have found'], hint: 'Câu hỏi với "they" -> HAVE + subject + V3 (found)' },
-        { type: 'text', q: '9. The scientist _____ (discover) a new plant species.', a: ['has discovered'], hint: 'Số ít ("The scientist") -> HAS + V3 (discovered)' },
-        { type: 'text', q: '10. She _____ (not / complete) her project yet.', a: ['has not completed', "hasn't completed"], hint: 'Phủ định với "She" -> HAS NOT / HASN\'T + V3 (completed)' },
-        { type: 'text', q: '11. _____ you _____ (ever / fly) in a helicopter?', a: ['have you ever flown', 'have ever flown'], hint: 'Câu hỏi kinh nghiệm -> HAVE + subject + ever + V3 (flown)' },
-        { type: 'text', q: '12. He _____ (break) his glasses again.', a: ['has broken'], hint: 'Chủ ngữ "He" -> HAS + V3 (broken)' },
-        { type: 'text', q: '13. My parents _____ (travel) to five different countries.', a: ['have traveled', 'have travelled'], hint: 'Số nhiều ("My parents") -> HAVE + V3 (traveled / travelled)' },
-        { type: 'text', q: '14. _____ the train _____ (already / leave)?', a: ['has the train already left', 'has already left'], hint: 'Số ít ("the train") -> HAS + subject + already + V3 (left)' },
-        { type: 'text', q: '15. I _____ (lose) my wallet somewhere in the park.', a: ['have lost'], hint: 'Chủ ngữ "I" -> HAVE + V3 (lost)' },
-        { type: 'text', q: '16. They _____ (not / clean) their room today.', a: ['have not cleaned', "haven't cleaned"], hint: 'Phủ định với "They" -> HAVE NOT / HAVEN\'T + V3 (cleaned)' },
-        { type: 'text', q: '17. _____ you _____ (meet) the new English teacher?', a: ['have you met', 'have met'], hint: 'Câu hỏi với "you" -> HAVE + subject + V3 (met)' },
-        { type: 'text', q: '18. She _____ (write) three books so far.', a: ['has written'], hint: 'Chủ ngữ "She" -> HAS + V3 (written)' },
-        { type: 'text', q: '19. We _____ (watch) this documentary twice.', a: ['have watched'], hint: 'Chủ ngữ "We" -> HAVE + V3 (watched)' },
-        { type: 'text', q: '20. _____ he _____ (read) the latest news article?', a: ['has he read', 'has read'], hint: 'Câu hỏi với "he" -> HAS + subject + V3 (read)' },
-        { type: 'text', q: '21. The team _____ (win) the championship match.', a: ['has won', 'have won'], hint: 'Chủ ngữ tập thể -> HAS / HAVE + V3 (won)' },
-        { type: 'text', q: '22. I _____ (not / receive) your email yet.', a: ['have not received', "haven't received"], hint: 'Phủ định với "I" -> HAVE NOT / HAVEN\'T + V3 (received)' },
-        { type: 'text', q: '23. _____ you _____ (ever / visit) an ancient museum?', a: ['have you ever visited', 'have ever visited'], hint: 'Câu hỏi trải nghiệm -> HAVE + subject + ever + V3 (visited)' },
-        { type: 'text', q: '24. She _____ (speak) to the manager about the issue.', a: ['has spoken'], hint: 'Chủ ngữ "She" -> HAS + V3 (spoken)' },
-        { type: 'text', q: '25. They _____ (build) a new solar-powered vehicle.', a: ['have built'], hint: 'Chủ ngữ "They" -> HAVE + V3 (built)' },
-        { type: 'text', q: '26. _____ he _____ (fix) the broken laptop?', a: ['has he fixed', 'has fixed'], hint: 'Câu hỏi với "he" -> HAS + subject + V3 (fixed)' },
-        { type: 'text', q: '27. We _____ (not / learn) this grammar rule yet.', a: ['have not learned', "haven't learned", 'have not learnt', "haven't learnt"], hint: 'Phủ định với "We" -> HAVE NOT / HAVEN\'T + V3 (learned/learnt)' },
-        { type: 'text', q: '28. Alexander _____ (create) a useful new gadget.', a: ['has created'], hint: 'Tên riêng số ít -> HAS + V3 (created)' },
-        { type: 'text', q: '29. _____ you _____ (hear) about the latest invention?', a: ['have you heard', 'have heard'], hint: 'Câu hỏi với "you" -> HAVE + subject + V3 (heard)' },
-        { type: 'text', q: '30. The children _____ (paint) a mural on the wall.', a: ['have painted'], hint: 'Số nhiều ("The children") -> HAVE + V3 (painted)' },
-        { type: 'text', q: '31. She _____ (forget) her account password.', a: ['has forgotten'], hint: 'Chủ ngữ "She" -> HAS + V3 (forgotten)' },
-        { type: 'text', q: '32. _____ they _____ (start) the space mission?', a: ['have they started', 'have started'], hint: 'Câu hỏi với "they" -> HAVE + subject + V3 (started)' },
-        { type: 'text', q: '33. I _____ (already / take) all the required photos.', a: ['have already taken'], hint: 'Chủ ngữ "I" -> HAVE + already + V3 (taken)' },
-        { type: 'text', q: '34. He _____ (not / wear) his heavy coat today.', a: ['has not worn', "hasn't worn"], hint: 'Phủ định với "He" -> HAS NOT / HASN\'T + V3 (worn)' },
-        { type: 'text', q: '35. _____ you _____ (understand) the lesson so far?', a: ['have you understood', 'have understood'], hint: 'Câu hỏi với "you" -> HAVE + subject + V3 (understood)' }
+        // --- PART 1: 10 MCQ Vocabulary Questions (Housework - Unit 1) ---
+        { 
+            q: '1. What does "do the laundry" mean?<br><br>A) Rửa chén bát &nbsp;&nbsp;&nbsp;&nbsp; B) Giặt quần áo<br>C) Đi chợ &nbsp;&nbsp;&nbsp;&nbsp; D) Dọn dẹp nhà cửa', 
+            a: ['b', 'giặt quần áo'], 
+            hint: 'Do the laundry = Giặt quần áo (Đáp án B)' 
+        },
+        { 
+            q: '2. What does "do the heavy lifting" mean?<br><br>A) Làm công việc nặng nhọc &nbsp;&nbsp;&nbsp;&nbsp; B) Tẩy rửa nhà vệ sinh<br>C) Nấu ăn cho gia đình &nbsp;&nbsp;&nbsp;&nbsp; D) Chuẩn bị bữa tối', 
+            a: ['a', 'làm công việc nặng nhọc'], 
+            hint: 'Do the heavy lifting = Làm công việc nặng nhọc (Đáp án A)' 
+        },
+        { 
+            q: '3. What does "take out the rubbish" mean?<br><br>A) Phơi quần áo &nbsp;&nbsp;&nbsp;&nbsp; B) Thu dọn đồ chơi<br>C) Đi đổ rác &nbsp;&nbsp;&nbsp;&nbsp; D) Quét vỉa hè', 
+            a: ['c', 'đi đổ rác'], 
+            hint: 'Take out the rubbish = Đi đổ rác (Đáp án C)' 
+        },
+        { 
+            q: '4. What does "shop for groceries" mean?<br><br>A) Mua sắm quần áo &nbsp;&nbsp;&nbsp;&nbsp; B) Đi mua thực phẩm, đồ dùng hàng ngày<br>C) Đi siêu thị mua thiết bị điện &nbsp;&nbsp;&nbsp;&nbsp; D) Mua đồ trang trí nhà cửa', 
+            a: ['b', 'đi mua thực phẩm', 'đi mua thực phẩm, đồ dùng hàng ngày'], 
+            hint: 'Shop for groceries = Đi mua thực phẩm, đồ dùng hàng ngày (Đáp án B)' 
+        },
+        { 
+            q: '5. What does "do the washing-up" mean?<br><br>A) Rửa bát đĩa &nbsp;&nbsp;&nbsp;&nbsp; B) Lau nhà<br>C) Quét nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Giặt thảm', 
+            a: ['a', 'rửa bát đĩa'], 
+            hint: 'Do the washing-up = Rửa bát đĩa (Đáp án A)' 
+        },
+        { 
+            q: '6. What does "homemaker" mean?<br><br>A) Người trụ cột gia đình &nbsp;&nbsp;&nbsp;&nbsp; B) Người làm nội trợ<br>C) Người thợ xây nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Người thiết kế nội thất', 
+            a: ['b', 'người làm nội trợ'], 
+            hint: 'Homemaker = Người làm nội trợ (Đáp án B)' 
+        },
+        { 
+            q: '7. What does "breadwinner" mean?<br><br>A) Người làm bánh mì &nbsp;&nbsp;&nbsp;&nbsp; B) Người nội trợ<br>C) Người trụ cột kiếm tiền cho gia đình &nbsp;&nbsp;&nbsp;&nbsp; D) Người phục vụ bàn', 
+            a: ['c', 'người trụ cột kiếm tiền cho gia đình'], 
+            hint: 'Breadwinner = Người trụ cột kiếm tiền cho gia đình (Đáp án C)' 
+        },
+        { 
+            q: '8. What does "lay the table" mean?<br><br>A) Mua một chiếc bàn mới &nbsp;&nbsp;&nbsp;&nbsp; B) Dọn/bày bàn ăn<br>C) Lau sạch bàn ăn &nbsp;&nbsp;&nbsp;&nbsp; D) Sửa chữa bàn hỏng', 
+            a: ['b', 'dọn/bày bàn ăn', 'dọn bàn ăn', 'bày bàn ăn'], 
+            hint: 'Lay the table = Dọn/bày bàn ăn (Đáp án B)' 
+        },
+        { 
+            q: '9. What does "mop the house" mean?<br><br>A) Quét nhà &nbsp;&nbsp;&nbsp;&nbsp; B) Sơn lại nhà<br>C) Lau nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Trang trí nhà', 
+            a: ['c', 'lau nhà'], 
+            hint: 'Mop the house = Lau nhà (Đáp án C)' 
+        },
+        { 
+            q: '10. What does "iron clothes" mean?<br><br>A) Mua quần áo mới &nbsp;&nbsp;&nbsp;&nbsp; B) Gấp quần áo<br>C) Giặt quần áo bằng tay &nbsp;&nbsp;&nbsp;&nbsp; D) Là/Ủi quần áo', 
+            a: ['d', 'là/ủi quần áo', 'ủi quần áo', 'là quần áo'], 
+            hint: 'Iron clothes = Là/Ủi quần áo (Đáp án D)' 
+        },
+
+        // --- PART 2: 15 Present Simple Questions (Affirmative, Negative, Interrogative) ---
+        // Affirmative (+)
+        { q: '11. My mother _____ (cook) dinner for our family every evening.', a: ['cooks'], hint: 'Chủ ngữ "My mother" (ngôi 3 số ít) -> cooks' },
+        { q: '12. They _____ (clean) the living room every Saturday morning.', a: ['clean'], hint: 'Chủ ngữ "They" -> động từ giữ nguyên: clean' },
+        { q: '13. He _____ (take) out the rubbish after dinner.', a: ['takes'], hint: 'Chủ ngữ "He" -> takes' },
+        { q: '14. I _____ (do) the washing-up after we finish eating.', a: ['do'], hint: 'Chủ ngữ "I" -> động từ giữ nguyên: do' },
+        { q: '15. She _____ (iron) her clothes every Sunday night.', a: ['irons'], hint: 'Chủ ngữ "She" -> irons' },
+
+        // Negative (-)
+        { q: '16. She _____ (not / like) doing the laundry on weekdays.', a: ['does not like', "doesn't like"], hint: 'Phủ định với chủ ngữ "She": does not like / doesn\'t like' },
+        { q: '17. They _____ (not / divide) the household chores equally.', a: ['do not divide', "don't divide"], hint: 'Phủ định với chủ ngữ "They": do not divide / don\'t divide' },
+        { q: '18. He _____ (not / mind) helping his parents with the house cleaning.', a: ['does not mind', "doesn't mind"], hint: 'Phủ định với chủ ngữ "He": does not mind / doesn\'t mind' },
+        { q: '19. I _____ (not / mop) the floor every single day.', a: ['do not mop', "don't mop"], hint: 'Phủ định với chủ ngữ "I": do not mop / don\'t mop' },
+        { q: '20. We _____ (not / eat) dinner late on school nights.', a: ['do not eat', "don't eat"], hint: 'Phủ định với chủ ngữ "We": do not eat / don\'t eat' },
+
+        // Interrogative / Questions (?)
+        { q: '21. _____ you _____ (help) your parents with household chores?', a: ['do help', 'do / help', 'do...help', 'do you help'], hint: 'Câu hỏi nghi vấn với "you": Do you help?' },
+        { q: '22. _____ she _____ (sweep) the kitchen floor every day?', a: ['does sweep', 'does / sweep', 'does...sweep', 'does she sweep'], hint: 'Câu hỏi nghi vấn với "she": Does she sweep?' },
+        { q: '23. _____ they _____ (do) the laundry on weekends?', a: ['do do', 'do / do', 'do...do', 'do they do'], hint: 'Câu hỏi nghi vấn với "they": Do they do?' },
+        { q: '24. What time _____ your mother _____ (prepare) breakfast?', a: ['does prepare', 'does / prepare', 'does...prepare', 'does your mother prepare'], hint: 'Câu hỏi có từ hỏi Wh- với "your mother": does ... prepare?' },
+        { q: '25. _____ your brother _____ (clean) his room every weekend?', a: ['does clean', 'does / clean', 'does...clean', 'does your brother clean'], hint: 'Câu hỏi nghi vấn với "your brother": Does clean?' }
     ];
 
     let currentQuestionIndex = 0;
@@ -530,16 +447,11 @@
     let userLives = 5;
     let currentGameState = "playing";
     let userAnswersLog = [];
-
-    let timerInterval = null;
-    let timeLeft = 50;
     let grammarHintsCount = 3;
 
     const canvas = document.getElementById("laser-canvas");
     const ctx = canvas.getContext("2d");
-    const instructionTitle = document.getElementById("instruction-title");
     const questionPrompt = document.getElementById("question-prompt");
-    const sentenceBox = document.getElementById("interactive-sentence-box");
     const correctionZone = document.getElementById("correction-zone");
     const currentQNum = document.getElementById("current-q-num");
     const totalQNum = document.getElementById("total-q-num");
@@ -547,8 +459,6 @@
     const livesDisplay = document.getElementById("lives-display");
     const statusMessage = document.getElementById("status-message");
     const nextBtn = document.getElementById("next-btn");
-    const countdownText = document.getElementById("countdown-text");
-    const timerBar = document.getElementById("timer-bar");
 
     const introScreen = document.getElementById("intro-screen");
     const gameScreen = document.getElementById("game-screen");
@@ -597,20 +507,16 @@
         nextBtn.style.display = "none";
         statusMessage.innerHTML = "";
         correctionZone.innerHTML = "";
-        sentenceBox.innerHTML = "";
         
-        playerShip.className = "spaceship-container"; 
         playerShip.style.transform = "rotate(0deg)";
-
         currentQNum.innerText = currentQuestionIndex + 1;
         let currentQ = quizData[currentQuestionIndex];
 
-        instructionTitle.innerText = "🎯 NHIỆM VỤ: Điền từ/cụm từ thích hợp vào chỗ trống (Present Perfect)";
         questionPrompt.innerHTML = currentQ.q;
 
         correctionZone.innerHTML = `
             <div class="correction-container">
-                <input type="text" id="correction-field" class="written-input" placeholder="Nhập câu trả lời của con..." autocomplete="off" onkeyup="checkEnterKey(event)">
+                <input type="text" id="correction-field" class="written-input" placeholder="Nhập đáp án của con..." autocomplete="off" onkeyup="checkEnterKey(event)">
                 <br><br>
                 <button class="control-btn blue" onclick="submitTextAnswer()">Xác Nhận Năng Lượng 🚀</button>
             </div>
@@ -621,38 +527,6 @@
         }, 150);
 
         document.getElementById("ll-hint").disabled = (grammarHintsCount <= 0);
-        startCountdownTimer();
-    }
-
-    function startCountdownTimer() {
-        clearInterval(timerInterval);
-        timeLeft = 50;
-        countdownText.innerText = timeLeft + "s";
-        countdownText.className = "";
-        document.body.classList.remove("panic-mode");
-        timerBar.style.width = "100%";
-        timerBar.style.background = "linear-gradient(to right, #00ff87, #00fff0)";
-
-        timerInterval = setInterval(() => {
-            timeLeft--;
-            countdownText.innerText = timeLeft + "s";
-            let pct = (timeLeft / 50) * 100;
-            timerBar.style.width = pct + "%";
-
-            if (timeLeft <= 15 && timeLeft > 5) {
-                countdownText.className = "warning";
-                timerBar.style.background = "#ffaa00";
-            } else if (timeLeft <= 5) {
-                countdownText.className = "panic";
-                timerBar.style.background = "#ff4b5c";
-                document.body.classList.add("panic-mode");
-            }
-
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                handleTimeOut();
-            }
-        }, 1000);
     }
 
     function checkEnterKey(event) { if (event.key === "Enter") submitTextAnswer(); }
@@ -666,28 +540,26 @@
         if (userText === "") return;
 
         currentGameState = "finished";
-        clearInterval(timerInterval);
-        document.body.classList.remove("panic-mode");
 
         let currentQ = quizData[currentQuestionIndex];
-        let normUser = userText.toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' ').trim();
-        let isCorrect = currentQ.a.some(ans => normUser === ans.toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' ').trim());
+        let normUser = userText.toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' ').replace(/\)/g, '').replace(/\./g, '').trim();
+        let isCorrect = currentQ.a.some(ans => normUser === ans.toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' ').replace(/\)/g, '').replace(/\./g, '').trim());
 
         fireArcadeLaser(inputField, isCorrect, () => {
             inputField.disabled = true;
-            userAnswersLog.push({ qIndex: currentQuestionIndex, userText: userText, isCorrect: isCorrect, isTimeOut: false });
+            userAnswersLog.push({ qIndex: currentQuestionIndex, userText: userText, isCorrect: isCorrect });
 
             if (isCorrect) {
                 inputField.style.borderColor = "var(--correct-color)";
-                let gainedPoints = 150 + timeLeft; 
+                let gainedPoints = 200; 
                 globalScore += gainedPoints;
                 scoreDisplay.innerText = globalScore;
-                statusMessage.innerHTML = `<span style='color: var(--correct-color)'>THÀNH CÔNG: Câu trả lời chính xác! +${gainedPoints} Điểm. 🎉</span>`;
+                statusMessage.innerHTML = `<span style='color: var(--correct-color)'>THÀNH CÔNG: Câu trả lời rất chính xác! +${gainedPoints} Điểm. 🎉</span>`;
             } else {
                 inputField.style.borderColor = "var(--wrong-color)";
                 userLives--;
                 updateLivesUI();
-                statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>THẤT BẠI: Chưa đúng! Đáp án chuẩn: "${currentQ.a.join(' / ')}".</span>`;
+                statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>THẤT BẠI: Chưa đúng! Đáp án chuẩn: "${currentQ.a[0]}".</span>`;
                 if (userLives <= 0) {
                     setTimeout(() => { handleGameOverLoss(); }, 1500);
                     return;
@@ -697,35 +569,8 @@
         });
     }
 
-    function handleTimeOut() {
-        currentGameState = "finished";
-        document.body.classList.remove("panic-mode");
-        
-        let currentQ = quizData[currentQuestionIndex];
-        let correctStr = currentQ.a.join(' / ');
-
-        if (document.getElementById("correction-field")) document.getElementById("correction-field").disabled = true;
-
-        userAnswersLog.push({ qIndex: currentQuestionIndex, userText: "[Hết giờ đếm ngược ⏰]", isCorrect: false, isTimeOut: true });
-        
-        playerShip.classList.add("exploded");
-        const shipRect = playerShip.getBoundingClientRect();
-        createExplosionBurst(shipRect.left + shipRect.width/2, shipRect.top + shipRect.height/2, "#ff4b5c");
-
-        statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>HẾT GIỜ 50 GIÂY! Đáp án đúng phải là: "${correctStr}".</span>`;
-        
-        userLives--;
-        updateLivesUI();
-        
-        setTimeout(() => {
-            if (userLives <= 0) handleGameOverLoss();
-            else nextBtn.style.display = "inline-block";
-        }, 1500);
-    }
-
     function handleGameOverLoss() {
         currentGameState = "finished";
-        clearInterval(timerInterval);
         statusMessage.innerHTML = "<span style='color:var(--wrong-color)'>Phi thuyền cạn kiệt năng lượng! Đang chuyển đến bảng tổng kết...</span>";
         setTimeout(() => { showFinalResults(); }, 2000);
     }
@@ -751,7 +596,6 @@
         const angleDeg = angleRad * (180 / Math.PI) + 90;
 
         playerShip.style.transform = `rotate(${angleDeg}deg)`;
-        playerShip.classList.add("shooting");
 
         let laserProgress = 0;
         function drawLaserBeam() {
@@ -770,48 +614,12 @@
 
                 requestAnimationFrame(drawLaserBeam);
             } else {
-                playerShip.classList.remove("shooting");
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                createExplosionBurst(endX, endY, isCorrectResult ? "#00ff87" : "#ff4b5c");
-                if (!isCorrectResult) {
-                    playerShip.classList.add("exploded");
-                    createExplosionBurst(startX, startY, "#ff4b5c");
-                }
                 callback();
             }
         }
         drawLaserBeam();
     }
-
-    function createExplosionBurst(x, y, color) {
-        for (let i = 0; i < 20; i++) {
-            let p = document.createElement("div");
-            p.style.position = "fixed";
-            p.style.width = "6px"; p.style.height = "6px";
-            p.style.borderRadius = "50%"; p.style.pointerEvents = "none";
-            p.style.backgroundColor = color;
-            p.style.left = x + "px";
-            p.style.top = y + "px";
-            p.style.zIndex = "101";
-
-            let angle = Math.random() * Math.PI * 2;
-            let speed = Math.random() * 70 + 30;
-            p.style.setProperty('--x', Math.cos(angle) * speed + "px");
-            p.style.setProperty('--y', Math.sin(angle) * speed + "px");
-            p.style.animation = "explodeOut 0.5s ease-out forwards";
-
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 500);
-        }
-    }
-
-    const styleSheet = document.styleSheets[0];
-    styleSheet.insertRule(`
-        @keyframes explodeOut {
-            from { transform: translate(0, 0); opacity: 1; }
-            to { transform: translate(var(--x), var(--y)); opacity: 0; }
-        }
-    `, styleSheet.cssRules.length);
 
     function nextQuestion() {
         currentQuestionIndex++;
@@ -831,24 +639,12 @@
         finalScoreDisplay.innerText = globalScore;
 
         let levelStr = "";
-        if (globalScore >= 5000) levelStr = "👑 ĐẠI TƯỚNG NGỮ PHÁP (Xuất Sắc!)";
-        else if (globalScore >= 3500) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
+        if (globalScore >= 4500) levelStr = "👑 ĐẠI TƯỚNG NGỮ PHÁP (Xuất Sắc!)";
+        else if (globalScore >= 3200) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
         else if (globalScore >= 2000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
         else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
 
         rewardLevel.innerText = levelStr;
-
-        document.getElementById("form-score").value = globalScore + " Điểm";
-        
-        let historyText = userAnswersLog.map(ans => {
-            let itemData = quizData[ans.qIndex];
-            if (!itemData) return "";
-            let displayPrompt = itemData.q.replace(/<[^>]*>/g, ''); 
-            let correctAnsStr = itemData.a.join(' / ');
-            return `Thử thách ${ans.qIndex + 1}: ${displayPrompt}\n- Con chọn/nhập: ${ans.userText}\n- Kết quả: ${ans.isCorrect ? 'ĐÚNG ✔' : 'SAI ✘ (Đáp án đúng: ' + correctAnsStr + ')'}`;
-        }).join("\n\n");
-        
-        document.getElementById("form-history").value = historyText;
     }
 
     function showHistoryScreen() {
@@ -858,16 +654,14 @@
 
         userAnswersLog.forEach(ans => {
             let itemData = quizData[ans.qIndex];
-            if (!itemData) return "";
+            if (!itemData) return;
 
             let itemDiv = document.createElement("div");
             itemDiv.className = `history-item ${ans.isCorrect ? "history-correct" : "history-wrong"}`;
-            
-            let displayPrompt = itemData.q.replace(/<[^>]*>/g, ''); 
-            let correctAnsStr = itemData.a.join(' / ');
+            let correctAnsStr = itemData.a[0];
 
             itemDiv.innerHTML = `
-                <div style="font-weight:bold; color:#fff;">Thử thách ${ans.qIndex + 1}: ${displayPrompt}</div>
+                <div style="font-weight:bold; color:#fff;">Thử thách ${ans.qIndex + 1}: ${itemData.q}</div>
                 <div style="margin: 5px 0;">
                     • Con đã chọn/nhập: <strong style="color:${ans.isCorrect ? 'var(--correct-color)' : 'var(--wrong-color)'}">${ans.userText}</strong> 
                     ${ans.isCorrect ? ' ✔' : ` | Đáp án đúng: <strong style="color:var(--correct-color)">${correctAnsStr}</strong> ✘`}
@@ -882,42 +676,7 @@
         resultScreen.classList.remove("active-screen");
         gameScreen.classList.remove("active-screen");
         introScreen.classList.add("active-screen");
-        const status = document.getElementById('form-status');
-        if (status) status.innerHTML = "";
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById('formspree-form');
-        if (form) {
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const status = document.getElementById('form-status');
-                const data = new FormData(form);
-                
-                status.style.color = "var(--accent-color)";
-                status.innerHTML = "📡 Đang truyền tín hiệu kết quả...";
-                
-                try {
-                    const response = await fetch(form.action, {
-                        method: form.method,
-                        body: data,
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    if (response.ok) {
-                        status.style.color = "var(--correct-color)";
-                        status.innerHTML = "🎉 Hệ thống đã ghi nhận thành tích của con!";
-                        form.reset();
-                    } else {
-                        status.style.color = "var(--wrong-color)";
-                        status.innerHTML = "💥 Lỗi hệ thống Formspree! Không thể gửi kết quả.";
-                    }
-                } catch (error) {
-                    status.style.color = "var(--wrong-color)";
-                    status.innerHTML = "💥 Mất kết nối mạng, không thể truyền dữ liệu.";
-                }
-            });
-        }
-    });
 </script>
 </body>
 </html>
