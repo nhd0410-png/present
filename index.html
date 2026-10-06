@@ -288,12 +288,13 @@
     <!-- INTRO SCREEN -->
     <div id="intro-screen" class="screen active-screen">
         <div class="header-title">Đấu Trường Nhí</div>
-        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Unit 1 Global Success 10: Housework & Present Simple Challenge (25 Câu)</p>
+        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Unit 1 Global Success 10: Family Life & Tenses Challenge (50 Câu Hỏi Full)</p>
         
         <div class="intro-rules">
-            <strong>🚀 BỘ CÂU HỎI TIẾNG ANH 10 - UNIT 1 (25 CÂU):</strong><br>
-            • <b>Phần 1 (Câu 1-10):</b> Trắc nghiệm Từ vựng Công việc nhà (Housework) - Chọn A, B, C, D hoặc gõ chữ cái đại diện!<br>
-            • <b>Phần 2 (Câu 11-25):</b> Chia động từ Thì Hiện Tại Đơn (Khẳng định, Phủ định và Nghi vấn).<br>
+            <strong>🚀 BỘ CÂU HỎI TIẾNG ANH 10 - UNIT 1 (50 CÂU HỎI):</strong><br>
+            • <b>Phần 1 (Câu 1-20):</b> Trắc nghiệm Từ vựng Công việc nhà & Gia đình - Chọn A, B, C, D hoặc gõ chữ cái đại diện!<br>
+            • <b>Phần 2 (Câu 21-35):</b> Chia động từ Thì Hiện Tại Đơn (Present Simple).<br>
+            • <b>Phần 3 (Câu 36-50):</b> Chia động từ Thì Hiện Tại Tiếp Diễn & Phối hợp thì (Present Continuous & Mixed Tenses).<br>
             • 📝 Chú ý chia động từ theo đúng ngôi chủ ngữ (S) và dạng câu!<br>
             • 🛸 Con có <b>5 Mạng ❤️</b> và <b>Không Giới Hạn Thời Gian ♾️</b> cho mỗi câu hỏi!
         </div>
@@ -306,7 +307,7 @@
     <!-- GAMEPLAY SCREEN -->
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">25</span></div>
+            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">50</span></div>
             <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
             <div style="color: #00fff0;">⏳ Thời gian: <span>Không giới hạn ♾️</span></div>
@@ -339,7 +340,7 @@
             <div class="powerup-cockpit">
                 <div class="cockpit-label">Hỗ Trợ Vũ Trụ</div>
                 <button id="ll-hint" class="lifeline-btn" onclick="useGrammarHint()">
-                    <span>Gợi Ý Hệ Thống</span> <span id="count-hint" class="lifeline-count">3</span>
+                    <span>Gợi Ý Hệ Thống</span> <span id="count-hint" class="lifeline-count">5</span>
                 </button>
             </div>
         </div>
@@ -367,79 +368,61 @@
 
 <script>
     const quizData = [
-        // --- PART 1: 10 MCQ Vocabulary Questions (Housework - Unit 1) ---
-        { 
-            q: '1. What does "do the laundry" mean?<br><br>A) Rửa chén bát &nbsp;&nbsp;&nbsp;&nbsp; B) Giặt quần áo<br>C) Đi chợ &nbsp;&nbsp;&nbsp;&nbsp; D) Dọn dẹp nhà cửa', 
-            a: ['b', 'giặt quần áo'], 
-            hint: 'Do the laundry = Giặt quần áo (Đáp án B)' 
-        },
-        { 
-            q: '2. What does "do the heavy lifting" mean?<br><br>A) Làm công việc nặng nhọc &nbsp;&nbsp;&nbsp;&nbsp; B) Tẩy rửa nhà vệ sinh<br>C) Nấu ăn cho gia đình &nbsp;&nbsp;&nbsp;&nbsp; D) Chuẩn bị bữa tối', 
-            a: ['a', 'làm công việc nặng nhọc'], 
-            hint: 'Do the heavy lifting = Làm công việc nặng nhọc (Đáp án A)' 
-        },
-        { 
-            q: '3. What does "take out the rubbish" mean?<br><br>A) Phơi quần áo &nbsp;&nbsp;&nbsp;&nbsp; B) Thu dọn đồ chơi<br>C) Đi đổ rác &nbsp;&nbsp;&nbsp;&nbsp; D) Quét vỉa hè', 
-            a: ['c', 'đi đổ rác'], 
-            hint: 'Take out the rubbish = Đi đổ rác (Đáp án C)' 
-        },
-        { 
-            q: '4. What does "shop for groceries" mean?<br><br>A) Mua sắm quần áo &nbsp;&nbsp;&nbsp;&nbsp; B) Đi mua thực phẩm, đồ dùng hàng ngày<br>C) Đi siêu thị mua thiết bị điện &nbsp;&nbsp;&nbsp;&nbsp; D) Mua đồ trang trí nhà cửa', 
-            a: ['b', 'đi mua thực phẩm', 'đi mua thực phẩm, đồ dùng hàng ngày'], 
-            hint: 'Shop for groceries = Đi mua thực phẩm, đồ dùng hàng ngày (Đáp án B)' 
-        },
-        { 
-            q: '5. What does "do the washing-up" mean?<br><br>A) Rửa bát đĩa &nbsp;&nbsp;&nbsp;&nbsp; B) Lau nhà<br>C) Quét nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Giặt thảm', 
-            a: ['a', 'rửa bát đĩa'], 
-            hint: 'Do the washing-up = Rửa bát đĩa (Đáp án A)' 
-        },
-        { 
-            q: '6. What does "homemaker" mean?<br><br>A) Người trụ cột gia đình &nbsp;&nbsp;&nbsp;&nbsp; B) Người làm nội trợ<br>C) Người thợ xây nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Người thiết kế nội thất', 
-            a: ['b', 'người làm nội trợ'], 
-            hint: 'Homemaker = Người làm nội trợ (Đáp án B)' 
-        },
-        { 
-            q: '7. What does "breadwinner" mean?<br><br>A) Người làm bánh mì &nbsp;&nbsp;&nbsp;&nbsp; B) Người nội trợ<br>C) Người trụ cột kiếm tiền cho gia đình &nbsp;&nbsp;&nbsp;&nbsp; D) Người phục vụ bàn', 
-            a: ['c', 'người trụ cột kiếm tiền cho gia đình'], 
-            hint: 'Breadwinner = Người trụ cột kiếm tiền cho gia đình (Đáp án C)' 
-        },
-        { 
-            q: '8. What does "lay the table" mean?<br><br>A) Mua một chiếc bàn mới &nbsp;&nbsp;&nbsp;&nbsp; B) Dọn/bày bàn ăn<br>C) Lau sạch bàn ăn &nbsp;&nbsp;&nbsp;&nbsp; D) Sửa chữa bàn hỏng', 
-            a: ['b', 'dọn/bày bàn ăn', 'dọn bàn ăn', 'bày bàn ăn'], 
-            hint: 'Lay the table = Dọn/bày bàn ăn (Đáp án B)' 
-        },
-        { 
-            q: '9. What does "mop the house" mean?<br><br>A) Quét nhà &nbsp;&nbsp;&nbsp;&nbsp; B) Sơn lại nhà<br>C) Lau nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Trang trí nhà', 
-            a: ['c', 'lau nhà'], 
-            hint: 'Mop the house = Lau nhà (Đáp án C)' 
-        },
-        { 
-            q: '10. What does "iron clothes" mean?<br><br>A) Mua quần áo mới &nbsp;&nbsp;&nbsp;&nbsp; B) Gấp quần áo<br>C) Giặt quần áo bằng tay &nbsp;&nbsp;&nbsp;&nbsp; D) Là/Ủi quần áo', 
-            a: ['d', 'là/ủi quần áo', 'ủi quần áo', 'là quần áo'], 
-            hint: 'Iron clothes = Là/Ủi quần áo (Đáp án D)' 
-        },
+        // --- PART 1: Vocabulary & Household Chores (Questions 1-20) ---
+        { q: '1. What does "do the cooking" mean?<br><br>A) Đi chợ &nbsp;&nbsp;&nbsp;&nbsp; B) Nấu ăn<br>C) Lau bàn ăn &nbsp;&nbsp;&nbsp;&nbsp; D) Rửa chén bát', a: ['b', 'nấu ăn'], hint: 'Do the cooking = Nấu ăn (Đáp án B)' },
+        { q: '2. What does "clean the house" mean?<br><br>A) Lau chùi, dọn dẹp nhà cửa &nbsp;&nbsp;&nbsp;&nbsp; B) Mua nhà mới<br>C) Sơn lại nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Trang trí phòng khách', a: ['a', 'lau chùi, dọn dẹp nhà cửa', 'dọn dẹp nhà cửa', 'lau chùi nhà cửa'], hint: 'Clean the house = Lau chùi, dọn dẹp nhà cửa (Đáp án A)' },
+        { q: '3. What does "split the chores" mean?<br><br>A) Tránh làm việc nhà &nbsp;&nbsp;&nbsp;&nbsp; B) Thuê người giúp việc<br>C) Phân chia công việc nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Làm việc nhà một mình', a: ['c', 'phân chia công việc nhà'], hint: 'Split the chores = Phân chia công việc nhà (Đáp án C)' },
+        { q: '4. What does "heavy lifting" mean?<br><br>A) Nhặt rác ngoài sân &nbsp;&nbsp;&nbsp;&nbsp; B) Mang vác đồ nặng<br>C) Gấp quần áo &nbsp;&nbsp;&nbsp;&nbsp; D) Lau bụi trên kệ sách', a: ['b', 'mang vác đồ nặng'], hint: 'Heavy lifting = Việc nặng nhọc / Mang vác đồ nặng (Đáp án B)' },
+        { q: '5. What does "financial burden" mean?<br><br>A) Quỹ tiết kiệm &nbsp;&nbsp;&nbsp;&nbsp; B) Thu nhập hàng tháng<br>C) Gánh nặng tài chính &nbsp;&nbsp;&nbsp;&nbsp; D) Chi phí đi lại', a: ['c', 'gánh nặng tài chính'], hint: 'Financial burden = Gánh nặng tài chính (Đáp án C)' },
+        { q: '6. What does "share household duties" mean?<br><br>A) Phân công đi làm &nbsp;&nbsp;&nbsp;&nbsp; B) Chia sẻ trách nhiệm gia đình / việc nhà<br>C) Bỏ qua công việc dọn dẹp &nbsp;&nbsp;&nbsp;&nbsp; D) Thuê dịch vụ dọn dẹp', a: ['b', 'chia sẻ trách nhiệm gia đình / việc nhà', 'chia sẻ trách nhiệm gia đình', 'chia sẻ việc nhà'], hint: 'Share household duties = Chia sẻ trách nhiệm gia đình / việc nhà (Đáp án B)' },
+        { q: '7. What does "do the washing" mean?<br><br>A) Rửa xe máy &nbsp;&nbsp;&nbsp;&nbsp; B) Tắm rửa<br>C) Giặt giũ quần áo &nbsp;&nbsp;&nbsp;&nbsp; D) Rửa bát đĩa', a: ['c', 'giặt giũ quần áo', 'giặt quần áo'], hint: 'Do the washing = Giặt giũ quần áo (Đáp án C)' },
+        { q: '8. What does "put out the trash" mean?<br><br>A) Đổ rác / Mang rác ra ngoài &nbsp;&nbsp;&nbsp;&nbsp; B) Dọn tủ quần áo<br>C) Phân loại rác tái chế &nbsp;&nbsp;&nbsp;&nbsp; D) Quét dọn lối đi', a: ['a', 'đổ rác / mang rác ra ngoài', 'đổ rác', 'mang rác ra ngoài'], hint: 'Put out the trash = Đổ rác / Mang rác ra ngoài (Đáp án A)' },
+        { q: '9. What does "lay the table" mean?<br><br>A) Dọn dẹp thức ăn thừa &nbsp;&nbsp;&nbsp;&nbsp; B) Lau chùi mặt bàn<br>C) Sắp xếp, bày bàn ăn &nbsp;&nbsp;&nbsp;&nbsp; D) Mua bàn ăn mới', a: ['c', 'sắp xếp, bày bàn ăn', 'bày bàn ăn', 'sắp xếp bàn ăn'], hint: 'Lay the table = Sắp xếp, bày bàn ăn (Đáp án C)' },
+        { q: '10. What does "take responsibility for" mean?<br><br>A) Chịu trách nhiệm về &nbsp;&nbsp;&nbsp;&nbsp; B) Từ chối nhiệm vụ<br>C) Yêu cầu giúp đỡ &nbsp;&nbsp;&nbsp;&nbsp; D) Phân công công việc', a: ['a', 'chịu trách nhiệm về', 'chịu trách nhiệm'], hint: 'Take responsibility for = Chịu trách nhiệm về (Đáp án A)' },
+        { q: '11. What does "breadwinner" mean?<br><br>A) Người nội trợ &nbsp;&nbsp;&nbsp;&nbsp; B) Trụ cột gia đình (người kiếm tiền chính)<br>C) Người bán bánh mì &nbsp;&nbsp;&nbsp;&nbsp; D) Cả gia đình', a: ['b', 'trụ cột gia đình'], hint: 'Breadwinner = Trụ cột gia đình (Đáp án B)' },
+        { q: '12. What does "homemaker" mean?<br><br>A) Người xây nhà &nbsp;&nbsp;&nbsp;&nbsp; B) Người nội trợ<br>C) Thợ sửa chữa &nbsp;&nbsp;&nbsp;&nbsp; D) Người quản lý công ty', a: ['b', 'người nội trợ'], hint: 'Homemaker = Người nội trợ (Đáp án B)' },
+        { q: '13. What does "groceries" mean?<br><br>A) Thực phẩm và hàng tạp hóa &nbsp;&nbsp;&nbsp;&nbsp; B) Quần áo thời trang<br>C) Đồ dùng điện tử &nbsp;&nbsp;&nbsp;&nbsp; D) Sách vở', a: ['a', 'thực phẩm và hàng tạp hóa', 'hàng tạp hóa'], hint: 'Groceries = Thực phẩm và hàng tạp hóa (Đáp án A)' },
+        { q: '14. What does "do the washing-up" mean?<br><br>A) Giặt quần áo &nbsp;&nbsp;&nbsp;&nbsp; B) Rửa chén bát<br>C) Rửa mặt &nbsp;&nbsp;&nbsp;&nbsp; D) Lau sàn nhà', a: ['b', 'rửa chén bát', 'rửa chén', 'rửa bát'], hint: 'Do the washing-up = Rửa chén bát (Đáp án B)' },
+        { q: '15. What does "mop the floor" mean?<br><br>A) Quét nhà &nbsp;&nbsp;&nbsp;&nbsp; B) Hút bụi<br>C) Lau sàn nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Sơn sàn nhà', a: ['c', 'lau sàn nhà', 'lau sàn'], hint: 'Mop the floor = Lau sàn nhà (Đáp án C)' },
+        { q: '16. What does "iron the clothes" mean?<br><br>A) Giặt quần áo &nbsp;&nbsp;&nbsp;&nbsp; B) Phơi quần áo<br>C) Là / ủi quần áo &nbsp;&nbsp;&nbsp;&nbsp; D) Mua quần áo', a: ['c', 'là / ủi quần áo', 'ủi quần áo', 'là quần áo'], hint: 'Iron the clothes = Là / ủi quần áo (Đáp án C)' },
+        { q: '17. What does "dust the furniture" mean?<br><br>A) Lau bụi nội thất / đồ đạc &nbsp;&nbsp;&nbsp;&nbsp; B) Di chuyển đồ đạc<br>C) Bán đồ đạc cũ &nbsp;&nbsp;&nbsp;&nbsp; D) Mua đồ nội thất', a: ['a', 'lau bụi nội thất / đồ đạc', 'lau bụi nội thất', 'lau bụi đồ đạc'], hint: 'Dust the furniture = Lau bụi nội thất / đồ đạc (Đáp án A)' },
+        { q: '18. What does "family routines" mean?<br><br>A) Chuyến du lịch gia đình &nbsp;&nbsp;&nbsp;&nbsp; B) Thói quen / nếp sinh hoạt gia đình<br>C) Quy tắc trong trường học &nbsp;&nbsp;&nbsp;&nbsp; D) Lịch trình đi học', a: ['b', 'thói quen / nếp sinh hoạt gia đình', 'nếp sinh hoạt gia đình'], hint: 'Family routines = Thói quen / nếp sinh hoạt gia đình (Đáp án B)' },
+        { q: '19. What does "bond with family" mean?<br><br>A) Tranh cãi với gia đình &nbsp;&nbsp;&nbsp;&nbsp; B) Gắn kết tình cảm gia đình<br>C) Sống xa gia đình &nbsp;&nbsp;&nbsp;&nbsp; D) Giúp đỡ hàng xóm', a: ['b', 'gắn kết tình cảm gia đình', 'gắn kết gia đình'], hint: 'Bond with family = Gắn kết tình cảm gia đình (Đáp án B)' },
+        { q: '20. What does "gratitude" mean?<br><br>A) Lòng biết ơn &nbsp;&nbsp;&nbsp;&nbsp; B) Thái độ tức giận<br>C) Trách nhiệm &nbsp;&nbsp;&nbsp;&nbsp; D) Sự tự do', a: ['a', 'lòng biết ơn'], hint: 'Gratitude = Lòng biết ơn (Đáp án A)' },
 
-        // --- PART 2: 15 Present Simple Questions (Affirmative, Negative, Interrogative) ---
-        // Affirmative (+)
-        { q: '11. My mother _____ (cook) dinner for our family every evening.', a: ['cooks'], hint: 'Chủ ngữ "My mother" (ngôi 3 số ít) -> cooks' },
-        { q: '12. They _____ (clean) the living room every Saturday morning.', a: ['clean'], hint: 'Chủ ngữ "They" -> động từ giữ nguyên: clean' },
-        { q: '13. He _____ (take) out the rubbish after dinner.', a: ['takes'], hint: 'Chủ ngữ "He" -> takes' },
-        { q: '14. I _____ (do) the washing-up after we finish eating.', a: ['do'], hint: 'Chủ ngữ "I" -> động từ giữ nguyên: do' },
-        { q: '15. She _____ (iron) her clothes every Sunday night.', a: ['irons'], hint: 'Chủ ngữ "She" -> irons' },
+        // --- PART 2: Present Simple Tense (Questions 21-35) ---
+        { q: '21. My sister _____ (clean) the bathroom every Saturday morning.', a: ['cleans'], hint: 'Chủ ngữ "My sister" (ngôi 3 số ít) -> cleans' },
+        { q: '22. My parents _____ (divide) the house chores between my brother and me.', a: ['divide'], hint: 'Chủ ngữ "My parents" (số nhiều) -> divide' },
+        { q: '23. Nam always _____ (wash) his own clothes after playing sports.', a: ['washes'], hint: 'Chủ ngữ "Nam" (ngôi 3 số ít, đuôi -sh) -> washes' },
+        { q: '24. They _____ (iron) their clothes before going to school.', a: ['iron'], hint: 'Chủ ngữ "They" -> iron' },
+        { q: '25. Lan _____ (share) the responsibility of cooking with her mother.', a: ['shares'], hint: 'Chủ ngữ "Lan" (ngôi 3 số ít) -> shares' },
+        { q: '26. Tom _____ (not / like) washing the dishes after mealtime.', a: ['does not like', "doesn't like"], hint: 'Phủ định với "Tom": does not like / doesn\'t like' },
+        { q: '27. We _____ (not / leave) the trash in the living room.', a: ['do not leave', "don't leave"], hint: 'Phủ định với "We": do not leave / don\'t leave' },
+        { q: '28. My father _____ (not / mop) the kitchen floor on weekdays.', a: ['does not mop', "doesn't mop"], hint: 'Phủ định với "My father": does not mop / doesn\'t mop' },
+        { q: '29. I _____ (not / heavy lift) heavy furniture without my brother\'s help.', a: ['do not heavy lift', "don't heavy lift"], hint: 'Phủ định với "I": do not heavy lift / don\'t heavy lift' },
+        { q: '30. They _____ (not / order) fast food when their mother cooks dinner.', a: ['do not order', "don't order"], hint: 'Phủ định với "They": do not order / don\'t order' },
+        { q: '31. _____ your brother _____ (help) your parents with the garden work?', a: ['does help', 'does / help', 'does...help', 'does your brother help'], hint: 'Câu hỏi với "your brother": Does ... help?' },
+        { q: '32. _____ you _____ (dust) the furniture in your bedroom every week?', a: ['do dust', 'do / dust', 'do...dust', 'do you dust'], hint: 'Câu hỏi với "you": Do ... dust?' },
+        { q: '33. _____ they _____ (share) the financial burden in their family?', a: ['do share', 'do / share', 'do...share', 'do they share'], hint: 'Câu hỏi với "they": Do ... share?' },
+        { q: '34. How often _____ your mother _____ (buy) groceries at the supermarket?', a: ['does buy', 'does / buy', 'does...buy', 'does your mother buy'], hint: 'Câu hỏi Wh- với "your mother": does ... buy?' },
+        { q: '35. _____ Lan _____ (take out) the garbage before going to bed?', a: ['does take out', 'does / take out', 'does...take out', 'does lan take out'], hint: 'Câu hỏi với "Lan": Does ... take out?' },
 
-        // Negative (-)
-        { q: '16. She _____ (not / like) doing the laundry on weekdays.', a: ['does not like', "doesn't like"], hint: 'Phủ định với chủ ngữ "She": does not like / doesn\'t like' },
-        { q: '17. They _____ (not / divide) the household chores equally.', a: ['do not divide', "don't divide"], hint: 'Phủ định với chủ ngữ "They": do not divide / don\'t divide' },
-        { q: '18. He _____ (not / mind) helping his parents with the house cleaning.', a: ['does not mind', "doesn't mind"], hint: 'Phủ định với chủ ngữ "He": does not mind / doesn\'t mind' },
-        { q: '19. I _____ (not / mop) the floor every single day.', a: ['do not mop', "don't mop"], hint: 'Phủ định với chủ ngữ "I": do not mop / don\'t mop' },
-        { q: '20. We _____ (not / eat) dinner late on school nights.', a: ['do not eat', "don't eat"], hint: 'Phủ định với chủ ngữ "We": do not eat / don\'t eat' },
-
-        // Interrogative / Questions (?)
-        { q: '21. _____ you _____ (help) your parents with household chores?', a: ['do help', 'do / help', 'do...help', 'do you help'], hint: 'Câu hỏi nghi vấn với "you": Do you help?' },
-        { q: '22. _____ she _____ (sweep) the kitchen floor every day?', a: ['does sweep', 'does / sweep', 'does...sweep', 'does she sweep'], hint: 'Câu hỏi nghi vấn với "she": Does she sweep?' },
-        { q: '23. _____ they _____ (do) the laundry on weekends?', a: ['do do', 'do / do', 'do...do', 'do they do'], hint: 'Câu hỏi nghi vấn với "they": Do they do?' },
-        { q: '24. What time _____ your mother _____ (prepare) breakfast?', a: ['does prepare', 'does / prepare', 'does...prepare', 'does your mother prepare'], hint: 'Câu hỏi có từ hỏi Wh- với "your mother": does ... prepare?' },
-        { q: '25. _____ your brother _____ (clean) his room every weekend?', a: ['does clean', 'does / clean', 'does...clean', 'does your brother clean'], hint: 'Câu hỏi nghi vấn với "your brother": Does clean?' }
+        // --- PART 3: Present Continuous & Mixed Tenses (Questions 36-50) ---
+        { q: '36. Look! My father _____ (prepare) dinner in the kitchen right now.', a: ['is preparing'], hint: 'Dấu hiệu "Look!", "right now" -> Hiện tại tiếp diễn: is preparing' },
+        { q: '37. Listen! Someone _____ (knock) at the front door.', a: ['is knocking'], hint: 'Dấu hiệu "Listen!" -> Hiện tại tiếp diễn: is knocking' },
+        { q: '38. At the moment, my sister _____ (not / watch) TV; she is doing her homework.', a: ['is not watching', "isn't watching"], hint: 'Dấu hiệu "At the moment" dạng phủ định -> is not watching / isn\'t watching' },
+        { q: '39. _____ you _____ (study) for your English test right now?', a: ['are studying', 'are / studying', 'are...studying', 'are you studying'], hint: 'Câu hỏi hiện tại tiếp diễn với "you" -> Are ... studying?' },
+        { q: '40. Why _____ they _____ (make) so much noise in the living room at present?', a: ['are making', 'are / making', 'are...making', 'are they making'], hint: 'Dấu hiệu "at present" -> Are ... making?' },
+        { q: '41. My brother usually _____ (water) the plants, but today he _____ (study) for an exam.', a: ['waters - is studying', 'waters is studying', 'waters / is studying'], hint: 'Usually (HTĐ: waters), but today (HTTD: is studying)' },
+        { q: '42. Look! My mother _____ (carry) heavy grocery bags; let\'s help her.', a: ['is carrying'], hint: 'Dấu hiệu "Look!" -> is carrying' },
+        { q: '43. Be quiet! The baby _____ (sleep) in the bedroom.', a: ['is sleeping'], hint: 'Dấu hiệu "Be quiet!" -> is sleeping' },
+        { q: '44. We _____ (not / clean) the house today because we are going out.', a: ['are not cleaning', "aren't cleaning"], hint: 'Sự việc đặc biệt hôm nay (today) -> are not cleaning / aren\'t cleaning' },
+        { q: '45. _____ your mother _____ (cook) dinner at the moment?', a: ['is cooking', 'is / cooking', 'is...cooking', 'is your mother cooking'], hint: 'Dấu hiệu "at the moment" -> Is ... cooking?' },
+        { q: '46. She usually _____ (do) the washing-up after dinner, but today her brother _____ (do) it.', a: ['does - is doing', 'does is doing', 'does / is doing'], hint: 'Usually (HTĐ: does), but today (HTTD: is doing)' },
+        { q: '47. What _____ you _____ (do) right now? - I _____ (fold) the clothes.', a: ['are doing - am folding', 'are doing am folding', 'are doing / am folding'], hint: 'Right now: Are you doing? - I am folding' },
+        { q: '48. My father _____ (work) late at the office this week.', a: ['is working'], hint: 'Hành động tạm thời trong tuần này "this week" -> is working' },
+        { q: '49. They _____ (not / play) video games now; they are helping their parents.', a: ['are not playing', "aren't playing"], hint: 'Dấu hiệu "now" dạng phủ định -> are not playing / aren\'t playing' },
+        { q: '50. Every Sunday, we _____ (visit) our grandparents, but this Sunday we _____ (stay) at home.', a: ['visit - are staying', 'visit are staying', 'visit / are staying'], hint: 'Every Sunday (HTĐ: visit), but this Sunday (HTTD: are staying)' }
     ];
 
     let currentQuestionIndex = 0;
@@ -447,7 +430,7 @@
     let userLives = 5;
     let currentGameState = "playing";
     let userAnswersLog = [];
-    let grammarHintsCount = 3;
+    let grammarHintsCount = 5;
 
     const canvas = document.getElementById("laser-canvas");
     const ctx = canvas.getContext("2d");
@@ -485,7 +468,7 @@
         resultScreen.classList.remove("active-screen");
         historyScreen.classList.remove("active-screen");
         userLives = 5;
-        grammarHintsCount = 3;
+        grammarHintsCount = 5;
         currentQuestionIndex = 0;
         globalScore = 0;
         userAnswersLog = [];
@@ -639,9 +622,9 @@
         finalScoreDisplay.innerText = globalScore;
 
         let levelStr = "";
-        if (globalScore >= 4500) levelStr = "👑 ĐẠI TƯỚNG NGỮ PHÁP (Xuất Sắc!)";
-        else if (globalScore >= 3200) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
-        else if (globalScore >= 2000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
+        if (globalScore >= 9000) levelStr = "👑 ĐẠI TƯỚNG NGỮ PHÁP (Xuất Sắc!)";
+        else if (globalScore >= 7000) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
+        else if (globalScore >= 4000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
         else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
 
         rewardLevel.innerText = levelStr;
