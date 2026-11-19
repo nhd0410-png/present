@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đấu Trường Nhí - Unit 1 Global Success 10</title>
+    <title>Đấu Trường Nhí - ESL Stage 6: EOT1 Vocabulary Quiz (Units 1-4)</title>
     <style>
         :root {
             --bg-color: #020010;
-            --container-bg: rgba(6, 4, 32, 0.85);
-            --text-color: #fff;
+            --container-bg: rgba(6, 4, 32, 0.88);
+            --text-color: #ffffff;
             --accent-color: #ffeb3b;
             --border-neon: #00fff0;
             --correct-color: #00ff87;
             --wrong-color: #ff4b5c;
-            --laser-color: #00fff0;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--bg-color);
             background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px),
-                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+                radial-gradient(white, rgba(255,255,255,.25) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255,255,255,.15) 2px, transparent 40px);
             background-size: 550px 550px, 350px 350px, 250px 250px;
             background-position: 0 0, 40px 60px, 130px 270px;
             color: var(--text-color);
@@ -31,7 +34,7 @@
             justify-content: center;
             align-items: center;
             margin: 0;
-            padding: 10px;
+            padding: 12px;
             overflow-x: hidden;
         }
 
@@ -47,15 +50,14 @@
 
         #quiz-container {
             width: 100%;
-            max-width: 950px;
+            max-width: 960px;
             background: var(--container-bg);
             border: 3px solid var(--border-neon);
             border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 0 30px rgba(0, 255, 240, 0.2);
+            padding: 22px;
+            box-shadow: 0 0 35px rgba(0, 255, 240, 0.25);
             position: relative;
             backdrop-filter: blur(8px);
-            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             z-index: 1;
@@ -63,51 +65,128 @@
 
         .header-title {
             color: var(--accent-color);
-            font-size: 2.2rem;
-            text-shadow: 0 0 12px rgba(255, 235, 59, 0.6);
-            margin-bottom: 5px;
+            font-size: 2.1rem;
+            text-shadow: 0 0 14px rgba(255, 235, 59, 0.65);
+            margin-bottom: 6px;
             text-transform: uppercase;
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-align: center;
+        }
+
+        .header-subtitle {
+            font-size: 1.05rem;
+            color: var(--border-neon);
+            text-align: center;
+            margin: 0 0 15px 0;
+            font-weight: 600;
         }
 
         .progress-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.1rem;
-            color: #00fff0;
-            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: var(--border-neon);
+            margin-bottom: 12px;
             font-weight: bold;
             flex-wrap: wrap;
             gap: 10px;
+            background: rgba(0, 255, 240, 0.06);
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 240, 0.25);
+        }
+
+        .unit-badge {
+            display: inline-block;
+            background: rgba(255, 235, 59, 0.15);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .question-box {
-            background: rgba(13, 17, 43, 0.9);
-            border: 2px solid #fff;
+            background: rgba(13, 17, 43, 0.92);
+            border: 2px solid #ffffff;
             border-radius: 12px;
-            padding: 25px;
-            font-size: 1.4rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
+            padding: 22px;
+            font-size: 1.22rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55);
+        }
+
+        .mcq-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .mcq-btn {
+            background: rgba(10, 12, 38, 0.95);
+            border: 2px solid var(--border-neon);
+            color: #ffffff;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+        }
+
+        .mcq-btn:hover:not(:disabled) {
+            background: var(--border-neon);
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 14px var(--border-neon);
+        }
+
+        .mcq-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.88;
+        }
+
+        .mcq-btn.correct-choice {
+            background: var(--correct-color) !important;
+            color: #000000 !important;
+            border-color: var(--correct-color) !important;
+            font-weight: 800;
+            box-shadow: 0 0 15px rgba(0, 255, 135, 0.6);
+        }
+
+        .mcq-btn.wrong-choice {
+            background: var(--wrong-color) !important;
+            color: #ffffff !important;
+            border-color: var(--wrong-color) !important;
+            box-shadow: 0 0 15px rgba(255, 75, 92, 0.6);
         }
 
         .battle-deck {
             display: grid;
-            grid-template-columns: 1fr 180px;
+            grid-template-columns: 1fr 210px;
             gap: 15px;
-            margin-top: 20px;
-            min-height: 180px;
+            margin-top: 18px;
+            min-height: 135px;
             align-items: stretch;
         }
 
         .space-arena {
-            background: rgba(0, 0, 0, 0.4);
-            border: 2px dashed rgba(0, 255, 240, 0.3);
+            background: rgba(0, 0, 0, 0.45);
+            border: 2px dashed rgba(0, 255, 240, 0.35);
             border-radius: 10px;
             position: relative;
             display: flex;
@@ -118,8 +197,8 @@
 
         .spaceship-container {
             position: relative;
-            width: 70px;
-            height: 70px;
+            width: 72px;
+            height: 72px;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 5;
         }
@@ -127,37 +206,36 @@
         .spaceship-svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 8px rgba(0, 255, 240, 0.6));
+            filter: drop-shadow(0 0 10px rgba(0, 255, 240, 0.7));
         }
 
         .powerup-cockpit {
             border: 2px solid var(--border-neon);
-            background: rgba(10, 12, 38, 0.9);
+            background: rgba(10, 12, 38, 0.92);
             border-radius: 10px;
-            padding: 10px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             box-shadow: inset 0 0 15px rgba(0, 255, 240, 0.2);
         }
 
         .cockpit-label {
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
             color: var(--border-neon);
             letter-spacing: 1px;
             text-align: center;
-            margin-bottom: -4px;
             font-weight: bold;
         }
 
         .lifeline-btn {
             background: linear-gradient(135deg, #0d1b3e, #162a65);
-            border: 1px solid #00fff0;
+            border: 1px solid var(--border-neon);
             color: white;
-            padding: 10px 5px;
-            border-radius: 4px;
+            padding: 10px 8px;
+            border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
@@ -165,117 +243,235 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
         }
 
         .lifeline-btn:hover:not(:disabled) {
-            background: #00fff0;
+            background: var(--border-neon);
             color: black;
-            box-shadow: 0 0 10px #00fff0;
+            box-shadow: 0 0 12px var(--border-neon);
         }
 
         .lifeline-btn:disabled {
-            background: #111 !important;
-            border-color: #333 !important;
-            color: #555 !important;
+            background: #111111 !important;
+            border-color: #333333 !important;
+            color: #555555 !important;
             cursor: not-allowed;
         }
 
         .lifeline-count {
             background: var(--accent-color);
             color: black;
-            border-radius: 3px;
-            padding: 1px 5px;
-            font-size: 0.75rem;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.78rem;
             font-weight: 900;
         }
 
-        .correction-container {
-            background: rgba(13, 17, 43, 0.9);
-            border: 2px dashed var(--border-neon);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .written-input {
-            width: 85%;
-            max-width: 500px;
-            padding: 12px 20px;
-            font-size: 1.3rem;
-            border: 2px solid var(--border-neon);
-            border-radius: 4px;
-            background: #020215;
-            color: #fff;
-            text-align: center;
-            outline: none;
-            box-shadow: 0 0 10px rgba(0, 255, 240, 0.2);
-        }
-
         #status-message {
-            min-height: 35px;
-            margin-top: 10px;
-            font-size: 1.2rem;
+            min-height: 36px;
+            margin-top: 8px;
+            font-size: 1.08rem;
             font-weight: bold;
             color: var(--accent-color);
             text-align: center;
+            padding: 4px 8px;
         }
 
         .action-btn {
             background: linear-gradient(to right, #00b4db, #0083b0);
-            border: none;
-            border-radius: 4px;
+            border: 2px solid #00fff0;
+            border-radius: 6px;
             padding: 12px 30px;
-            color: #fff;
+            color: #ffffff;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            margin: 15px auto 0 auto;
+            margin: 10px auto 0 auto;
             display: none;
-            box-shadow: 0 0 15px rgba(0, 180, 219, 0.4);
+            box-shadow: 0 0 16px rgba(0, 180, 219, 0.5);
+            transition: transform 0.2s;
         }
 
-        .screen { display: none; }
-        .active-screen { display: block; }
+        .action-btn:hover {
+            transform: scale(1.04);
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .active-screen {
+            display: block;
+        }
 
         .intro-rules {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 16px 0;
             text-align: left;
             border-left: 4px solid var(--accent-color);
             line-height: 1.7;
-            font-size: 1rem;
+            font-size: 0.96rem;
+        }
+
+        .filter-section {
+            background: rgba(0, 255, 240, 0.07);
+            border: 1px solid rgba(0, 255, 240, 0.35);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .filter-label {
+            display: block;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .unit-selector-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .unit-filter-btn {
+            background: rgba(10, 12, 38, 0.95);
+            border: 2px solid rgba(0, 255, 240, 0.45);
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .unit-filter-btn:hover {
+            border-color: var(--border-neon);
+            box-shadow: 0 0 10px rgba(0, 255, 240, 0.4);
+        }
+
+        .unit-filter-btn.selected {
+            background: var(--border-neon);
+            color: #000000;
+            border-color: var(--border-neon);
+            box-shadow: 0 0 15px rgba(0, 255, 240, 0.65);
         }
 
         .start-game-btn, .control-btn {
             background: linear-gradient(135deg, #00ff87, #60efff);
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             padding: 15px 40px;
-            color: #000;
+            color: #000000;
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 255, 135, 0.4);
+            box-shadow: 0 0 22px rgba(0, 255, 135, 0.45);
             transition: transform 0.2s;
+            text-transform: uppercase;
         }
 
-        .control-btn { font-size: 1rem; padding: 12px 25px; }
-        .control-btn.blue { background: linear-gradient(135deg, #00b4db, #0083b0); color: #fff; }
+        .start-game-btn:hover, .control-btn:hover {
+            transform: scale(1.04);
+        }
 
-        .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
-        .history-container { text-align: left; max-height: 350px; overflow-y: auto; margin-top: 20px; }
-        .history-item { background: rgba(255, 255, 255, 0.03); padding: 15px; margin-bottom: 10px; border-radius: 6px; border-left: 4px solid #fff; }
-        .history-item.history-correct { border-left-color: var(--correct-color); }
-        .history-item.history-wrong { border-left-color: var(--wrong-color); }
+        .control-btn {
+            font-size: 1rem;
+            padding: 12px 26px;
+        }
 
-        .heart-icon { color: #ff4b5c; font-size: 1.4rem; }
+        .control-btn.blue {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            color: #ffffff;
+        }
 
-        @media (max-width: 600px) {
-            .battle-deck { grid-template-columns: 1fr; }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+
+        .history-container {
+            text-align: left;
+            max-height: 380px;
+            overflow-y: auto;
+            margin-top: 18px;
+            padding-right: 6px;
+        }
+
+        .history-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .history-container::-webkit-scrollbar-thumb {
+            background: var(--border-neon);
+            border-radius: 4px;
+        }
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 14px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 5px solid #ffffff;
+            line-height: 1.5;
+        }
+
+        .history-item.history-correct {
+            border-left-color: var(--correct-color);
+        }
+
+        .history-item.history-wrong {
+            border-left-color: var(--wrong-color);
+        }
+
+        .heart-icon {
+            color: #ff4b5c;
+            font-size: 1.3rem;
+        }
+
+        .quit-mini-btn {
+            background: rgba(255, 75, 92, 0.15);
+            border: 1px solid #ff4b5c;
+            color: #ff8a95;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quit-mini-btn:hover {
+            background: #ff4b5c;
+            color: #ffffff;
+        }
+
+        @media (max-width: 650px) {
+            .header-title {
+                font-size: 1.55rem;
+            }
+            .mcq-options-grid {
+                grid-template-columns: 1fr;
+            }
+            .battle-deck {
+                grid-template-columns: 1fr;
+            }
+            .question-box {
+                padding: 16px;
+                font-size: 1.08rem;
+            }
         }
     </style>
 </head>
@@ -288,15 +484,28 @@
     <!-- INTRO SCREEN -->
     <div id="intro-screen" class="screen active-screen">
         <div class="header-title">Đấu Trường Nhí</div>
-        <p style="font-size: 1.2rem; color: #00fff0; text-align: center; margin: 0;">Unit 1 Global Success 10: Family Life & Tenses Challenge (50 Câu Hỏi Full)</p>
+        <p class="header-subtitle">
+            Vinschool ESL Stage 6 - Ôn tập Từ vựng Unit 1 (My world), Unit 2 (Sport), Unit 3 (Living things), Unit 4 (Inventions)
+        </p>
         
         <div class="intro-rules">
-            <strong>🚀 BỘ CÂU HỎI TIẾNG ANH 10 - UNIT 1 (50 CÂU HỎI):</strong><br>
-            • <b>Phần 1 (Câu 1-20):</b> Trắc nghiệm Từ vựng Công việc nhà & Gia đình - Chọn A, B, C, D hoặc gõ chữ cái đại diện!<br>
-            • <b>Phần 2 (Câu 21-35):</b> Chia động từ Thì Hiện Tại Đơn (Present Simple).<br>
-            • <b>Phần 3 (Câu 36-50):</b> Chia động từ Thì Hiện Tại Tiếp Diễn & Phối hợp thì (Present Continuous & Mixed Tenses).<br>
-            • 📝 Chú ý chia động từ theo đúng ngôi chủ ngữ (S) và dạng câu!<br>
-            • 🛸 Con có <b>5 Mạng ❤️</b> và <b>Không Giới Hạn Thời Gian ♾️</b> cho mỗi câu hỏi!
+            <strong>🚀 NHIỆM VỤ ÔN TẬP CUỐI HỌC KÌ I (EOT1 REVISION):</strong><br>
+            • <b>Unit 1 (My world):</b> Cảm xúc, phẩm chất, truyền thông, hoạt động xã hội & địa lý (18 từ vựng).<br>
+            • <b>Unit 2 (Sport):</b> Môn thể thao, dụng cụ thi đấu, dinh dưỡng & ý chí vượt khó (34 từ vựng).<br>
+            • <b>Unit 3 (Living things):</b> Thế giới động vật, chuỗi thức ăn, môi trường sống & bảo tồn (35 từ vựng).<br>
+            • <b>Unit 4 (Inventions):</b> Phát minh, thiết bị công nghệ, người máy & cụm động từ (34 từ vựng).<br>
+            • Con có <b>5 Mạng ❤️</b> và <b>5 lần Gợi Ý Hệ Thống 💡</b> (giải thích nghĩa Anh - Việt). Các đáp án A, B, C, D được xáo trộn ngẫu nhiên!
+        </div>
+
+        <div class="filter-section">
+            <span class="filter-label">🎯 Chọn phạm vi Unit muốn thử thách:</span>
+            <div class="unit-selector-grid" id="unit-selector">
+                <button class="unit-filter-btn selected" data-unit="ALL" onclick="selectUnitFilter('ALL', this)">Tất cả 4 Units (121 câu)</button>
+                <button class="unit-filter-btn" data-unit="Unit 1" onclick="selectUnitFilter('Unit 1', this)">Unit 1: My world (18 câu)</button>
+                <button class="unit-filter-btn" data-unit="Unit 2" onclick="selectUnitFilter('Unit 2', this)">Unit 2: Sport (34 câu)</button>
+                <button class="unit-filter-btn" data-unit="Unit 3" onclick="selectUnitFilter('Unit 3', this)">Unit 3: Living things (35 câu)</button>
+                <button class="unit-filter-btn" data-unit="Unit 4" onclick="selectUnitFilter('Unit 4', this)">Unit 4: Inventions (34 câu)</button>
+            </div>
         </div>
         
         <div style="text-align: center;">
@@ -307,18 +516,19 @@
     <!-- GAMEPLAY SCREEN -->
     <div id="game-screen" class="screen">
         <div class="progress-info">
-            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">50</span></div>
+            <div>Thử thách: <span id="current-q-num">1</span> / <span id="total-q-num">121</span></div>
             <div id="lives-display">Mạng: <span class="heart-icon">❤️❤️❤️❤️❤️</span></div>
             <div style="color: var(--accent-color);">Điểm: <span id="score-display">0</span></div>
-            <div style="color: #00fff0;">⏳ Thời gian: <span>Không giới hạn ♾️</span></div>
+            <button class="quit-mini-btn" onclick="restartGame()">↩ Đổi Unit</button>
         </div>
 
         <div class="question-box">
-            <div id="instruction-title" style="font-size: 1rem; color: #00fff0; margin-bottom: 10px; text-transform: uppercase;">🎯 NHIỆM VỤ CƠ BẢN:</div>
-            <div id="question-prompt" style="font-weight: 600; margin-bottom: 15px;"></div>
+            <div id="unit-tag" class="unit-badge">Unit 1: My world</div>
+            <div id="instruction-title" style="font-size: 0.9rem; color: var(--border-neon); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">🎯 CHỌN TỪ VỰNG PHÙ HỢP NHẤT:</div>
+            <div id="question-prompt" style="font-weight: 600; margin-bottom: 14px;"></div>
+            <div id="mcq-options" class="mcq-options-grid"></div>
         </div>
 
-        <div id="correction-zone"></div>
         <div id="status-message"></div>
 
         <div style="text-align: center;">
@@ -340,7 +550,7 @@
             <div class="powerup-cockpit">
                 <div class="cockpit-label">Hỗ Trợ Vũ Trụ</div>
                 <button id="ll-hint" class="lifeline-btn" onclick="useGrammarHint()">
-                    <span>Gợi Ý Hệ Thống</span> <span id="count-hint" class="lifeline-count">5</span>
+                    <span>💡 Gợi Ý Hệ Thống</span> <span id="count-hint" class="lifeline-count">5</span>
                 </button>
             </div>
         </div>
@@ -348,94 +558,902 @@
 
     <!-- RESULT SCREEN -->
     <div id="result-screen" class="screen" style="text-align: center;">
-        <h2>Chúc Mừng Con Đã Hoàn Thành!</h2>
-        <div style="font-size: 1.5rem; margin: 15px 0;">Điểm số đạt được: <span id="final-score" style="color: var(--accent-color); font-weight:bold;">0</span> điểm</div>
-        <div style="font-size: 1.3rem; color: var(--correct-color); font-weight: bold; margin-bottom: 25px;" id="reward-level"></div>
+        <div class="header-title" style="font-size: 1.9rem;">Tổng Kết Chiến Dịch Vũ Trụ</div>
+        <p style="color: var(--border-neon); font-size: 1.1rem; margin-top: 4px;" id="result-unit-summary"></p>
+        <div style="font-size: 1.5rem; margin: 18px 0;">Điểm số đạt được: <span id="final-score" style="color: var(--accent-color); font-weight: 900;">0</span> điểm</div>
+        <div style="font-size: 1.15rem; margin-bottom: 12px; color: #ffffff;" id="accuracy-summary"></div>
+        <div style="font-size: 1.35rem; color: var(--correct-color); font-weight: bold; margin-bottom: 24px;" id="reward-level"></div>
 
         <div class="btn-group">
-            <button class="control-btn" onclick="restartGame()">Chơi Lại Từ Đầu</button>
-            <button class="control-btn blue" onclick="showHistoryScreen()">Xem Chi Tiết Lịch Sử</button>
+            <button class="control-btn" onclick="restartGame()">Chơi Lại / Chọn Unit Khác</button>
+            <button class="control-btn blue" onclick="showHistoryScreen()">Xem Chi Tiết Lịch Sử & Sửa Lỗi</button>
         </div>
     </div>
 
     <!-- REVISE HISTORY SCREEN -->
     <div id="history-screen" class="screen" style="text-align: center;">
-        <h2 style="color: #00fff0;">Bảng Xem Lại Kết Quả</h2>
+        <h2 style="color: var(--border-neon); margin-top: 0;">Bảng Xem Lại Kết Quả & Ôn Tập Từ Sai</h2>
         <div class="history-container" id="history-list"></div>
-        <button class="control-btn" style="margin-top:20px;" onclick="restartGame()">Quay Lại Từ Đầu</button>
+        <button class="control-btn" style="margin-top: 18px;" onclick="restartGame()">Quay Lại Màn Hình Chính</button>
     </div>
 </div>
 
 <script>
-    const quizData = [
-        // --- PART 1: Vocabulary & Household Chores (Questions 1-20) ---
-        { q: '1. What does "do the cooking" mean?<br><br>A) Đi chợ &nbsp;&nbsp;&nbsp;&nbsp; B) Nấu ăn<br>C) Lau bàn ăn &nbsp;&nbsp;&nbsp;&nbsp; D) Rửa chén bát', a: ['b', 'nấu ăn'], hint: 'Do the cooking = Nấu ăn (Đáp án B)' },
-        { q: '2. What does "clean the house" mean?<br><br>A) Lau chùi, dọn dẹp nhà cửa &nbsp;&nbsp;&nbsp;&nbsp; B) Mua nhà mới<br>C) Sơn lại nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Trang trí phòng khách', a: ['a', 'lau chùi, dọn dẹp nhà cửa', 'dọn dẹp nhà cửa', 'lau chùi nhà cửa'], hint: 'Clean the house = Lau chùi, dọn dẹp nhà cửa (Đáp án A)' },
-        { q: '3. What does "split the chores" mean?<br><br>A) Tránh làm việc nhà &nbsp;&nbsp;&nbsp;&nbsp; B) Thuê người giúp việc<br>C) Phân chia công việc nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Làm việc nhà một mình', a: ['c', 'phân chia công việc nhà'], hint: 'Split the chores = Phân chia công việc nhà (Đáp án C)' },
-        { q: '4. What does "heavy lifting" mean?<br><br>A) Nhặt rác ngoài sân &nbsp;&nbsp;&nbsp;&nbsp; B) Mang vác đồ nặng<br>C) Gấp quần áo &nbsp;&nbsp;&nbsp;&nbsp; D) Lau bụi trên kệ sách', a: ['b', 'mang vác đồ nặng'], hint: 'Heavy lifting = Việc nặng nhọc / Mang vác đồ nặng (Đáp án B)' },
-        { q: '5. What does "financial burden" mean?<br><br>A) Quỹ tiết kiệm &nbsp;&nbsp;&nbsp;&nbsp; B) Thu nhập hàng tháng<br>C) Gánh nặng tài chính &nbsp;&nbsp;&nbsp;&nbsp; D) Chi phí đi lại', a: ['c', 'gánh nặng tài chính'], hint: 'Financial burden = Gánh nặng tài chính (Đáp án C)' },
-        { q: '6. What does "share household duties" mean?<br><br>A) Phân công đi làm &nbsp;&nbsp;&nbsp;&nbsp; B) Chia sẻ trách nhiệm gia đình / việc nhà<br>C) Bỏ qua công việc dọn dẹp &nbsp;&nbsp;&nbsp;&nbsp; D) Thuê dịch vụ dọn dẹp', a: ['b', 'chia sẻ trách nhiệm gia đình / việc nhà', 'chia sẻ trách nhiệm gia đình', 'chia sẻ việc nhà'], hint: 'Share household duties = Chia sẻ trách nhiệm gia đình / việc nhà (Đáp án B)' },
-        { q: '7. What does "do the washing" mean?<br><br>A) Rửa xe máy &nbsp;&nbsp;&nbsp;&nbsp; B) Tắm rửa<br>C) Giặt giũ quần áo &nbsp;&nbsp;&nbsp;&nbsp; D) Rửa bát đĩa', a: ['c', 'giặt giũ quần áo', 'giặt quần áo'], hint: 'Do the washing = Giặt giũ quần áo (Đáp án C)' },
-        { q: '8. What does "put out the trash" mean?<br><br>A) Đổ rác / Mang rác ra ngoài &nbsp;&nbsp;&nbsp;&nbsp; B) Dọn tủ quần áo<br>C) Phân loại rác tái chế &nbsp;&nbsp;&nbsp;&nbsp; D) Quét dọn lối đi', a: ['a', 'đổ rác / mang rác ra ngoài', 'đổ rác', 'mang rác ra ngoài'], hint: 'Put out the trash = Đổ rác / Mang rác ra ngoài (Đáp án A)' },
-        { q: '9. What does "lay the table" mean?<br><br>A) Dọn dẹp thức ăn thừa &nbsp;&nbsp;&nbsp;&nbsp; B) Lau chùi mặt bàn<br>C) Sắp xếp, bày bàn ăn &nbsp;&nbsp;&nbsp;&nbsp; D) Mua bàn ăn mới', a: ['c', 'sắp xếp, bày bàn ăn', 'bày bàn ăn', 'sắp xếp bàn ăn'], hint: 'Lay the table = Sắp xếp, bày bàn ăn (Đáp án C)' },
-        { q: '10. What does "take responsibility for" mean?<br><br>A) Chịu trách nhiệm về &nbsp;&nbsp;&nbsp;&nbsp; B) Từ chối nhiệm vụ<br>C) Yêu cầu giúp đỡ &nbsp;&nbsp;&nbsp;&nbsp; D) Phân công công việc', a: ['a', 'chịu trách nhiệm về', 'chịu trách nhiệm'], hint: 'Take responsibility for = Chịu trách nhiệm về (Đáp án A)' },
-        { q: '11. What does "breadwinner" mean?<br><br>A) Người nội trợ &nbsp;&nbsp;&nbsp;&nbsp; B) Trụ cột gia đình (người kiếm tiền chính)<br>C) Người bán bánh mì &nbsp;&nbsp;&nbsp;&nbsp; D) Cả gia đình', a: ['b', 'trụ cột gia đình'], hint: 'Breadwinner = Trụ cột gia đình (Đáp án B)' },
-        { q: '12. What does "homemaker" mean?<br><br>A) Người xây nhà &nbsp;&nbsp;&nbsp;&nbsp; B) Người nội trợ<br>C) Thợ sửa chữa &nbsp;&nbsp;&nbsp;&nbsp; D) Người quản lý công ty', a: ['b', 'người nội trợ'], hint: 'Homemaker = Người nội trợ (Đáp án B)' },
-        { q: '13. What does "groceries" mean?<br><br>A) Thực phẩm và hàng tạp hóa &nbsp;&nbsp;&nbsp;&nbsp; B) Quần áo thời trang<br>C) Đồ dùng điện tử &nbsp;&nbsp;&nbsp;&nbsp; D) Sách vở', a: ['a', 'thực phẩm và hàng tạp hóa', 'hàng tạp hóa'], hint: 'Groceries = Thực phẩm và hàng tạp hóa (Đáp án A)' },
-        { q: '14. What does "do the washing-up" mean?<br><br>A) Giặt quần áo &nbsp;&nbsp;&nbsp;&nbsp; B) Rửa chén bát<br>C) Rửa mặt &nbsp;&nbsp;&nbsp;&nbsp; D) Lau sàn nhà', a: ['b', 'rửa chén bát', 'rửa chén', 'rửa bát'], hint: 'Do the washing-up = Rửa chén bát (Đáp án B)' },
-        { q: '15. What does "mop the floor" mean?<br><br>A) Quét nhà &nbsp;&nbsp;&nbsp;&nbsp; B) Hút bụi<br>C) Lau sàn nhà &nbsp;&nbsp;&nbsp;&nbsp; D) Sơn sàn nhà', a: ['c', 'lau sàn nhà', 'lau sàn'], hint: 'Mop the floor = Lau sàn nhà (Đáp án C)' },
-        { q: '16. What does "iron the clothes" mean?<br><br>A) Giặt quần áo &nbsp;&nbsp;&nbsp;&nbsp; B) Phơi quần áo<br>C) Là / ủi quần áo &nbsp;&nbsp;&nbsp;&nbsp; D) Mua quần áo', a: ['c', 'là / ủi quần áo', 'ủi quần áo', 'là quần áo'], hint: 'Iron the clothes = Là / ủi quần áo (Đáp án C)' },
-        { q: '17. What does "dust the furniture" mean?<br><br>A) Lau bụi nội thất / đồ đạc &nbsp;&nbsp;&nbsp;&nbsp; B) Di chuyển đồ đạc<br>C) Bán đồ đạc cũ &nbsp;&nbsp;&nbsp;&nbsp; D) Mua đồ nội thất', a: ['a', 'lau bụi nội thất / đồ đạc', 'lau bụi nội thất', 'lau bụi đồ đạc'], hint: 'Dust the furniture = Lau bụi nội thất / đồ đạc (Đáp án A)' },
-        { q: '18. What does "family routines" mean?<br><br>A) Chuyến du lịch gia đình &nbsp;&nbsp;&nbsp;&nbsp; B) Thói quen / nếp sinh hoạt gia đình<br>C) Quy tắc trong trường học &nbsp;&nbsp;&nbsp;&nbsp; D) Lịch trình đi học', a: ['b', 'thói quen / nếp sinh hoạt gia đình', 'nếp sinh hoạt gia đình'], hint: 'Family routines = Thói quen / nếp sinh hoạt gia đình (Đáp án B)' },
-        { q: '19. What does "bond with family" mean?<br><br>A) Tranh cãi với gia đình &nbsp;&nbsp;&nbsp;&nbsp; B) Gắn kết tình cảm gia đình<br>C) Sống xa gia đình &nbsp;&nbsp;&nbsp;&nbsp; D) Giúp đỡ hàng xóm', a: ['b', 'gắn kết tình cảm gia đình', 'gắn kết gia đình'], hint: 'Bond with family = Gắn kết tình cảm gia đình (Đáp án B)' },
-        { q: '20. What does "gratitude" mean?<br><br>A) Lòng biết ơn &nbsp;&nbsp;&nbsp;&nbsp; B) Thái độ tức giận<br>C) Trách nhiệm &nbsp;&nbsp;&nbsp;&nbsp; D) Sự tự do', a: ['a', 'lòng biết ơn'], hint: 'Gratitude = Lòng biết ơn (Đáp án A)' },
+    // Complete Vocabulary Bank from Vinschool ESL Stage 6 EOT1 Revision Outline (Units 1-4)
+    // Note: Index 0 in `options` is always the correct answer before dynamic shuffling on load!
+    const allQuizData = [
+        // ==================== UNIT 1: MY WORLD (18 words) ====================
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "If you want _____, you should try parachuting. (a feeling of being very happy and enthusiastic)",
+            options: ["excitement", "satisfaction", "bravery", "district"],
+            hint: "Excitement (n) / excited (adj): sự hào hứng, phấn khích."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "She felt _____ with her exam results because she got high marks. (happy because something happened the way you wanted)",
+            options: ["satisfied", "terrifying", "brave", "amazing"],
+            hint: "Satisfied (adj) / satisfaction (n): hài lòng, thỏa mãn."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "The firefighter showed great _____ when he saved the child from the burning house.",
+            options: ["bravery", "amazement", "media", "beauty"],
+            hint: "Bravery (n) / brave (adj): lòng dũng cảm, sự gan dạ."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "To her _____, she passed the difficult test! The view from the top was also _____.",
+            options: ["amazement / amazing", "excitement / excited", "bravery / brave", "beauty / beautiful"],
+            hint: "Amazement (n) / amazing (adj): sự ngạc nhiên lớn / tuyệt vời, đáng kinh ngạc."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "The _____ of the sunset over the ocean made everyone stop and watch.",
+            options: ["beauty", "protest", "continent", "campaign"],
+            hint: "Beauty (n) / beautiful (adj): vẻ đẹp."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "I really _____ my teacher for her kindness and patience. (to respect or think highly of someone)",
+            options: ["admire", "inherit", "ban", "protest"],
+            hint: "Admire (v): ngưỡng mộ, kính trọng."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "The news spread quickly through the _____, including newspapers, TV, radio, and the internet.",
+            options: ["media", "district", "volcano", "activist"],
+            hint: "Media (n): phương tiện truyền thông (báo chí, TV, đài, internet)."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "The students held a peaceful _____ against the new unfair rules. (an action to show you do not agree)",
+            options: ["protest", "campaign", "continent", "beauty"],
+            hint: "Protest (n/v): cuộc biểu tình / phản đối."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "They started a _____ to protect the forest and plant more trees. (a planned set of actions to reach a goal)",
+            options: ["campaign", "volcano", "district", "bravery"],
+            hint: "Campaign (n/v): chiến dịch (vận động xã hội, môi trường...)."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "The environmental _____ spoke passionately about protecting wild animals and clean air.",
+            options: ["activist", "continent", "media", "mountain range"],
+            hint: "Activist (n): nhà hoạt động xã hội / chính trị."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "Smoking is _____ in many public places such as schools and hospitals. (not allowed)",
+            options: ["banned", "inherited", "admired", "satisfied"],
+            hint: "Ban (v/n): cấm, lệnh cấm."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "The horror movie was so _____ that I couldn't watch it and covered my eyes. (very scary)",
+            options: ["terrifying", "satisfied", "amazing", "beautiful"],
+            hint: "Terrifying (adj): đáng sợ, kinh hoàng."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "She _____ her grandmother's old house after she passed away. (to receive money or property after someone dies)",
+            options: ["inherited", "admired", "banned", "protested"],
+            hint: "Inherit (v): thừa kế, được thừa hưởng."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "The Himalayas are the highest _____ in the world. (a group of mountains close together)",
+            options: ["mountain range", "continent", "district", "volcano"],
+            hint: "Mountain range (n): dãy núi."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "London, Tokyo, and Paris are very famous capital _____. (large towns)",
+            options: ["cities", "continents", "volcanoes", "campaigns"],
+            hint: "City (n) / cities (plural): thành phố."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "Mount Fuji is a famous _____ in Japan—a mountain that can throw out fire, gas, and lava.",
+            options: ["volcano", "district", "continent", "mountain range"],
+            hint: "Volcano (n): núi lửa."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "Africa is the second largest _____ on Earth, after Asia.",
+            options: ["continent", "district", "city", "volcano"],
+            hint: "Continent (n): châu lục, lục địa."
+        },
+        {
+            unit: "Unit 1",
+            unitTitle: "Unit 1: My world",
+            q: "They live in the busy shopping _____ right in the center of the city. (an area of a city or country)",
+            options: ["district", "continent", "volcano", "media"],
+            hint: "District (n): quận, huyện, khu vực trong thành phố."
+        },
 
-        // --- PART 2: Present Simple Tense (Questions 21-35) ---
-        { q: '21. My sister _____ (clean) the bathroom every Saturday morning.', a: ['cleans'], hint: 'Chủ ngữ "My sister" (ngôi 3 số ít) -> cleans' },
-        { q: '22. My parents _____ (divide) the house chores between my brother and me.', a: ['divide'], hint: 'Chủ ngữ "My parents" (số nhiều) -> divide' },
-        { q: '23. Nam always _____ (wash) his own clothes after playing sports.', a: ['washes'], hint: 'Chủ ngữ "Nam" (ngôi 3 số ít, đuôi -sh) -> washes' },
-        { q: '24. They _____ (iron) their clothes before going to school.', a: ['iron'], hint: 'Chủ ngữ "They" -> iron' },
-        { q: '25. Lan _____ (share) the responsibility of cooking with her mother.', a: ['shares'], hint: 'Chủ ngữ "Lan" (ngôi 3 số ít) -> shares' },
-        { q: '26. Tom _____ (not / like) washing the dishes after mealtime.', a: ['does not like', "doesn't like"], hint: 'Phủ định với "Tom": does not like / doesn\'t like' },
-        { q: '27. We _____ (not / leave) the trash in the living room.', a: ['do not leave', "don't leave"], hint: 'Phủ định với "We": do not leave / don\'t leave' },
-        { q: '28. My father _____ (not / mop) the kitchen floor on weekdays.', a: ['does not mop', "doesn't mop"], hint: 'Phủ định với "My father": does not mop / doesn\'t mop' },
-        { q: '29. I _____ (not / heavy lift) heavy furniture without my brother\'s help.', a: ['do not heavy lift', "don't heavy lift"], hint: 'Phủ định với "I": do not heavy lift / don\'t heavy lift' },
-        { q: '30. They _____ (not / order) fast food when their mother cooks dinner.', a: ['do not order', "don't order"], hint: 'Phủ định với "They": do not order / don\'t order' },
-        { q: '31. _____ your brother _____ (help) your parents with the garden work?', a: ['does help', 'does / help', 'does...help', 'does your brother help'], hint: 'Câu hỏi với "your brother": Does ... help?' },
-        { q: '32. _____ you _____ (dust) the furniture in your bedroom every week?', a: ['do dust', 'do / dust', 'do...dust', 'do you dust'], hint: 'Câu hỏi với "you": Do ... dust?' },
-        { q: '33. _____ they _____ (share) the financial burden in their family?', a: ['do share', 'do / share', 'do...share', 'do they share'], hint: 'Câu hỏi với "they": Do ... share?' },
-        { q: '34. How often _____ your mother _____ (buy) groceries at the supermarket?', a: ['does buy', 'does / buy', 'does...buy', 'does your mother buy'], hint: 'Câu hỏi Wh- với "your mother": does ... buy?' },
-        { q: '35. _____ Lan _____ (take out) the garbage before going to bed?', a: ['does take out', 'does / take out', 'does...take out', 'does lan take out'], hint: 'Câu hỏi với "Lan": Does ... take out?' },
+        // ==================== UNIT 2: SPORT (34 words) ====================
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "My brother started learning _____—a martial art where two people throw each other to the ground.",
+            options: ["judo", "gymnastics", "athletics", "shuttlecock"],
+            hint: "Judo (n): môn võ Judo (Nhu đạo)."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "She practices _____ three times a week to develop her strength, balance, and flexibility.",
+            options: ["gymnastics", "judo", "athletics", "hockey stick"],
+            hint: "Gymnastics (n): môn thể dục dụng cụ."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "_____ includes sports such as running, jumping, and throwing in the Olympic Games.",
+            options: ["Athletics", "Judo", "Gymnastics", "Calcium"],
+            hint: "Athletics (n): môn điền kinh."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "In badminton, players hit a small object with feathers or plastic called a _____ over the net.",
+            options: ["shuttlecock", "racquet", "hockey stick", "belt"],
+            hint: "Shuttlecock (n): quả cầu lông."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "After years of hard training in karate, he finally won a black _____. (a band showing skill level)",
+            options: ["belt", "goggles", "shin pads", "ankle"],
+            hint: "Belt (n): đai (trong võ thuật) hoặc thắt lưng."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "The striker kicked the ball hard, but it hit the _____ and bounced back out!",
+            options: ["goalposts", "shin pads", "racquets", "goggles"],
+            hint: "Goalposts (n): cột gôn, khung thành."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "Football players must wear _____ under their socks to protect their lower legs.",
+            options: ["shin pads", "goggles", "belts", "goalposts"],
+            hint: "Shin pads (n): miếng bọc ống đồng bảo vệ chân."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "She bought a lightweight new tennis _____ yesterday to hit the ball faster.",
+            options: ["racquet", "hockey stick", "shuttlecock", "belt"],
+            hint: "Racquet (n): cây vợt (cầu lông, quần vợt...)."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "You need to wear _____ when swimming underwater to protect your eyes from chlorine.",
+            options: ["goggles", "shin pads", "calves", "nutrients"],
+            hint: "Goggles (n): kính bơi / kính bảo hộ mắt."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "He accidentally broke his wooden _____ while hitting the ball during practice.",
+            options: ["hockey stick", "racquet", "shuttlecock", "goalposts"],
+            hint: "Hockey stick (n): gậy chơi khúc côn cầu."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "After running 5 kilometers in the hot sun, I was really _____ and needed water.",
+            options: ["thirsty", "hydrated", "awesome", "sugary"],
+            hint: "Thirsty (adj): khát nước."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "Rice, pasta, and bread are rich in _____, which give athletes energy for sports.",
+            options: ["carbohydrates", "calcium", "calves", "goggles"],
+            hint: "Carbohydrates (n): chất tinh bột / đường cung cấp năng lượng."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "Eating too much _____ like candy and cakes is bad for your teeth and health.",
+            options: ["sugary food", "calcium", "plenty of", "digestion system"],
+            hint: "Sugary food (noun phrase): đồ ăn nhiều đường."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "It takes a few hours for your stomach to _____ a large meal so your body can use the energy.",
+            options: ["digest", "bounce", "tease", "strike"],
+            hint: "Digest (v): tiêu hóa thức ăn."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "The _____ includes the stomach and intestines, which break down the food we eat.",
+            options: ["digestion system", "foster care", "determination", "sugary food"],
+            hint: "Digestion system (n): hệ tiêu hóa."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "Drink plenty of water to stay _____ during exercise. (having taken in enough water)",
+            options: ["hydrated", "thirsty", "awesome", "sugary"],
+            hint: "Hydrated (adj): được cung cấp đủ nước."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "Fresh vegetables and fruits are full of important _____ that help people live and grow.",
+            options: ["nutrients", "goalposts", "calves", "jibes"],
+            hint: "Nutrients (n): chất dinh dưỡng."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "Milk, cheese, and yogurt are great sources of _____, which keeps your bones and teeth strong.",
+            options: ["calcium", "carbohydrates", "talent", "blast"],
+            hint: "Calcium (n): canxi (giúp xương và răng chắc khỏe)."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "This healthy sports drink does not _____ any artificial sugar. (to have something inside)",
+            options: ["contain", "digest", "bounce", "explore"],
+            hint: "Contain (v): chứa đựng, bao gồm."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "Make sure you eat _____ fresh fruit and vegetables every day. (a large amount of)",
+            options: ["plenty of", "give up", "foster care", "sugary food"],
+            hint: "Plenty of (phrase): nhiều, dồi dào."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "She twisted her _____ while landing from a jump in basketball. (the joint connecting the foot to the leg)",
+            options: ["ankle", "calves", "belt", "shin pads"],
+            hint: "Ankle (n): mắt cá chân."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "After running up the steep hill, the muscles at the back of my lower legs—my _____—were very sore.",
+            options: ["calves", "ankles", "goggles", "nutrients"],
+            hint: "Calves (n, plural): bắp chân."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "She has a great natural _____ for gymnastics and learns new moves very quickly.",
+            options: ["talent", "struggle", "fire", "calcium"],
+            hint: "Talent (n): tài năng, năng khiếu thiên bẩm."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "He didn't _____ even when the marathon training became exhausting. (to stop trying)",
+            options: ["give up", "try out", "run off", "pick up"],
+            hint: "Give up (phrasal verb): từ bỏ, bỏ cuộc."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "The young athlete grew up in _____—a system where a child lives with a family that is not their own.",
+            options: ["foster care", "digestion system", "sugary food", "mountain range"],
+            hint: "Foster care (n): sự chăm sóc nuôi dưỡng (gia đình nhận nuôi tạm thời)."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "It is unkind to _____ someone or laugh at them when they make a mistake in sports.",
+            options: ["tease", "admire", "digest", "contain"],
+            hint: "Tease (v): trêu chọc, chế giễu."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "Her strong _____ helped her keep running and finish the difficult race.",
+            options: ["determination", "calcium", "shuttlecock", "media"],
+            hint: "Determination (n): sự quyết tâm, ý chí kiên định."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "At first, he _____ to swim 100 meters, but with daily practice he succeeded. (tried very hard)",
+            options: ["struggled", "bounced", "contained", "explored"],
+            hint: "Struggle (v/n): vật lộn, cố gắng vượt qua khó khăn."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "The basketball hit the metal rim and _____ back into the player's hands.",
+            options: ["bounced", "digested", "teased", "admired"],
+            hint: "Bounce (v): nảy lên, bật lại."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "The school sports festival was a real _____! Everyone had so much fun.",
+            options: ["blast", "ankle", "talent", "belt"],
+            hint: "Blast (n): sự kiện cực kỳ vui vẻ / luồng gió mạnh, tiếng nổ."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "The crowd cheered loudly when she scored the winning goal. It was _____! (extremely good)",
+            options: ["awesome", "thirsty", "terrifying", "humiliated"],
+            hint: "Awesome (adj): tuyệt vời, xuất sắc, ấn tượng."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "The firefighters arrived quickly to put out the _____ near the stadium.",
+            options: ["fire", "blast", "talent", "calcium"],
+            hint: "Fire (n/v): ngọn lửa / bắn, sa thải."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "The forward ran down the field and _____ the ball powerfully into the top corner of the net.",
+            options: ["struck", "teased", "digested", "contained"],
+            hint: "Strike (v/n) - quá khứ 'struck': đánh, sút mạnh bóng."
+        },
+        {
+            unit: "Unit 2",
+            unitTitle: "Unit 2: Sport",
+            q: "After the tournament, the team went to _____ the historic city. (travel around to learn about a place)",
+            options: ["explore", "bounce", "digest", "tease"],
+            hint: "Explore (v): khám phá, thám hiểm."
+        },
 
-        // --- PART 3: Present Continuous & Mixed Tenses (Questions 36-50) ---
-        { q: '36. Look! My father _____ (prepare) dinner in the kitchen right now.', a: ['is preparing'], hint: 'Dấu hiệu "Look!", "right now" -> Hiện tại tiếp diễn: is preparing' },
-        { q: '37. Listen! Someone _____ (knock) at the front door.', a: ['is knocking'], hint: 'Dấu hiệu "Listen!" -> Hiện tại tiếp diễn: is knocking' },
-        { q: '38. At the moment, my sister _____ (not / watch) TV; she is doing her homework.', a: ['is not watching', "isn't watching"], hint: 'Dấu hiệu "At the moment" dạng phủ định -> is not watching / isn\'t watching' },
-        { q: '39. _____ you _____ (study) for your English test right now?', a: ['are studying', 'are / studying', 'are...studying', 'are you studying'], hint: 'Câu hỏi hiện tại tiếp diễn với "you" -> Are ... studying?' },
-        { q: '40. Why _____ they _____ (make) so much noise in the living room at present?', a: ['are making', 'are / making', 'are...making', 'are they making'], hint: 'Dấu hiệu "at present" -> Are ... making?' },
-        { q: '41. My brother usually _____ (water) the plants, but today he _____ (study) for an exam.', a: ['waters - is studying', 'waters is studying', 'waters / is studying'], hint: 'Usually (HTĐ: waters), but today (HTTD: is studying)' },
-        { q: '42. Look! My mother _____ (carry) heavy grocery bags; let\'s help her.', a: ['is carrying'], hint: 'Dấu hiệu "Look!" -> is carrying' },
-        { q: '43. Be quiet! The baby _____ (sleep) in the bedroom.', a: ['is sleeping'], hint: 'Dấu hiệu "Be quiet!" -> is sleeping' },
-        { q: '44. We _____ (not / clean) the house today because we are going out.', a: ['are not cleaning', "aren't cleaning"], hint: 'Sự việc đặc biệt hôm nay (today) -> are not cleaning / aren\'t cleaning' },
-        { q: '45. _____ your mother _____ (cook) dinner at the moment?', a: ['is cooking', 'is / cooking', 'is...cooking', 'is your mother cooking'], hint: 'Dấu hiệu "at the moment" -> Is ... cooking?' },
-        { q: '46. She usually _____ (do) the washing-up after dinner, but today her brother _____ (do) it.', a: ['does - is doing', 'does is doing', 'does / is doing'], hint: 'Usually (HTĐ: does), but today (HTTD: is doing)' },
-        { q: '47. What _____ you _____ (do) right now? - I _____ (fold) the clothes.', a: ['are doing - am folding', 'are doing am folding', 'are doing / am folding'], hint: 'Right now: Are you doing? - I am folding' },
-        { q: '48. My father _____ (work) late at the office this week.', a: ['is working'], hint: 'Hành động tạm thời trong tuần này "this week" -> is working' },
-        { q: '49. They _____ (not / play) video games now; they are helping their parents.', a: ['are not playing', "aren't playing"], hint: 'Dấu hiệu "now" dạng phủ định -> are not playing / aren\'t playing' },
-        { q: '50. Every Sunday, we _____ (visit) our grandparents, but this Sunday we _____ (stay) at home.', a: ['visit - are staying', 'visit are staying', 'visit / are staying'], hint: 'Every Sunday (HTĐ: visit), but this Sunday (HTTD: are staying)' }
+        // ==================== UNIT 3: LIVING THINGS (35 words) ====================
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Every animal on Earth depends on a healthy environment and food chain to _____. (continue to live)",
+            options: ["survive", "hatch", "huddle", "breed"],
+            hint: "Survive (v) / survival (n): sống sót, sinh tồn."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "The baby penguin, called a _____, stays warm on its parent's feet in Antarctica.",
+            options: ["chick", "mate", "predator", "plankton"],
+            hint: "Chick (n): chim non (gà con, chim cánh cụt con...)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Emperor penguins _____ during the freezing Antarctic winter to produce young.",
+            options: ["breed", "trap", "digest", "huddle"],
+            hint: "Breed (v): sinh sản, nhân giống."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "The female penguin gives her egg to her _____—her animal partner—and goes to the sea to find fish.",
+            options: ["mate", "prey", "chick", "hybrid"],
+            hint: "Mate (n): bạn đời (của động vật)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "When spring daylight returns, thousands of eggs break open and young chicks _____.",
+            options: ["hatch", "huddle", "survive", "trap"],
+            hint: "Hatch (v): nở (trứng)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Male penguins _____ closely together in a large circle to protect themselves from freezing winds.",
+            options: ["huddle", "breed", "hatch", "digest"],
+            hint: "Huddle (v): tụm lại, đứng sát vào nhau để giữ ấm."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Thousands of emperor penguins live together in a giant group called a _____.",
+            options: ["colony", "pod", "habitat", "sanctuary"],
+            hint: "Colony (n): bầy, đàn (chim cánh cụt, ong, kiến...)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "A _____ shows how energy passes from plants to plant-eaters and then to meat-eaters.",
+            options: ["food chain", "migration", "sanctuary", "species"],
+            hint: "Food chain (n): chuỗi thức ăn."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "All plants, animals, and weather work together in our planet's _____. (living things & environment)",
+            options: ["ecosystem", "vertebrate", "amphibian", "plankton"],
+            hint: "Ecosystem (n): hệ sinh thái."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "These small sea creatures are carnivores whose main _____ consists of fish and shrimp.",
+            options: ["diet", "habitat", "colony", "pod"],
+            hint: "Diet (n): chế độ ăn uống, thức ăn thường ngày của sinh vật."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "A green plant is called a _____ because it makes its own food from the energy of the sun.",
+            options: ["producer", "consumer", "predator", "herbivore"],
+            hint: "Producer (n): sinh vật sản xuất (thực vật tự tổng hợp thức ăn)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Any animal that eats plants or other animals in a food chain is called a _____.",
+            options: ["consumer", "producer", "habitat", "sanctuary"],
+            hint: "Consumer (n): sinh vật tiêu thụ."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Rabbits, deer, and grasshoppers are _____, meaning they only eat plants.",
+            options: ["herbivores", "carnivores", "omnivores", "predators"],
+            hint: "Herbivore (n): động vật ăn cỏ / thực vật."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "The Venus flytrap is an unusual _____ plant that catches and eats insects.",
+            options: ["carnivorous", "herbivore", "sticky", "amphibian"],
+            hint: "Carnivore (n) / carnivorous (adj): động vật (hoặc thực vật) ăn thịt."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Bears and humans are _____, which means they eat both plants and meat.",
+            options: ["omnivores", "herbivores", "carnivores", "producers"],
+            hint: "Omnivore (n): động vật ăn tạp (ăn cả thực vật và thịt)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Lions, crocodiles, sharks, and eagles are top _____ that hunt and eat other animals.",
+            options: ["predators", "prey", "herbivores", "producers"],
+            hint: "Predator (n): động vật săn mồi."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "How does a carnivorous plant catch its _____—the insects that it hunts and eats?",
+            options: ["prey", "predator", "mate", "chick"],
+            hint: "Prey (n): con mồi."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Frogs and salamanders live in wet places near ponds and rivers; this is their natural _____.",
+            options: ["habitat", "migration", "colony", "diet"],
+            hint: "Habitat (n): môi trường sống tự nhiên."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "When a fly lands on the pitcher plant, it is _____ inside so it cannot escape.",
+            options: ["trapped", "hatched", "bred", "huddled"],
+            hint: "Trap (v/n): bẫy, bắt giữ không cho thoát."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "The Sundew plant's leaves are covered in a thick, _____ liquid that holds insects like glue.",
+            options: ["sticky", "carnivorous", "transparent", "efficient"],
+            hint: "Sticky (adj): dính, nhớp nháp."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "The carnivorous plant's special juices dissolve the insect so the plant can _____ its nutrients.",
+            options: ["digest", "breed", "hatch", "huddle"],
+            hint: "Digest (v): tiêu hóa, hấp thụ chất dinh dưỡng."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "A frog is an _____—a cold-blooded animal that can live both in water and on land.",
+            options: ["amphibian", "hybrid", "producer", "plankton"],
+            hint: "Amphibian (n): động vật lưỡng cư."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Fish, birds, mammals, reptiles, and amphibians are all _____ because they have a backbone.",
+            options: ["vertebrates", "producers", "plankton", "colonies"],
+            hint: "Vertebrate (n): động vật có xương sống."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Scientists have discovered over 8,000 different _____ of amphibians around the world.",
+            options: ["species", "gills", "scales", "pods"],
+            hint: "Species (n): loài (sinh vật)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Fish and young tadpoles use _____ on the sides of their heads to breathe underwater.",
+            options: ["gills", "lungs", "fins", "feathers"],
+            hint: "Gills (n, plural): mang (của cá, nòng nọc để thở dưới nước)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "When young frogs grow legs and develop _____, they can move onto land and breathe air.",
+            options: ["lungs", "gills", "scales", "fins"],
+            hint: "Lungs (n, plural): phổi (để thở không khí trên cạn)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Snakes, lizards, and fish have small, flat, hard _____ covering their skin for protection.",
+            options: ["scales", "feathers", "fins", "gills"],
+            hint: "Scales (n, plural): vảy (của cá, bò sát)."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Birds are the only living animals that have soft, light _____ covering their bodies.",
+            options: ["feathers", "scales", "fins", "lungs"],
+            hint: "Feathers (n, plural): lông vũ."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "A shark uses its strong tail and _____ to swim fast and change direction in the ocean.",
+            options: ["fins", "feathers", "lungs", "gills"],
+            hint: "Fins (n, plural): vây cá."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Giant baleen whales open their mouths wide to eat tiny sea plants and animals called _____.",
+            options: ["plankton", "amphibians", "vertebrates", "predators"],
+            hint: "Plankton (n): sinh vật phù du."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "A _____ is a scientist who studies ocean life, whales, and underwater ecosystems.",
+            options: ["marine biologist", "activist", "inventor", "celebrity"],
+            hint: "Marine biologist (n): nhà sinh vật học biển."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Scientists tracked the whale's long seasonal _____ from cold waters to warmer seas.",
+            options: ["migration", "ecosystem", "sanctuary", "survival"],
+            hint: "Migration (n): sự di cư."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Blue 55 swam alone in the ocean instead of travelling in a _____ with other whales.",
+            options: ["pod", "colony", "habitat", "diet"],
+            hint: "Pod (n): đàn cá voi / cá heo."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Rescued sea turtles are cared for at a marine _____—a safe place where animals are protected.",
+            options: ["sanctuary", "predator", "food chain", "species"],
+            hint: "Sanctuary (n): khu bảo tồn, nơi trú ẩn an toàn cho động vật."
+        },
+        {
+            unit: "Unit 3",
+            unitTitle: "Unit 3: Living things",
+            q: "Blue 55 was a _____ whale: his mother was a blue whale and his father was a fin whale.",
+            options: ["hybrid", "vertebrate", "consumer", "prey"],
+            hint: "Hybrid (n): con lai (sự kết hợp giữa hai loài khác nhau)."
+        },
+
+        // ==================== UNIT 4: INVENTIONS (34 words) ====================
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "My smartwatch is my favorite small _____ because it counts my steps and shows messages.",
+            options: ["gadget", "cog", "satellite", "wheel"],
+            hint: "Gadget (n): thiết bị, đồ dùng công nghệ nhỏ gọn tiện ích."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Scientists need special laboratory _____ to test their new experiments safely.",
+            options: ["equipment", "jibes", "opinion", "transport"],
+            hint: "Equipment (n): trang thiết bị, dụng cụ cần thiết cho một hoạt động."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "If you could _____ something new that has never been made before, what _____ would it be?",
+            options: ["invent / invention", "upgrade / battery", "demonstrate / gesture", "sneer / jibes"],
+            hint: "Invent (v) / invention (n) / inventor (n): phát minh / sự phát minh / nhà phát minh."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "The magnetic _____ was first used in China over 1,000 years ago to show which direction is north.",
+            options: ["compass", "tablet", "hoverboard", "zip"],
+            hint: "Compass (n): la bàn."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "The _____, once called the 'Clasp Locker', has two rows of metal or plastic teeth to close jackets and bags.",
+            options: ["zip", "cog", "sensor", "wheel"],
+            hint: "Zip (n): khóa kéo (phéc-mơ-tuya)."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "I use my _____—a small, flat computer controlled by touching the screen—to read e-books.",
+            options: ["tablet", "compass", "satellite", "hoverboard"],
+            hint: "Tablet (n): máy tính bảng."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "In 1973, the first _____ weighed over 1 kilogram, unlike today's lightweight smartphones!",
+            options: ["mobile phone", "hoverboard", "satellite", "compass"],
+            hint: "Mobile phone (n): điện thoại di động."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "A _____ is a self-balancing board with two wheels that you ride by leaning your body.",
+            options: ["hoverboard", "tablet", "satellite", "zip"],
+            hint: "Hoverboard (n): xe điện cân bằng hai bánh."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Every invention has both a good point (an _____) and a bad point (a _____).",
+            options: ["advantage / disadvantage", "opinion / gesture", "wheel / cog", "sensor / battery"],
+            hint: "Advantage (n) / disadvantage (n): ưu điểm, lợi thế / nhược điểm, bất lợi."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Asimo is a famous _____ built in Japan that can walk, run, and do tasks automatically.",
+            options: ["robot", "satellite", "compass", "zip"],
+            hint: "Robot (n): người máy."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Asimo has a head, two arms, and two legs, making it an advanced _____ robot.",
+            options: ["humanoid", "transparent", "persuasive", "rechargeable"],
+            hint: "Humanoid (adj/n): có hình dáng và đặc điểm giống con người."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Modern cars and robots use a _____—a device that detects objects, light, or movement nearby.",
+            options: ["sensor", "cog", "zip", "compass"],
+            hint: "Sensor (n): bộ phận cảm biến."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "If your remote control stops working, you probably need to put a new _____ inside it.",
+            options: ["battery", "gesture", "wheel", "opinion"],
+            hint: "Battery (n): pin, ắc quy."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Engineers regularly _____ computer software to make it faster and better.",
+            options: ["upgrade", "sneer", "demonstrate", "run off"],
+            hint: "Upgrade (v): nâng cấp, cải tiến."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "My phone has a _____ battery, so I can fill it with electricity again and use it many times.",
+            options: ["rechargeable", "transparent", "humiliated", "revolutionary"],
+            hint: "Rechargeable (adj): có thể sạc lại được."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Smart robots can understand voice commands as well as hand movements like waving, called a _____.",
+            options: ["gesture", "jibe", "cog", "opinion"],
+            hint: "Gesture (n): cử chỉ, điệu bộ (tay, đầu)."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "The young inventor went on stage to _____ how his new flying machine worked.",
+            options: ["demonstrate", "sneer", "upgrade", "run off"],
+            hint: "Demonstrate (v): trình diễn, chứng minh cách hoạt động."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Because it appeared on TV shows worldwide, the robot Asimo became a famous _____.",
+            options: ["celebrity", "satellite", "inventor", "equipment"],
+            hint: "Celebrity (n): người (hoặc vật) nổi tiếng."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "In my opinion, the most important invention of all time is the round _____ used on cars and bikes.",
+            options: ["wheel", "zip", "compass", "sensor"],
+            hint: "Wheel (n): bánh xe."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Inside clocks and engines, a wheel with 'teeth' around its edge that turns other parts is called a _____.",
+            options: ["cog", "tablet", "satellite", "battery"],
+            hint: "Cog (n): bánh răng (trong máy móc)."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "We depend on the wheel for all forms of _____, such as cars, buses, trains, and airplanes.",
+            options: ["transport", "equipment", "gesture", "opinion"],
+            hint: "Transport (n): phương tiện giao thông, sự vận tải."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Modern electric trains are very _____, working quickly without wasting time or energy.",
+            options: ["efficient", "humiliated", "transparent", "terrifying"],
+            hint: "Efficient (adj) / efficiently (adv): hiệu quả, năng suất cao."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "The internet is a _____ invention because it completely changed how the world communicates.",
+            options: ["revolutionary", "humiliated", "transparent", "rechargeable"],
+            hint: "Revolutionary (adj): mang tính cách mạng, tạo ra thay đổi lớn."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "In Writing 4.4, you write a _____ essay to make readers agree with your choice of invention.",
+            options: ["persuasive", "transparent", "humiliated", "rechargeable"],
+            hint: "Persuasive (adj): có tính thuyết phục."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "To start your essay, you can write: 'In my _____, the telephone is a brilliant invention.'",
+            options: ["opinion", "equipment", "transport", "gesture"],
+            hint: "Opinion (n): ý kiến, quan điểm."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "A _____ orbits high above Earth in space to send back GPS maps, weather data, and TV signals.",
+            options: ["satellite", "hoverboard", "compass", "cog"],
+            hint: "Satellite (n): vệ tinh nhân tạo."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Garth's invention covered his head in a _____ glass dome so he could see clearly through it.",
+            options: ["transparent", "persuasive", "efficient", "humiliated"],
+            hint: "Transparent (adj): trong suốt (có thể nhìn xuyên qua)."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "The three mean boys stood around Garth, _____ at his invention with cruel smiles.",
+            options: ["sneering", "demonstrating", "upgrading", "admiring"],
+            hint: "Sneer (v): cười nhếch mép, nhìn một cách chế giễu."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "The boys' cruel, mocking _____ rang in Garth's ears even after they left.",
+            options: ["jibes", "cogs", "gestures", "sensors"],
+            hint: "Jibes (n, plural): những lời chế nhạo, châm chọc."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "After everyone laughed at his broken machine, Garth felt embarrassed and _____.",
+            options: ["humiliated", "efficient", "revolutionary", "persuasive"],
+            hint: "Humiliated (adj): cảm thấy bẽ mặt, xấu hổ."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Garth was so excited about his new invention that he couldn't wait to _____ it _____. (test if it works)",
+            options: ["try / out", "run / off", "pick / up", "give / up"],
+            hint: "Try out (phrasal verb): dùng thử, thử nghiệm."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "After teasing him, the three bullies _____ quickly, laughing loudly. (left a place quickly)",
+            options: ["ran off", "tried out", "put together", "picked up"],
+            hint: "Run off (phrasal verb): chạy đi mất, bỏ chạy nhanh."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "Garth bent down and _____ his battered invention from the ground. (lifted from a surface)",
+            options: ["picked up", "ran off", "tried out", "gave up"],
+            hint: "Pick up (phrasal verb): nhặt lên."
+        },
+        {
+            unit: "Unit 4",
+            unitTitle: "Unit 4: Inventions",
+            q: "The friendly lady asked Garth how he had _____ all the parts of his machine _____. (joined parts to make something)",
+            options: ["put / together", "run / off", "given / up", "tried / out"],
+            hint: "Put together (phrasal verb): lắp ráp, ghép lại với nhau."
+        }
     ];
 
+    let selectedUnitFilter = "ALL";
+    let activeQuizPool = [];
     let currentQuestionIndex = 0;
     let globalScore = 0;
     let userLives = 5;
     let currentGameState = "playing";
     let userAnswersLog = [];
     let grammarHintsCount = 5;
+    let currentShuffledOptions = [];
+    let currentCorrectIndex = 0;
 
     const canvas = document.getElementById("laser-canvas");
     const ctx = canvas.getContext("2d");
     const questionPrompt = document.getElementById("question-prompt");
-    const correctionZone = document.getElementById("correction-zone");
+    const unitTag = document.getElementById("unit-tag");
+    const mcqOptionsContainer = document.getElementById("mcq-options");
     const currentQNum = document.getElementById("current-q-num");
     const totalQNum = document.getElementById("total-q-num");
     const scoreDisplay = document.getElementById("score-display");
@@ -450,10 +1468,10 @@
 
     const finalScoreDisplay = document.getElementById("final-score");
     const rewardLevel = document.getElementById("reward-level");
+    const accuracySummary = document.getElementById("accuracy-summary");
+    const resultUnitSummary = document.getElementById("result-unit-summary");
     const historyList = document.getElementById("history-list");
     const playerShip = document.getElementById("player-ship");
-
-    totalQNum.innerText = quizData.length;
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -462,16 +1480,44 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
+    // Select Unit Filter on Intro Screen
+    function selectUnitFilter(unitValue, btnElement) {
+        selectedUnitFilter = unitValue;
+        const allFilterBtns = document.querySelectorAll(".unit-filter-btn");
+        allFilterBtns.forEach(b => b.classList.remove("selected"));
+        btnElement.classList.add("selected");
+    }
+
+    // Fisher-Yates shuffle helper
+    function shuffleArray(arr) {
+        const copy = [...arr];
+        for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+    }
+
     function startGame() {
+        // Filter questions based on selected Unit
+        if (selectedUnitFilter === "ALL") {
+            activeQuizPool = [...allQuizData];
+        } else {
+            activeQuizPool = allQuizData.filter(item => item.unit === selectedUnitFilter);
+        }
+
         introScreen.classList.remove("active-screen");
         gameScreen.classList.add("active-screen");
         resultScreen.classList.remove("active-screen");
         historyScreen.classList.remove("active-screen");
+
         userLives = 5;
         grammarHintsCount = 5;
         currentQuestionIndex = 0;
         globalScore = 0;
         userAnswersLog = [];
+
+        totalQNum.innerText = activeQuizPool.length;
         scoreDisplay.innerText = globalScore;
         document.getElementById("count-hint").innerText = grammarHintsCount;
         updateLivesUI();
@@ -489,62 +1535,70 @@
         currentGameState = "playing";
         nextBtn.style.display = "none";
         statusMessage.innerHTML = "";
-        correctionZone.innerHTML = "";
+        mcqOptionsContainer.innerHTML = "";
         
         playerShip.style.transform = "rotate(0deg)";
         currentQNum.innerText = currentQuestionIndex + 1;
-        let currentQ = quizData[currentQuestionIndex];
+        const currentQ = activeQuizPool[currentQuestionIndex];
 
-        questionPrompt.innerHTML = currentQ.q;
+        unitTag.innerText = currentQ.unitTitle;
+        questionPrompt.innerHTML = `${currentQuestionIndex + 1}. ${currentQ.q}`;
 
-        correctionZone.innerHTML = `
-            <div class="correction-container">
-                <input type="text" id="correction-field" class="written-input" placeholder="Nhập đáp án của con..." autocomplete="off" onkeyup="checkEnterKey(event)">
-                <br><br>
-                <button class="control-btn blue" onclick="submitTextAnswer()">Xác Nhận Năng Lượng 🚀</button>
-            </div>
-        `;
-        setTimeout(() => {
-            let field = document.getElementById("correction-field");
-            if (field) field.focus();
-        }, 150);
+        // Prepare randomized options (index 0 in currentQ.options is always the right answer)
+        const correctText = currentQ.options[0];
+        const shuffledTexts = shuffleArray(currentQ.options);
+        const letters = ["A", "B", "C", "D"];
+
+        currentShuffledOptions = shuffledTexts.map((text, idx) => `${letters[idx]}. ${text}`);
+        currentCorrectIndex = shuffledTexts.indexOf(correctText);
+
+        currentShuffledOptions.forEach((optLabel, index) => {
+            const btn = document.createElement("button");
+            btn.className = "mcq-btn";
+            btn.innerText = optLabel;
+            btn.onclick = () => handleOptionClick(index, btn);
+            mcqOptionsContainer.appendChild(btn);
+        });
 
         document.getElementById("ll-hint").disabled = (grammarHintsCount <= 0);
     }
 
-    function checkEnterKey(event) { if (event.key === "Enter") submitTextAnswer(); }
-
-    function submitTextAnswer() {
+    function handleOptionClick(selectedIndex, clickedBtn) {
         if (currentGameState !== "playing") return;
-        let inputField = document.getElementById("correction-field");
-        if (!inputField) return;
-
-        let userText = inputField.value.trim();
-        if (userText === "") return;
-
         currentGameState = "finished";
 
-        let currentQ = quizData[currentQuestionIndex];
-        let normUser = userText.toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' ').replace(/\)/g, '').replace(/\./g, '').trim();
-        let isCorrect = currentQ.a.some(ans => normUser === ans.toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' ').replace(/\)/g, '').replace(/\./g, '').trim());
+        const currentQ = activeQuizPool[currentQuestionIndex];
+        const isCorrect = (selectedIndex === currentCorrectIndex);
 
-        fireArcadeLaser(inputField, isCorrect, () => {
-            inputField.disabled = true;
-            userAnswersLog.push({ qIndex: currentQuestionIndex, userText: userText, isCorrect: isCorrect });
+        const allBtns = mcqOptionsContainer.querySelectorAll(".mcq-btn");
+        allBtns.forEach(btn => btn.disabled = true);
+
+        fireArcadeLaser(clickedBtn, isCorrect, () => {
+            userAnswersLog.push({
+                qNum: currentQuestionIndex + 1,
+                unitTitle: currentQ.unitTitle,
+                questionText: currentQ.q,
+                selectedText: currentShuffledOptions[selectedIndex],
+                correctText: currentShuffledOptions[currentCorrectIndex],
+                hintText: currentQ.hint,
+                isCorrect: isCorrect
+            });
 
             if (isCorrect) {
-                inputField.style.borderColor = "var(--correct-color)";
-                let gainedPoints = 200; 
+                clickedBtn.classList.add("correct-choice");
+                const gainedPoints = 100;
                 globalScore += gainedPoints;
                 scoreDisplay.innerText = globalScore;
-                statusMessage.innerHTML = `<span style='color: var(--correct-color)'>THÀNH CÔNG: Câu trả lời rất chính xác! +${gainedPoints} Điểm. 🎉</span>`;
+                statusMessage.innerHTML = `<span style='color: var(--correct-color)'>CHÍNH XÁC! +${gainedPoints} Điểm. 🎉 (${currentQ.hint})</span>`;
             } else {
-                inputField.style.borderColor = "var(--wrong-color)";
+                clickedBtn.classList.add("wrong-choice");
+                allBtns[currentCorrectIndex].classList.add("correct-choice");
                 userLives--;
                 updateLivesUI();
-                statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>THẤT BẠI: Chưa đúng! Đáp án chuẩn: "${currentQ.a[0]}".</span>`;
+                statusMessage.innerHTML = `<span style='color: var(--wrong-color)'>CHƯA ĐÚNG! Đáp án chuẩn: "${currentShuffledOptions[currentCorrectIndex]}".</span>`;
+                
                 if (userLives <= 0) {
-                    setTimeout(() => { handleGameOverLoss(); }, 1500);
+                    setTimeout(() => { handleGameOverLoss(); }, 1600);
                     return;
                 }
             }
@@ -555,7 +1609,7 @@
     function handleGameOverLoss() {
         currentGameState = "finished";
         statusMessage.innerHTML = "<span style='color:var(--wrong-color)'>Phi thuyền cạn kiệt năng lượng! Đang chuyển đến bảng tổng kết...</span>";
-        setTimeout(() => { showFinalResults(); }, 2000);
+        setTimeout(() => { showFinalResults(); }, 1800);
     }
 
     function useGrammarHint() {
@@ -563,7 +1617,7 @@
         grammarHintsCount--;
         document.getElementById("count-hint").innerText = grammarHintsCount;
         document.getElementById("ll-hint").disabled = (grammarHintsCount <= 0);
-        statusMessage.innerHTML = `<span style='color: #ffeb3b;'>💡 GỢI Ý: ${quizData[currentQuestionIndex].hint}</span>`;
+        statusMessage.innerHTML = `<span style='color: #ffeb3b;'>💡 GỢI Ý HỆ THỐNG: ${activeQuizPool[currentQuestionIndex].hint}</span>`;
     }
 
     function fireArcadeLaser(targetElement, isCorrectResult, callback) {
@@ -585,15 +1639,18 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (laserProgress < 1) {
                 laserProgress += 0.25;
-                let currentX = startX + (endX - startX) * laserProgress;
-                let currentY = startY + (endY - startY) * laserProgress;
+                const currentX = startX + (endX - startX) * laserProgress;
+                const currentY = startY + (endY - startY) * laserProgress;
 
                 ctx.beginPath();
                 ctx.strokeStyle = isCorrectResult ? "#00fff0" : "#ff4b5c";
                 ctx.lineWidth = 5;
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = isCorrectResult ? "#00fff0" : "#ff4b5c";
                 ctx.moveTo(startX, startY);
                 ctx.lineTo(currentX, currentY);
                 ctx.stroke();
+                ctx.shadowBlur = 0;
 
                 requestAnimationFrame(drawLaserBeam);
             } else {
@@ -606,7 +1663,7 @@
 
     function nextQuestion() {
         currentQuestionIndex++;
-        if (currentQuestionIndex < quizData.length && userLives > 0) {
+        if (currentQuestionIndex < activeQuizPool.length && userLives > 0) {
             loadQuestion();
         } else {
             showFinalResults();
@@ -621,11 +1678,21 @@
 
         finalScoreDisplay.innerText = globalScore;
 
+        const unitNameDisplay = selectedUnitFilter === "ALL" ? "Tất cả 4 Units (Units 1–4)" : selectedUnitFilter;
+        resultUnitSummary.innerText = `Phạm vi ôn tập: ${unitNameDisplay}`;
+
+        const correctCount = userAnswersLog.filter(item => item.isCorrect).length;
+        const totalAttempted = userAnswersLog.length;
+        const totalPool = activeQuizPool.length;
+        const percentage = totalPool > 0 ? Math.round((correctCount / totalPool) * 100) : 0;
+
+        accuracySummary.innerHTML = `Số câu trả lời đúng: <strong style="color:var(--correct-color)">${correctCount} / ${totalPool}</strong> câu (${percentage}%)`;
+
         let levelStr = "";
-        if (globalScore >= 9000) levelStr = "👑 ĐẠI TƯỚNG NGỮ PHÁP (Xuất Sắc!)";
-        else if (globalScore >= 7000) levelStr = "🚀 PHI HÀNH GIA NGỮ PHÁP (Rất Giỏi!)";
-        else if (globalScore >= 4000) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt)";
-        else levelStr = "🔰 TÂN BINH TẬP SỰ (Hãy rèn luyện thêm con nhé!)";
+        if (percentage >= 90) levelStr = "👑 ĐẠI TƯỚNG TỪ VỰNG STAGE 6 (Xuất Sắc - Sẵn sàng thi EOT1!)";
+        else if (percentage >= 75) levelStr = "🚀 PHI HÀNH GIA NGÔN NGỮ (Rất Giỏi!)";
+        else if (percentage >= 50) levelStr = "⭐ CHIẾN BINH KHÔNG GIAN (Khá Tốt - Hãy xem lại các câu sai nhé!)";
+        else levelStr = "🔰 TÂN BINH TẬP SỰ (Con hãy bấm 'Xem Chi Tiết Lịch Sử' để ôn kỹ từ vựng nhé!)";
 
         rewardLevel.innerText = levelStr;
     }
@@ -635,20 +1702,23 @@
         historyScreen.classList.add("active-screen");
         historyList.innerHTML = "";
 
-        userAnswersLog.forEach(ans => {
-            let itemData = quizData[ans.qIndex];
-            if (!itemData) return;
+        if (userAnswersLog.length === 0) {
+            historyList.innerHTML = "<p style='text-align:center;'>Chưa có dữ liệu trả lời.</p>";
+            return;
+        }
 
-            let itemDiv = document.createElement("div");
+        userAnswersLog.forEach(ans => {
+            const itemDiv = document.createElement("div");
             itemDiv.className = `history-item ${ans.isCorrect ? "history-correct" : "history-wrong"}`;
-            let correctAnsStr = itemData.a[0];
 
             itemDiv.innerHTML = `
-                <div style="font-weight:bold; color:#fff;">Thử thách ${ans.qIndex + 1}: ${itemData.q}</div>
-                <div style="margin: 5px 0;">
-                    • Con đã chọn/nhập: <strong style="color:${ans.isCorrect ? 'var(--correct-color)' : 'var(--wrong-color)'}">${ans.userText}</strong> 
-                    ${ans.isCorrect ? ' ✔' : ` | Đáp án đúng: <strong style="color:var(--correct-color)">${correctAnsStr}</strong> ✘`}
+                <div style="font-size:0.8rem; color:var(--accent-color); font-weight:bold;">${ans.unitTitle}</div>
+                <div style="font-weight:bold; color:#ffffff; margin-top:2px;">Câu ${ans.qNum}: ${ans.questionText}</div>
+                <div style="margin: 6px 0;">
+                    • Con đã chọn: <strong style="color:${ans.isCorrect ? 'var(--correct-color)' : 'var(--wrong-color)'}">${ans.selectedText}</strong> 
+                    ${ans.isCorrect ? ' ✔' : ` | Đáp án đúng: <strong style="color:var(--correct-color)">${ans.correctText}</strong> ✘`}
                 </div>
+                <div style="font-size:0.9rem; color:#a5f3fc;">💡 Ghi nhớ: ${ans.hintText}</div>
             `;
             historyList.appendChild(itemDiv);
         });
